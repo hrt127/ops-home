@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ChangeOp {
+  CREATE
+  UPDATE
+  DELETE
+}
+
+model Wallet {
+  id         String   @id @default(uuid())
+  name       String
+  address    String?  @unique
+  metadata   Json?
+  version    Int      @default(1)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  deletedAt  DateTime?
+  changes    ChangeLog[] @relation("wallet_changes")
+}
+
+model Event {
+  id         String   @id @default(uuid())
+  title      String
+  when_ts    DateTime
+  importance Int      @default(0)
+  metadata   Json?
+  version    Int      @default(1)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  deletedAt  DateTime?
+  changes    ChangeLog[] @relation("event_changes")
+}
+
+model Note {
+  id         String   @id @default(uuid())
+  title      String
+  body       String
+  metadata   Json?
+  version    Int      @default(1)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  deletedAt  DateTime?
+  changes    ChangeLog[] @relation("note_changes")
+}
+
+model Idea {
+  id         String   @id @default(uuid())
+  title      String
+  body       String
+  metadata   Json?
+  status     String   @default("idea")
+  version    Int      @default(1)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  deletedAt  DateTime?
+  changes    ChangeLog[] @relation("idea_changes")
+}
+
+model ChangeLog {
+  id        String   @id @default(uuid())
+  op        ChangeOp
+  entity    String
+  entityId  String
+  payload   Json
+  version   Int
+  actorId   String?
+  createdAt DateTime @default(now())
+
+  // Optional relation fields for convenience (not required)
+  wallet    Wallet?  @relation("wallet_changes", fields: [entityId], references: [id])
+  event     Event?   @relation("event_changes", fields: [entityId], references: [id])
+  note      Note?    @relation("note_changes", fields: [entityId], references: [id])
+  idea      Idea?    @relation("idea_changes", fields: [entityId], references: [id])
+
+  @@index([entity, entityId])
+  @@index([createdAt])
+}

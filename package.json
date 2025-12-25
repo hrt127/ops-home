@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prisma:generate": "prisma generate",
+    "prisma:studio": "prisma studio",
+    "migrate:dev": "prisma migrate dev --name init",
+    "migrate:prod": "prisma migrate deploy",
+    "db:reset": "prisma migrate reset --force"
   },
   "dependencies": {
     "better-sqlite3": "^12.5.0",
@@ -14,7 +19,9 @@
     "next": "16.1.1",
     "react": "19.2.3",
     "react-calendar": "^6.0.0",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "@prisma/client": "^5.8.0",
+    "pg": "^8.11.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -24,6 +31,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "prisma": "^5.8.0"
   }
 }
