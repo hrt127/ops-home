@@ -22,7 +22,6 @@ model Wallet {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   deletedAt  DateTime?
-  changes    ChangeLog[] @relation("wallet_changes")
 }
 
 model Event {
@@ -35,7 +34,6 @@ model Event {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   deletedAt  DateTime?
-  changes    ChangeLog[] @relation("event_changes")
 }
 
 model Note {
@@ -47,7 +45,6 @@ model Note {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   deletedAt  DateTime?
-  changes    ChangeLog[] @relation("note_changes")
 }
 
 model Idea {
@@ -60,7 +57,6 @@ model Idea {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   deletedAt  DateTime?
-  changes    ChangeLog[] @relation("idea_changes")
 }
 
 model ChangeLog {
@@ -72,12 +68,6 @@ model ChangeLog {
   version   Int
   actorId   String?
   createdAt DateTime @default(now())
-
-  // Optional relation fields for convenience (not required)
-  wallet    Wallet?  @relation("wallet_changes", fields: [entityId], references: [id])
-  event     Event?   @relation("event_changes", fields: [entityId], references: [id])
-  note      Note?    @relation("note_changes", fields: [entityId], references: [id])
-  idea      Idea?    @relation("idea_changes", fields: [entityId], references: [id])
 
   @@index([entity, entityId])
   @@index([createdAt])

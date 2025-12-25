@@ -1,99 +1,145 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Database from 'better-sqlite3';
-import path from 'path';
-import { insertWithSync, updateWithSync, deleteWithSync } from '@/lib/db-schema';
+import { prisma } from '@/lib/db-sync';
+import { v4 as uuid } from 'uuid';
 
-// Initialize database
-function getDatabase() {
-  const dbPath = process.env.DATABASE_PATH || path.join(process.cwd(), 'data', 'ops-home.db');
-  return new Database(dbPath);
-}
+export const dynamic = 'force-dynamic';
 
-// GET /api/db/notes
 export async function GET(req: NextRequest) {
   try {
-    const db = getDatabase();
-    const notes = db.prepare('SELECT * FROM notes ORDER BY created_at DESC').all();
-    db.close();
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get('id');
+    const history = searchParams.get('history') === 'true';
 
-    return NextResponse.json({ notes, timestamp: new Date().toISOString() });
-  } catch (error) {
-    console.error('GET /api/db/notes error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch notes', details: String(error) },
-      { status: 500 }
-    );
+    if (id) {
+      const note = await prisma.note.findUnique({ where: { id } });
+      if (!note) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+      if (history) {
+        const changes = await prisma.changeLog.findMany({
+          where: { entity: 'note', entityId: id },
+          orderBy: { createdAt: 'asc' },
+        });
+        return NextResponse.json({ note, changes });
+      }
+      return NextResponse.json(note);
+    }
+
+    const notes = await prisma.note.findMany({ where: { deletedAt: null }, orderBy: { createdAt: 'desc' } });
+    return NextResponse.json(notes);
+  } catch (err) {
+    console.error('GET /api/db/notes:', err);
+    return NextResponse.json({ error: 'Internal error' }, { status: 500 });
   }
 }
 
-// POST /api/db/notes (create new note)
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const db = getDatabase();
-    const id = `note-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
-    const note = {
-      id,
-      label: body.label || 'Untitled Note',
-      detail: body.detail || '',
-    };
+    const { title, body: noteBody, metadata } = body;
 
-    insertWithSync(db, 'notes', note);
-    db.close();
+    const id = uuid();
+    const note = await prisma.note.create({
+      data: {
+        id,
+        title: title || 'note',
+        body: noteBody || '',
+        metadata: metadata || null,
+        version: 1,
+      },
+    });
 
-    return NextResponse.json({ ...note, timestamp: new Date().toISOString() }, { status: 201 });
-  } catch (error) {
-    console.error('POST /api/db/notes error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create note', details: String(error) },
-      { status: 500 }
-    );
+    await prisma.changeLog.create({
+      data: {
+        id: uuid(),
+        op: 'CREATE',
+        entity: 'note',
+        entityId: id,
+        payload: note,
+        version: 1,
+        actorId: null,
+      },
+    });
+
+    return NextResponse.json(note, { status: 201 });
+  } catch (err) {
+    console.error('POST /api/db/notes:', err);
+    return NextResponse.json({ error: 'Internal error' }, { status: 500 });
   }
 }
 
-// PUT /api/db/notes (update note)
 export async function PUT(req: NextRequest) {
   try {
     const body = await req.json();
-    const { id, ...updates } = body;
+    const { id, title, body: noteBody, metadata } = body;
 
-    if (!id) {
-      return NextResponse.json({ error: 'Note ID required' }, { status: 400 });
-    }
+    if (!id) return NextResponse.json({ error: 'Missing id' }, { status: 400 });
 
-    const db = getDatabase();
-    updateWithSync(db, 'notes', id, updates);
-    db.close();
+    const existing = await prisma.note.findUnique({ where: { id } });
+    if (!existing) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
-    return NextResponse.json({ id, ...updates, timestamp: new Date().toISOString() });
-  } catch (error) {
-    console.error('PUT /api/db/notes error:', error);
-    return NextResponse.json(
-      { error: 'Failed to update note', details: String(error) },
-      { status: 500 }
-    );
+    const newVersion = existing.version + 1;
+    const updated = await prisma.note.update({
+      where: { id },
+      data: {
+        title: title ?? existing.title,
+        body: noteBody ?? existing.body,
+        metadata: metadata ?? existing.metadata,
+        version: newVersion,
+      },
+    });
+
+    await prisma.changeLog.create({
+      data: {
+        id: uuid(),
+        op: 'UPDATE',
+        entity: 'note',
+        entityId: id,
+        payload: updated,
+        version: newVersion,
+        actorId: null,
+      },
+    });
+
+    return NextResponse.json(updated);
+  } catch (err) {
+    console.error('PUT /api/db/notes:', err);
+    return NextResponse.json({ error: 'Internal error' }, { status: 500 });
   }
 }
 
-// DELETE /api/db/notes?id=1
 export async function DELETE(req: NextRequest) {
   try {
-    const id = req.nextUrl.searchParams.get('id');
+    const body = await req.json();
+    const { id } = body;
 
-    if (!id) {
-      return NextResponse.json({ error: 'Note ID required' }, { status: 400 });
-    }
+    if (!id) return NextResponse.json({ error: 'Missing id' }, { status: 400 });
 
-    const db = getDatabase();
-    deleteWithSync(db, 'notes', id);
-    db.close();
+    const existing = await prisma.note.findUnique({ where: { id } });
+    if (!existing) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
-    return NextResponse.json({ deleted: true, id, timestamp: new Date().toISOString() });
-  } catch (error) {
-    console.error('DELETE /api/db/notes error:', error);
-    return NextResponse.json(
-      { error: 'Failed to delete note', details: String(error) },
-      { status: 500 }
-    );
+    const newVersion = existing.version + 1;
+    const deleted = await prisma.note.update({
+      where: { id },
+      data: {
+        deletedAt: new Date(),
+        version: newVersion,
+      },
+    });
+
+    await prisma.changeLog.create({
+      data: {
+        id: uuid(),
+        op: 'DELETE',
+        entity: 'note',
+        entityId: id,
+        payload: deleted,
+        version: newVersion,
+        actorId: null,
+      },
+    });
+
+    return NextResponse.json(deleted);
+  } catch (err) {
+    console.error('DELETE /api/db/notes:', err);
+    return NextResponse.json({ error: 'Internal error' }, { status: 500 });
   }
 }
