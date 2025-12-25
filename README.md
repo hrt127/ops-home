@@ -1,4 +1,4 @@
-# Ops-Home — Daily Crypto Operations Cockpit
+# Ops-Home
 
 A modern, modular Next.js app for managing wallets, events, and agent-based operations guidance. Built for daily use with real-time AI assistance, persistent state, and extensible APIs.
 
