@@ -282,13 +282,11 @@ function Card(props: { title: string; children: React.ReactNode; className?: str
 // Main page
 // ----------------------------
 // Moved to (protected) route group for auth
-import ProtectedLayout from "./(protected)/layout";
 
-import { useSession, signIn, signOut } from "next-auth/react";
+// Assumption: Single-user, local-only dashboard. No authentication, no teams, no sharing.
+// Home screen shows today's events, recent notes, and recent ideas. All CRUD handled in panels.
 
 function PageContent() {
-  const { data: session, status } = useSession();
-  // ...existing state and logic...
   const [wallets, setWallets] = useState<Wallet[]>([]);
   const [events, setEvents] = useState<EventItem[]>([]);
   const [notes, setNotes] = useState<NoteItem[]>([]);
@@ -297,77 +295,82 @@ function PageContent() {
   const [projects] = useState<ProjectItem[]>(DEFAULT_PROJECTS);
   const [selectedWallet, setSelectedWallet] = useState<Wallet | null>(null);
 
-  const [riskLevel, setRiskLevel] = useState(3);
-  const [nonNegotiables, setNonNegotiables] = useState<string[]>(["", "", ""]);
-  const [calendarValue, setCalendarValue] = useState<Value>(new Date());
-  const [eventTypeFilters, setEventTypeFilters] = useState<Record<EventType, boolean>>({
-    ongoing: true,
-    "time-bound": true,
-  });
-  const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
-
-  const [agentMode, setAgentMode] = useState<AgentMode>("daily-plan");
-  const [todayCtx, setTodayCtx] = useState<AgentTodayContext>({
-    focus: "Stabilise Ops Home + Dojo CLI.",
-    riskLevel: 5,
-    nonNegotiables: ["No cold wallet risk", "No new surfaces"],
-  });
-
-  useEffect(() => {
-    saveToStorage("ops-home:risk-level", riskLevel);
-  }, [riskLevel]);
-  useEffect(() => {
-    saveToStorage("ops-home:non-negotiables", nonNegotiables);
-  }, [nonNegotiables]);
-  useEffect(() => {
-    saveToStorage("ops-home:todayctx", todayCtx);
-  }, [todayCtx]);
-  useEffect(() => {
-    saveToStorage("ops-home:agent-mode", agentMode);
-  }, [agentMode]);
-
-  const filteredEvents = useMemo(
-    () => events.filter((ev) => eventTypeFilters[ev.type]),
-    [events, eventTypeFilters]
-  );
-
-  const eventsByDate = useMemo(() => {
-    const map = new Map<string, EventItem[]>();
-    for (const ev of filteredEvents) {
-      const dateStr = ev.when || "unknown";
-      if (!map.has(dateStr)) map.set(dateStr, []);
-      map.get(dateStr)!.push(ev);
-    }
-    return map;
-  }, [filteredEvents]);
-
-  const onToggleType = (type: EventType) => {
-    setEventTypeFilters((prev) => ({ ...prev, [type]: !prev[type] }));
-  };
-
-  const onCalendarClickDay = (value: Date) => {
-    const dateStr = value.toISOString().slice(0, 10);
-    const evs = eventsByDate.get(dateStr);
-    if (!evs || evs.length === 0) return;
-    setSelectedEvent(evs[0]);
-  };
+  // Show today's events (assume dayOffset === 0 means today)
+  const todaysEvents = events.filter((ev) => ev.dayOffset === 0);
+  // Show 3 most recent notes
+  const recentNotes = notes.slice(0, 3);
+  // Show 3 most recent ideas
+  const recentIdeas = ideas.slice(0, 3);
 
   return (
-    <ProtectedLayout>
-      <div className="flex items-center justify-end gap-4 p-4">
-        {status === "loading" ? (
-          <span>Loading...</span>
-        ) : session ? (
-          <>
-            <span className="text-sm text-gray-300">Signed in as {session.user?.email || session.user?.name}</span>
-            <button className="bg-zinc-800 px-3 py-1 rounded text-gray-200" onClick={() => signOut()}>Logout</button>
-          </>
-        ) : (
-          <button className="bg-sky-700 px-3 py-1 rounded text-white" onClick={() => signIn()}>Login</button>
-        )}
+    <div className="space-y-6">
+      <div className="grid grid-cols-3 gap-4">
+        <div>
+          <MarketStrip />
+          <WalletLanes wallets={wallets} onChange={setWallets} selected={selectedWallet} onSelect={setSelectedWallet} />
+        </div>
+        <div>
+          <EventsPanel events={events} setEvents={setEvents} />
+        </div>
+        <div>
+          <NotesPanel notes={notes} setNotes={setNotes} />
+          <IdeasPanel ideas={ideas} setIdeas={setIdeas} />
+          <SnippetsPanel snippets={snippets} />
+        </div>
       </div>
-      {/* ...existing code... */}
-    </ProtectedLayout>
+      <div className="mt-8 grid grid-cols-3 gap-4">
+        <section className="rounded-xl border border-zinc-700 bg-zinc-900/50 p-4">
+          <h2 className="text-sm font-semibold text-gray-200 mb-2">Today's Events</h2>
+          {todaysEvents.length === 0 ? (
+            <div className="text-xs text-zinc-400">No events scheduled for today.</div>
+          ) : (
+            <ul className="space-y-1 text-xs">
+              {todaysEvents.map((ev) => (
+                <li key={ev.id} className="rounded bg-zinc-900/80 px-2 py-1 flex items-center justify-between">
+                  <span className="text-zinc-100">{ev.label}</span>
+                  <span className="text-[10px] text-sky-400">{ev.when}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+        <section className="rounded-xl border border-zinc-700 bg-zinc-900/50 p-4">
+          <h2 className="text-sm font-semibold text-gray-200 mb-2">Recent Notes</h2>
+          {recentNotes.length === 0 ? (
+            <div className="text-xs text-zinc-400">No notes yet.</div>
+          ) : (
+            <ul className="space-y-1 text-xs">
+              {recentNotes.map((n) => (
+                <li key={n.id} className="rounded bg-zinc-900/80 px-2 py-1 flex items-center justify-between">
+                  <span className="text-zinc-100">{n.label}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+        <section className="rounded-xl border border-zinc-700 bg-zinc-900/50 p-4">
+          <h2 className="text-sm font-semibold text-gray-200 mb-2">Recent Ideas</h2>
+          {recentIdeas.length === 0 ? (
+            <div className="text-xs text-zinc-400">No ideas yet.</div>
+          ) : (
+            <ul className="space-y-1 text-xs">
+              {recentIdeas.map((i) => (
+                <li key={i.id} className="rounded bg-zinc-900/80 px-2 py-1 flex items-center justify-between">
+                  <span className="text-zinc-100">{i.label}</span>
+                  <span className="text-[10px] text-zinc-400">{i.status}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      </div>
+      <div className="mt-8">
+        <DojoMap projects={projects} />
+      </div>
+      <div className="mt-8">
+        <AgentConsole mode={"daily-plan"} setMode={() => {}} today={{ focus: "", riskLevel: 5, nonNegotiables: [] }} setToday={() => {}} wallets={wallets} events={events} />
+      </div>
+    </div>
   );
 }
 
