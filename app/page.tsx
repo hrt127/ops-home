@@ -283,7 +283,12 @@ function Card(props: { title: string; children: React.ReactNode; className?: str
 // ----------------------------
 // Moved to (protected) route group for auth
 import ProtectedLayout from "./(protected)/layout";
+
+import { useSession, signIn, signOut } from "next-auth/react";
+
 function PageContent() {
+  const { data: session, status } = useSession();
+  // ...existing state and logic...
   const [wallets, setWallets] = useState<Wallet[]>([]);
   const [events, setEvents] = useState<EventItem[]>([]);
   const [notes, setNotes] = useState<NoteItem[]>([]);
@@ -308,7 +313,6 @@ function PageContent() {
     nonNegotiables: ["No cold wallet risk", "No new surfaces"],
   });
 
-  // Only persist riskLevel, nonNegotiables, todayCtx, agentMode
   useEffect(() => {
     saveToStorage("ops-home:risk-level", riskLevel);
   }, [riskLevel]);
@@ -322,7 +326,6 @@ function PageContent() {
     saveToStorage("ops-home:agent-mode", agentMode);
   }, [agentMode]);
 
-  // Event filtering and grouping
   const filteredEvents = useMemo(
     () => events.filter((ev) => eventTypeFilters[ev.type]),
     [events, eventTypeFilters]
@@ -351,6 +354,18 @@ function PageContent() {
 
   return (
     <ProtectedLayout>
+      <div className="flex items-center justify-end gap-4 p-4">
+        {status === "loading" ? (
+          <span>Loading...</span>
+        ) : session ? (
+          <>
+            <span className="text-sm text-gray-300">Signed in as {session.user?.email || session.user?.name}</span>
+            <button className="bg-zinc-800 px-3 py-1 rounded text-gray-200" onClick={() => signOut()}>Logout</button>
+          </>
+        ) : (
+          <button className="bg-sky-700 px-3 py-1 rounded text-white" onClick={() => signIn()}>Login</button>
+        )}
+      </div>
       {/* ...existing code... */}
     </ProtectedLayout>
   );

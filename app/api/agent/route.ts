@@ -1,4 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
+
+// Minimal rate limit stub
+let lastRequest = 0;
+export async function POST(req: NextRequest) {
+  const now = Date.now();
+  if (now - lastRequest < 1000) {
+    return NextResponse.json({ error: "Rate limit exceeded" }, { status: 429 });
+  }
+  lastRequest = now;
+  // ...existing code...
+}
+import { NextRequest, NextResponse } from "next/server";
 import type { AgentRequestPayload, AgentResponsePayload } from "@/lib/agent-types";
 import { callLLM, type LLMProvider } from "@/lib/llm";
 import { buildAgentPrompt } from "@/lib/prompt-builder";
