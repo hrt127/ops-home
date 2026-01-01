@@ -1,11 +1,28 @@
-import React from "react";
+
+import React, { useEffect, useState } from "react";
+import { getWallets, updateWallet } from "../lib/api-client";
 
 export default function WalletLanes(props: any) {
   const { wallets, onChange, selected, onSelect } = props;
+  const [loading, setLoading] = useState(false);
 
-  const updateWallet = (id: string, patch: any) => {
-    const updated = wallets.map((w: any) => (w.id === id ? { ...w, ...patch } : w));
-    onChange(updated);
+  // Background sync on mount
+  useEffect(() => {
+    setLoading(true);
+    getWallets()
+      .then((data) => onChange(data))
+      .finally(() => setLoading(false));
+  }, [onChange]);
+
+  const updateWalletField = async (id: string, patch: any) => {
+    // Optimistic update
+    const prev = wallets;
+    onChange(wallets.map((w: any) => (w.id === id ? { ...w, ...patch } : w)));
+    try {
+      await updateWallet(id, patch);
+    } catch {
+      onChange(prev); // revert
+    }
   };
 
   return (
@@ -13,6 +30,7 @@ export default function WalletLanes(props: any) {
       <div className="mb-2 flex items-center justify-between">
         <h2 className="text-sm font-semibold">Wallet lanes</h2>
       </div>
+      {loading ? <div className="text-xs text-zinc-400">Loading...</div> : null}
       <div className="space-y-2">
         {wallets.map((w: any) => {
           const isSelected = selected?.id === w.id;
@@ -30,7 +48,7 @@ export default function WalletLanes(props: any) {
                   value={w.label}
                   onChange={(e) => {
                     e.stopPropagation();
-                    updateWallet(w.id, { label: e.target.value || w.id });
+                    updateWalletField(w.id, { label: e.target.value || w.id });
                   }}
                   onClick={(e) => e.stopPropagation()}
                 />
@@ -39,7 +57,7 @@ export default function WalletLanes(props: any) {
                   value={w.riskBand}
                   onChange={(e) => {
                     e.stopPropagation();
-                    updateWallet(w.id, { riskBand: e.target.value });
+                    updateWalletField(w.id, { riskBand: e.target.value });
                   }}
                   onClick={(e) => e.stopPropagation()}
                 >
@@ -53,7 +71,7 @@ export default function WalletLanes(props: any) {
                 value={w.purpose}
                 onChange={(e) => {
                   e.stopPropagation();
-                  updateWallet(w.id, { purpose: e.target.value });
+                  updateWalletField(w.id, { purpose: e.target.value });
                 }}
                 onClick={(e) => e.stopPropagation()}
               />
@@ -64,7 +82,7 @@ export default function WalletLanes(props: any) {
                 value={w.notes || ""}
                 onChange={(e) => {
                   e.stopPropagation();
-                  updateWallet(w.id, { notes: e.target.value });
+                  updateWalletField(w.id, { notes: e.target.value });
                 }}
                 onClick={(e) => e.stopPropagation()}
               />

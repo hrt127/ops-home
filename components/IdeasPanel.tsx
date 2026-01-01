@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getIdeas, updateIdea, deleteIdea } from "../lib/api-client";
 
 export default function IdeasPanel({ ideas, setIdeas }: any) {
-  const [filter, setFilter] = React.useState<"all" | string>("all");
+  const [filter, setFilter] = useState<"all" | string>("all");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    getIdeas()
+      .then((data) => setIdeas(data))
+      .finally(() => setLoading(false));
+  }, [setIdeas]);
 
   const visible = filter === "all" ? ideas : ideas.filter((i: any) => i.status === filter);
 
-  const cycleStatus = (id: string) => {
+  const cycleStatus = async (id: string) => {
+    const prev = ideas;
     setIdeas(
       ideas.map((i: any) => {
         if (i.id !== id) return i;
@@ -13,10 +23,22 @@ export default function IdeasPanel({ ideas, setIdeas }: any) {
         return { ...i, status: next };
       })
     );
+    try {
+      const next = ideas.find((i: any) => i.id === id)?.status === "idea" ? "shaping" : ideas.find((i: any) => i.id === id)?.status === "shaping" ? "live" : "idea";
+      await updateIdea(id, { status: next });
+    } catch {
+      setIdeas(prev);
+    }
   };
 
-  const removeIdea = (id: string) => {
+  const removeIdea = async (id: string) => {
+    const prev = ideas;
     setIdeas(ideas.filter((i: any) => i.id !== id));
+    try {
+      await deleteIdea(id);
+    } catch {
+      setIdeas(prev);
+    }
   };
 
   return (
@@ -34,6 +56,7 @@ export default function IdeasPanel({ ideas, setIdeas }: any) {
           <option value="live">Live</option>
         </select>
       </div>
+      {loading ? <div className="text-xs text-zinc-400">Loading...</div> : null}
       <ul className="space-y-1 text-xs">
         {visible.map((i: any) => (
           <li
@@ -50,7 +73,7 @@ export default function IdeasPanel({ ideas, setIdeas }: any) {
               className="text-[10px] text-rose-400 hover:text-rose-300 opacity-0 group-hover:opacity-100"
               onClick={() => removeIdea(i.id)}
             >
-              ✕
+              715
             </button>
           </li>
         ))}

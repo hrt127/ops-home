@@ -1,31 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getEvents, createEvent, deleteEvent } from "../lib/api-client";
 
 export default function EventsPanel({ events, setEvents }: any) {
   const [newLabel, setNewLabel] = useState("");
   const [newWhen, setNewWhen] = useState("");
   const [newDayOffset, setNewDayOffset] = useState(0);
   const [newImportance, setNewImportance] = useState("normal");
+  const [loading, setLoading] = useState(false);
 
-  const addEvent = () => {
+  // Background sync on mount
+  useEffect(() => {
+    setLoading(true);
+    getEvents()
+      .then((data) => setEvents(data))
+      .finally(() => setLoading(false));
+  }, [setEvents]);
+
+  const addEvent = async () => {
     if (!newLabel.trim()) return;
     const evt: any = {
-      id: `evt-${Date.now()}`,
       label: newLabel.trim(),
       when: newWhen || "unscheduled",
       dayOffset: newDayOffset,
       importance: newImportance,
       type: "time-bound",
     };
-    const updated = [...events, evt];
-    setEvents(updated);
+    // Optimistic update
+    setEvents((prev: any) => [...prev, { ...evt, id: `tmp-${Date.now()}` }]);
+    try {
+      const created = await createEvent(evt);
+      setEvents((prev: any) => prev.map((e: any) => e.id.startsWith("tmp-") ? created : e));
+    } catch {
+      // On error, remove optimistic
+      setEvents((prev: any) => prev.filter((e: any) => !e.id.startsWith("tmp-")));
+    }
     setNewLabel("");
     setNewWhen("");
     setNewDayOffset(0);
     setNewImportance("normal");
   };
 
-  const removeEvent = (id: string) => {
+  const removeEvent = async (id: string) => {
+    // Optimistic remove
+    const prev = events;
     setEvents(events.filter((e: any) => e.id !== id));
+    try {
+      await deleteEvent(id);
+    } catch {
+      setEvents(prev); // revert
+    }
   };
 
   const days = [0, 1, 2];
@@ -35,6 +58,7 @@ export default function EventsPanel({ events, setEvents }: any) {
       <div className="mb-2 flex items-center justify-between">
         <h2 className="text-sm font-semibold">Events / Calendar (3-day)</h2>
       </div>
+      {loading ? <div className="text-xs text-zinc-400">Loading...</div> : null}
       <div className="grid grid-cols-3 gap-2 text-xs">
         {days.map((d) => (
           <div key={d} className="space-y-1">

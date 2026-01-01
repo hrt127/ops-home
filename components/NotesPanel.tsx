@@ -1,20 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getNotes, createNote, deleteNote } from "../lib/api-client";
 
 export default function NotesPanel({ notes, setNotes }: any) {
   const [text, setText] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const addNote = () => {
+  useEffect(() => {
+    setLoading(true);
+    getNotes()
+      .then((data) => setNotes(data))
+      .finally(() => setLoading(false));
+  }, [setNotes]);
+
+  const addNote = async () => {
     if (!text.trim()) return;
-    const n: any = {
-      id: `note-${Date.now()}`,
-      label: text.trim(),
-    };
-    setNotes([...notes, n]);
+    setNotes((prev: any) => [...prev, { label: text.trim(), id: `tmp-${Date.now()}` }]);
+    try {
+      const created = await createNote({ label: text.trim() });
+      setNotes((prev: any) => prev.map((n: any) => n.id.startsWith("tmp-") ? created : n));
+    } catch {
+      setNotes((prev: any) => prev.filter((n: any) => !n.id.startsWith("tmp-")));
+    }
     setText("");
   };
 
-  const removeNote = (id: string) => {
+  const removeNote = async (id: string) => {
+    const prev = notes;
     setNotes(notes.filter((n: any) => n.id !== id));
+    try {
+      await deleteNote(id);
+    } catch {
+      setNotes(prev);
+    }
   };
 
   return (
@@ -22,6 +39,7 @@ export default function NotesPanel({ notes, setNotes }: any) {
       <div className="mb-2 flex items-center justify-between">
         <h2 className="text-sm font-semibold">Notes</h2>
       </div>
+      {loading ? <div className="text-xs text-zinc-400">Loading...</div> : null}
       <ul className="space-y-1 text-xs">
         {notes.map((n: any) => (
           <li

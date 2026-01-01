@@ -30,13 +30,14 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 type RiskBand = "safe" | "operational" | "speculative";
 type EventType = UIEvent["type"];
-type EventImportance = UIEvent["importance"];
 
 // Re-export UIWallet as Wallet for page.tsx convenience
 type Wallet = UIWallet;
 
 // Re-export UIEvent as EventItem for page.tsx convenience
+
 type EventItem = UIEvent;
+type EventImportance = UIEvent["importance"];
 
 
 type NoteItem = {
@@ -63,8 +64,6 @@ type ProjectItem = {
   status: "live" | "paused" | "idea";
   path: string;
 };
-
-type EventImportance = UIEvent["importance"];
 
 // ----------------------------
 // Local storage helpers
@@ -283,10 +282,10 @@ function Card(props: { title: string; children: React.ReactNode; className?: str
 // Main page
 // ----------------------------
 export default function Page() {
-  const [wallets, setWallets] = useState<Wallet[]>(DEFAULT_WALLETS);
-  const [events, setEvents] = useState<EventItem[]>(DEFAULT_EVENTS);
-  const [notes, setNotes] = useState<NoteItem[]>(DEFAULT_NOTES);
-  const [ideas, setIdeas] = useState<IdeaItem[]>(DEFAULT_IDEAS);
+  const [wallets, setWallets] = useState<Wallet[]>([]);
+  const [events, setEvents] = useState<EventItem[]>([]);
+  const [notes, setNotes] = useState<NoteItem[]>([]);
+  const [ideas, setIdeas] = useState<IdeaItem[]>([]);
   const [snippets] = useState<SnippetItem[]>(DEFAULT_SNIPPETS);
   const [projects] = useState<ProjectItem[]>(DEFAULT_PROJECTS);
   const [selectedWallet, setSelectedWallet] = useState<Wallet | null>(null);
@@ -307,58 +306,16 @@ export default function Page() {
     nonNegotiables: ["No cold wallet risk", "No new surfaces"],
   });
 
-  // Load from storage on mount
-  useEffect(() => {
-    setWallets(loadFromStorage<Wallet[]>("ops-home:wallets", DEFAULT_WALLETS));
-    setEvents(loadFromStorage<EventItem[]>("ops-home:events", DEFAULT_EVENTS));
-    setNotes(loadFromStorage<NoteItem[]>("ops-home:notes", DEFAULT_NOTES));
-    setIdeas(loadFromStorage<IdeaItem[]>("ops-home:ideas", DEFAULT_IDEAS));
-    setRiskLevel(loadFromStorage<number>("ops-home:risk-level", 3));
-    setNonNegotiables(loadFromStorage<string[]>("ops-home:non-negotiables", ["", "", ""]));
-    setTodayCtx(
-      loadFromStorage<AgentTodayContext>(
-        "ops-home:todayctx",
-        {
-          focus: "Stabilise Ops Home + Dojo CLI.",
-          riskLevel: 5,
-          nonNegotiables: ["No cold wallet risk", "No new surfaces"],
-        }
-      )
-    );
-    setAgentMode(
-      loadFromStorage<AgentMode>("ops-home:agent-mode", "daily-plan")
-    );
-  }, []);
-
-  // Persist on change
-  useEffect(() => {
-    saveToStorage("ops-home:wallets", wallets);
-  }, [wallets]);
-
-  useEffect(() => {
-    saveToStorage("ops-home:events", events);
-  }, [events]);
-
-  useEffect(() => {
-    saveToStorage("ops-home:notes", notes);
-  }, [notes]);
-
-  useEffect(() => {
-    saveToStorage("ops-home:ideas", ideas);
-  }, [ideas]);
-
+  // Only persist riskLevel, nonNegotiables, todayCtx, agentMode
   useEffect(() => {
     saveToStorage("ops-home:risk-level", riskLevel);
   }, [riskLevel]);
-
   useEffect(() => {
     saveToStorage("ops-home:non-negotiables", nonNegotiables);
   }, [nonNegotiables]);
-
   useEffect(() => {
     saveToStorage("ops-home:todayctx", todayCtx);
   }, [todayCtx]);
-
   useEffect(() => {
     saveToStorage("ops-home:agent-mode", agentMode);
   }, [agentMode]);
