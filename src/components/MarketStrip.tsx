@@ -1,89 +1,104 @@
 import React, { useEffect, useState } from "react";
-
-interface PriceData {
-  BTC?: number;
-  ETH?: number;
-  btcChange?: number;
-  ethChange?: number;
-}
+import { getMarketStrip, updateMarketPairs } from "../lib/api-client";
 
 export default function MarketStrip() {
-  const [prices, setPrices] = useState<PriceData>({});
+  const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [editing, setEditing] = useState(false);
+  const [pairsInput, setPairsInput] = useState("");
+
+  const load = async () => {
+    setLoading(true);
+    try {
+      const data = await getMarketStrip();
+      setItems(data);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchPrices = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const res = await fetch("/api/market");
-        if (!res.ok) throw new Error("Failed to fetch prices");
-        const data = await res.json();
-
-        setPrices({
-          BTC: data.prices?.bitcoin?.current_price || 0,
-          ETH: data.prices?.ethereum?.current_price || 0,
-          btcChange: data.prices?.bitcoin?.price_change_percentage_24h || 0,
-          ethChange: data.prices?.ethereum?.price_change_percentage_24h || 0,
-        });
-      } catch (err: any) {
-        setError(err?.message || "Failed to load prices");
-        // Fallback: show placeholder
-        setPrices({
-          BTC: 0,
-          ETH: 0,
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPrices();
-    // Refresh every 5 minutes
-    const interval = setInterval(fetchPrices, 5 * 60 * 1000);
+    load();
+    const interval = setInterval(load, 10000);
     return () => clearInterval(interval);
   }, []);
 
-  const formatPrice = (price: number) => {
-    if (price === 0) return "—";
-    return `$${price.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+  const startEdit = () => {
+    setPairsInput(items.map(i => i.pair).join(", "));
+    setEditing(true);
   };
 
-  const formatChange = (change: number | undefined) => {
-    if (!change) return "—";
-    const sign = change > 0 ? "+" : "";
-    return `${sign}${change.toFixed(2)}%`;
+  const saveEdit = async () => {
+    const newPairs = pairsInput.split(",").map(p => p.trim()).filter(Boolean);
+    setEditing(false);
+    // Optimistic ? No, just reload
+    try {
+      await updateMarketPairs(newPairs);
+      setTimeout(load, 500);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
-  const changeColor = (change: number | undefined) => {
-    if (!change) return "text-zinc-400";
-    return change > 0 ? "text-emerald-400" : "text-rose-400";
+  const formatPrice = (price: string) => {
+    const p = parseFloat(price);
+    if (!p) return price;
+    return p > 100 ? p.toFixed(2) : p.toFixed(4);
   };
+
+  const formatChange = (change: string) => {
+    const c = parseFloat(change);
+    if (!c) return "—";
+    const sign = c > 0 ? "+" : "";
+    return `${sign}${c.toFixed(2)}%`;
+  };
+
+  const changeColor = (change: string) => {
+    const c = parseFloat(change);
+    if (!c) return "text-zinc-400";
+    return c > 0 ? "text-emerald-400" : "text-rose-400";
+  };
+
+  if (editing) {
+    return (
+      <div className="rounded-md border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-[11px] flex gap-2 items-center">
+        <span className="text-zinc-400">Pairs:</span>
+        <input
+          className="flex-1 bg-zinc-950 border border-zinc-700 rounded px-2 py-0.5 text-zinc-100"
+          value={pairsInput}
+          onChange={e => setPairsInput(e.target.value)}
+          placeholder="BTC-USDT, ETH-USDT..."
+        />
+        <button onClick={saveEdit} className="text-sky-400 hover:text-sky-300">Save</button>
+        <button onClick={() => setEditing(false)} className="text-zinc-500">Cancel</button>
+      </div>
+    );
+  }
 
   return (
     <div className="rounded-md border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-[11px] flex justify-between items-center">
-      <div className="flex gap-4">
-        <span className="text-zinc-400">Market:</span>
-        <div className="flex flex-col gap-0.5">
-          <span className="text-sky-300">
-            BTC {formatPrice(prices.BTC || 0)}
-          </span>
-          <span className={`text-[10px] ${changeColor(prices.btcChange)}`}>
-            {formatChange(prices.btcChange)}
-          </span>
-        </div>
-        <div className="flex flex-col gap-0.5">
-          <span className="text-sky-300">
-            ETH {formatPrice(prices.ETH || 0)}
-          </span>
-          <span className={`text-[10px] ${changeColor(prices.ethChange)}`}>
-            {formatChange(prices.ethChange)}
-          </span>
-        </div>
+      <div className="flex gap-4 overflow-x-auto no-scrollbar">
+        <span className="text-zinc-400 font-semibold cursor-pointer hover:text-zinc-200" onClick={startEdit} title="Click to edit pairs">Market:</span>
+        {items.map((item) => (
+          <div key={item.pair} className="flex flex-col gap-0.5 min-w-[60px]">
+            <span className="text-sky-300 font-medium">
+              {item.pair.split('-')[0]} <span className="text-zinc-500 text-[9px]">${formatPrice(item.price)}</span>
+            </span>
+            <div className="flex justify-between w-full">
+              <span className={`text-[9px] ${changeColor(item.change24h)}`}>
+                {formatChange(item.change24h)}
+              </span>
+              <span className="text-[9px] text-zinc-600">
+                {(parseFloat(item.fundingRate) * 100).toFixed(4)}%
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
-      <div className="flex gap-4 text-zinc-400">
-        <span>Last update: {loading ? "..." : "live"}</span>
+      <div className="flex gap-4 text-zinc-600">
+        <span>{loading ? "..." : "●"}</span>
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ import EventsPanel from "../components/EventsPanel";
 import NotesPanel from "../components/NotesPanel";
 import IdeasPanel from "../components/IdeasPanel";
 import SnippetsPanel from "../components/SnippetsPanel";
+import DailyFocusPanel from "../components/DailyFocusPanel";
 import DojoMap from "../components/DojoMap";
 import AgentConsole from "../components/AgentConsole";
 import { arenas } from "@/lib/arenas";
@@ -310,6 +311,8 @@ function PageContent() {
           <WalletLanes wallets={wallets} onChange={setWallets} selected={selectedWallet} onSelect={setSelectedWallet} />
         </div>
         <div>
+          <DailyFocusPanel />
+          <div className="h-4" />
           <EventsPanel events={events} setEvents={setEvents} />
         </div>
         <div>
@@ -368,7 +371,7 @@ function PageContent() {
         <DojoMap projects={projects} />
       </div>
       <div className="mt-8">
-        <AgentConsole mode={"daily-plan"} setMode={() => {}} today={{ focus: "", riskLevel: 5, nonNegotiables: [] }} setToday={() => {}} wallets={wallets} events={events} />
+        <AgentConsole mode={"daily-plan"} setMode={() => { }} today={{ focus: "", riskLevel: 5, nonNegotiables: [] }} setToday={() => { }} wallets={wallets} events={events} />
       </div>
     </div>
   );

@@ -16,90 +16,105 @@ export async function fetchAPI<T>(
   return res.json();
 }
 
+
+// --- Notes (Deprecated/Removed) ---
+// Functions removed as they are not part of Fs-based V1 currently or implemented elsewhere.
+
+// --- Events & Alerts ---
+export async function getEvents() {
+  return fetchAPI('/api/events');
+}
+export async function dismissAlert(id: string) {
+  return fetchAPI('/api/events', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'dismiss', id })
+  });
+}
+
+// --- Market Strip ---
+export async function getMarketStrip() {
+  return fetchAPI('/api/market-strip');
+}
+export async function updateMarketPairs(pairs: string[]) {
+  return fetchAPI('/api/market-strip', {
+    method: 'POST',
+    body: JSON.stringify({ pairs })
+  });
+}
+
 // --- Wallets ---
 export async function getWallets() {
-  return fetchAPI('/api/db/wallets');
+  return fetchAPI('/api/wallets');
 }
-export async function createWallet(wallet: any) {
-  return fetchAPI('/api/db/wallets', {
+export async function addWallet(wallet: any) {
+  return fetchAPI('/api/wallets', {
     method: 'POST',
-    body: JSON.stringify(wallet),
+    body: JSON.stringify({ action: 'add', wallet })
   });
 }
-export async function updateWallet(id: string, patch: any) {
-  return fetchAPI(`/api/db/wallets?id=${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(patch),
-  });
-}
-export async function deleteWallet(id: string) {
-  return fetchAPI(`/api/db/wallets?id=${id}`, {
-    method: 'DELETE',
+export async function updateWallet(wallet: any) {
+  return fetchAPI('/api/wallets', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'update', wallet })
   });
 }
 
-// --- Events ---
-export async function getEvents() {
-  return fetchAPI('/api/db/events');
-}
-export async function createEvent(event: any) {
-  return fetchAPI('/api/db/events', {
-    method: 'POST',
-    body: JSON.stringify(event),
-  });
-}
-export async function updateEvent(id: string, patch: any) {
-  return fetchAPI(`/api/db/events?id=${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(patch),
-  });
-}
-export async function deleteEvent(id: string) {
-  return fetchAPI(`/api/db/events?id=${id}`, {
-    method: 'DELETE',
-  });
-}
-
-// --- Notes ---
-export async function getNotes() {
-  return fetchAPI('/api/db/notes');
-}
-export async function createNote(note: any) {
-  return fetchAPI('/api/db/notes', {
-    method: 'POST',
-    body: JSON.stringify(note),
-  });
-}
-export async function updateNote(id: string, patch: any) {
-  return fetchAPI(`/api/db/notes?id=${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(patch),
-  });
-}
-export async function deleteNote(id: string) {
-  return fetchAPI(`/api/db/notes?id=${id}`, {
-    method: 'DELETE',
-  });
-}
-
-// --- Ideas ---
+// --- Ideas (FS-based) ---
 export async function getIdeas() {
-  return fetchAPI('/api/db/ideas');
+  const data = await fetchAPI<{ items: any[] }>('/api/inbox');
+  return data.items || [];
 }
-export async function createIdea(idea: any) {
-  return fetchAPI('/api/db/ideas', {
+export async function createIdea(idea: { text: string }) {
+  return fetchAPI('/api/inbox', {
     method: 'POST',
-    body: JSON.stringify(idea),
+    body: JSON.stringify({ action: 'add', text: idea.text }),
   });
 }
-export async function updateIdea(id: string, patch: any) {
-  return fetchAPI(`/api/db/ideas?id=${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(patch),
+export async function updateIdea(id: string, patch: { status: string }) {
+  return fetchAPI('/api/inbox', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'update', id, status: patch.status }),
   });
 }
 export async function deleteIdea(id: string) {
-  return fetchAPI(`/api/db/ideas?id=${id}`, {
-    method: 'DELETE',
+  console.warn('Delete not implemented in FS backend yet');
+  return {};
+}
+
+// --- Freqtrade ---
+export async function getFreqtradeList() {
+  return fetchAPI('/api/freqtrade');
+}
+export async function getFreqtradeDetail(name: string) {
+  return fetchAPI(`/api/freqtrade?name=${name}`);
+}
+export async function updateFreqtradeNarrative(name: string, narrativeUpdate: string) {
+  return fetchAPI('/api/freqtrade', {
+    method: 'POST',
+    body: JSON.stringify({ name, narrativeUpdate })
+  });
+}
+
+// --- Builder Signal ---
+export async function getBuilderSignals() {
+  return fetchAPI<string[]>('/api/builder-signal');
+}
+
+// --- Daily Focus ---
+export async function getDailyFocus() {
+  return fetchAPI('/api/daily-focus');
+}
+
+export async function addDailyTask(task: string) {
+  return fetchAPI('/api/daily-focus', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'add', task }),
+  });
+}
+
+export async function toggleDailyTask(id: string) {
+  return fetchAPI('/api/daily-focus', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'toggle', id }),
   });
 }
