@@ -1,0 +1,36 @@
+{
+    "version": "1.0.0",
+    "projects": [
+        {
+            "id": "BASE_PROJECT_ALPHA",
+            "name": "Base Project Alpha",
+            "chain": "base",
+            "farcaster_identity_wallet_id": "IDENTITY_FARCASTER_BASE",
+            "treasury_wallet_id": "PROJECT_TREASURY_BASE",
+            "contracts": [
+                {
+                    "id": "BASE_ALPHA_TOKEN",
+                    "type": "erc20",
+                    "address": "0xalphatoken00000000000000000000000000000006",
+                    "deployer_wallet_id": "PROJECT_DEPLOYER_BASE",
+                    "admin_wallet_id": "PROJECT_ADMIN_BASE"
+                },
+                {
+                    "id": "BASE_ALPHA_CORE",
+                    "type": "core_protocol",
+                    "address": "0xalphacore000000000000000000000000000000007",
+                    "deployer_wallet_id": "PROJECT_DEPLOYER_BASE",
+                    "admin_wallet_id": "PROJECT_ADMIN_BASE"
+                }
+            ],
+            "liquidity": [
+                {
+                    "id": "BASE_ALPHA_AERODROME_POOL",
+                    "venue": "aerodrome",
+                    "pair": "ALPHA/ETH",
+                    "lp_wallet_id": "PROJECT_LP_BASE"
+                }
+            ]
+        }
+    ]
+}

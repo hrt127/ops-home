@@ -1,0 +1,233 @@
+{
+    "version": "1.0.0",
+    "wallets": [
+        {
+            "id": "IDENTITY_FARCASTER_BASE",
+            "address": "0xidentityfarcasterbase000000000000000000000001",
+            "type": "EOA",
+            "lane": "identity",
+            "chains": [
+                "base"
+            ],
+            "ens_name": "c.eth",
+            "farcaster_handle": "c",
+            "browser_profile": "identity-profile",
+            "preferred_wallet_extension": "rabby",
+            "risk_band": "high_sensitivity",
+            "purpose": "Primary Farcaster identity, ENS ownership, long-term public persona.",
+            "allowed_actions": [
+                "social_connect",
+                "sign_message"
+            ],
+            "forbidden_actions": [
+                "trade",
+                "lp_provide",
+                "lp_remove",
+                "mint_nft",
+                "mint_token",
+                "deploy_contract",
+                "treasury_move",
+                "unknown_dapp_interaction"
+            ],
+            "allowed_dapps": [
+                "warpcast",
+                "etherscan",
+                "basescan",
+                "safe_app"
+            ],
+            "forbidden_dapps": [
+                "friend_tech",
+                "opensea",
+                "blur",
+                "uniswap",
+                "aerodrome",
+                "base_swap",
+                "unknown"
+            ],
+            "linked_projects": [],
+            "status": "active"
+        },
+        {
+            "id": "PROJECT_DEPLOYER_BASE",
+            "address": "0xdeployerbase00000000000000000000000000000002",
+            "type": "EOA",
+            "lane": "deployer",
+            "chains": [
+                "base"
+            ],
+            "browser_profile": "ops-deployer",
+            "preferred_wallet_extension": "rabby",
+            "risk_band": "medium",
+            "purpose": "Deploy ERC20 and protocol contracts on Base.",
+            "allowed_actions": [
+                "deploy_contract",
+                "sign_message"
+            ],
+            "forbidden_actions": [
+                "trade",
+                "lp_provide",
+                "lp_remove",
+                "mint_nft",
+                "mint_token",
+                "treasury_move",
+                "social_connect",
+                "unknown_dapp_interaction"
+            ],
+            "allowed_dapps": [
+                "etherscan",
+                "basescan",
+                "safe_app"
+            ],
+            "forbidden_dapps": [
+                "warpcast",
+                "friend_tech",
+                "opensea",
+                "blur",
+                "uniswap",
+                "aerodrome",
+                "base_swap",
+                "unknown"
+            ],
+            "linked_projects": [
+                "BASE_PROJECT_ALPHA"
+            ],
+            "status": "active"
+        },
+        {
+            "id": "PROJECT_ADMIN_BASE",
+            "address": "0xadminbase0000000000000000000000000000000003",
+            "type": "EOA",
+            "lane": "treasury",
+            "chains": [
+                "base"
+            ],
+            "browser_profile": "ops-admin",
+            "preferred_wallet_extension": "rabby",
+            "risk_band": "high_sensitivity",
+            "purpose": "Admin parameters and protocol configuration on Base.",
+            "allowed_actions": [
+                "admin_action",
+                "sign_message"
+            ],
+            "forbidden_actions": [
+                "trade",
+                "lp_provide",
+                "lp_remove",
+                "mint_nft",
+                "mint_token",
+                "treasury_move",
+                "social_connect",
+                "unknown_dapp_interaction"
+            ],
+            "allowed_dapps": [
+                "safe_app",
+                "etherscan",
+                "basescan"
+            ],
+            "forbidden_dapps": [
+                "warpcast",
+                "friend_tech",
+                "opensea",
+                "blur",
+                "uniswap",
+                "aerodrome",
+                "base_swap",
+                "unknown"
+            ],
+            "linked_projects": [
+                "BASE_PROJECT_ALPHA"
+            ],
+            "status": "active"
+        },
+        {
+            "id": "PROJECT_TREASURY_BASE",
+            "address": "0xtreasurybase0000000000000000000000000000004",
+            "type": "SAFE",
+            "lane": "treasury",
+            "chains": [
+                "base"
+            ],
+            "browser_profile": "ops-treasury",
+            "preferred_wallet_extension": "rabby",
+            "risk_band": "high_sensitivity",
+            "purpose": "Receives protocol fees and manages treasury flows.",
+            "allowed_actions": [
+                "treasury_move",
+                "sign_message"
+            ],
+            "forbidden_actions": [
+                "trade",
+                "lp_provide",
+                "lp_remove",
+                "mint_nft",
+                "mint_token",
+                "deploy_contract",
+                "social_connect",
+                "unknown_dapp_interaction"
+            ],
+            "allowed_dapps": [
+                "safe_app",
+                "etherscan",
+                "basescan"
+            ],
+            "forbidden_dapps": [
+                "warpcast",
+                "friend_tech",
+                "opensea",
+                "blur",
+                "uniswap",
+                "aerodrome",
+                "base_swap",
+                "unknown"
+            ],
+            "linked_projects": [
+                "BASE_PROJECT_ALPHA"
+            ],
+            "status": "active"
+        },
+        {
+            "id": "PROJECT_LP_BASE",
+            "address": "0xlpbase000000000000000000000000000000000005",
+            "type": "EOA",
+            "lane": "lp",
+            "chains": [
+                "base"
+            ],
+            "browser_profile": "ops-lp",
+            "preferred_wallet_extension": "rabby",
+            "risk_band": "medium",
+            "purpose": "LP-only wallet for protocol liquidity on Base.",
+            "allowed_actions": [
+                "lp_provide",
+                "lp_remove",
+                "sign_message"
+            ],
+            "forbidden_actions": [
+                "trade",
+                "mint_nft",
+                "mint_token",
+                "deploy_contract",
+                "treasury_move",
+                "social_connect",
+                "unknown_dapp_interaction"
+            ],
+            "allowed_dapps": [
+                "aerodrome",
+                "uniswap",
+                "basescan",
+                "etherscan"
+            ],
+            "forbidden_dapps": [
+                "warpcast",
+                "friend_tech",
+                "opensea",
+                "blur",
+                "unknown"
+            ],
+            "linked_projects": [
+                "BASE_PROJECT_ALPHA"
+            ],
+            "status": "active"
+        }
+    ]
+}
