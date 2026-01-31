@@ -9,6 +9,10 @@ This document tracks the implementation of the 12-panel Ops-Home dashboard follo
 
 **Architecture Decision**: SQLite-first, not JSON-first. The `wallets.json` and `projects.json` files serve as "genesis state" that seeds the database.
 
+**Dual-Store Rules**:
+- **Ideas**: `~/dojo/knowledge/inbox/ideas.json` is canonical; the `ideas` table in SQLite is a cached view.
+- **Daily focus**: `~/dojo/system/calendar/day_plan-YYYY-MM-DD.json` is canonical; the `daily_context` table is a cached view.
+
 ---
 
 ## ✅ Completed Components

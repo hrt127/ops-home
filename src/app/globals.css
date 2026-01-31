@@ -1,7 +1,5 @@
-/* Tailwind layers */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.js";
 
 /* -------------------------------------------------------
    GLOBAL RESET + BASE STYLES
@@ -102,23 +100,24 @@ body {
 /* -------------------------------------------------------
    BUTTONS + INTERACTIONS
 ------------------------------------------------------- */
+@layer components {
+  .btn {
+    @apply px-3 py-1.5 rounded-md font-medium;
+    @apply transition-all duration-150 ease-out;
+  }
 
-.btn {
-  @apply px-3 py-1.5 rounded-md font-medium;
-  @apply transition-all duration-150 ease-out;
-}
+  .btn-primary {
+    @apply bg-cyan-500 text-white hover:bg-cyan-400 active:bg-cyan-600;
+  }
 
-.btn-primary {
-  @apply bg-cyan-500 text-white hover:bg-cyan-400 active:bg-cyan-600;
-}
+  .btn-secondary {
+    @apply bg-gray-800 border border-gray-700 text-gray-300;
+    @apply hover:bg-gray-700 hover:text-white;
+  }
 
-.btn-secondary {
-  @apply bg-gray-800 border border-gray-700 text-gray-300;
-  @apply hover:bg-gray-700 hover:text-white;
-}
-
-.btn-danger {
-  @apply bg-rose-500 text-white hover:bg-rose-400 active:bg-rose-600;
+  .btn-danger {
+    @apply bg-rose-500 text-white hover:bg-rose-400 active:bg-rose-600;
+  }
 }
 
 /* -------------------------------------------------------

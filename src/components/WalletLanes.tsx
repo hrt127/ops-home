@@ -4,6 +4,16 @@ import { getWallets, updateWallet, addWallet } from "../lib/api-client";
 
 export default function WalletLanes(props: any) {
   const { wallets, onChange, selected, onSelect } = props;
+  // Defensive normalization: handle various states of "wallets"
+  // 1. undefined/null -> []
+  // 2. Array -> keep as is
+  // 3. Object with "wallets" property -> extract it
+  const walletList = Array.isArray(wallets)
+    ? wallets
+    : (wallets as any)?.wallets
+      ? (wallets as any).wallets
+      : [];
+
   const [loading, setLoading] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
   const [newLabel, setNewLabel] = useState("");
@@ -14,16 +24,17 @@ export default function WalletLanes(props: any) {
     setLoading(true);
     getWallets()
       .then((data: any) => {
-        // data is the array
-        onChange(data || []);
+        // API might return { wallets: [...] } or just [...]
+        const normalized = Array.isArray(data) ? data : data?.wallets || [];
+        onChange(normalized);
       })
       .finally(() => setLoading(false));
   }, []); // Only mount
 
   const updateWalletField = async (id: string, patch: any) => {
     // Optimistic update
-    const prev = wallets;
-    const updatedWallets = wallets.map((w: any) => (w.id === id ? { ...w, ...patch } : w));
+    const prev = walletList;
+    const updatedWallets = walletList.map((w: any) => (w.id === id ? { ...w, ...patch } : w));
     onChange(updatedWallets);
 
     // Find the full updated wallet object to send
@@ -51,7 +62,8 @@ export default function WalletLanes(props: any) {
       await addWallet(newWallet);
       // reload
       const data = await getWallets();
-      onChange(data);
+      const normalized = Array.isArray(data) ? data : (data as any)?.wallets || [];
+      onChange(normalized);
       setIsAdding(false);
       setNewLabel("");
       setNewAddress("");
@@ -82,7 +94,7 @@ export default function WalletLanes(props: any) {
       )}
 
       <div className="flex-1 overflow-y-auto space-y-2 pr-1">
-        {wallets.map((w: any) => {
+        {walletList.map((w: any) => {
           const isSelected = selected?.id === w.id;
           return (
             <div

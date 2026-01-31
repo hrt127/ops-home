@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   color-scheme: dark;
@@ -8,8 +6,10 @@
 
 /* Use plain CSS here to avoid Tailwind @apply issues */
 body {
-  background-color: #020617; /* slate-950 */
-  color: #e5e7eb;            /* gray-200/100 range */
+  background-color: #020617;
+  /* slate-950 */
+  color: #e5e7eb;
+  /* gray-200/100 range */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -20,6 +20,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #334155; /* slate-700 */
+  background-color: #334155;
+  /* slate-700 */
   border-radius: 9999px;
 }

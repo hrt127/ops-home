@@ -142,31 +142,15 @@ Strategic view of all active projects.
 
 ---
 
-## Data Sources
+### **Dojo Integration Boundary**
 
-### **Primary**
-- **SQLite Database**: `~/dojo/projects/ops-home/data/ops-home.db`
-  - Wallets, projects, contracts, liquidity
-  - Events, notes, ideas
-  - Daily context, sync metadata
-
-### **Registries (Genesis State)**
-- `~/dojo/projects/ops-home/wallets.json`  
-- `~/dojo/projects/ops-home/projects.json`  
-
-### **Dojo Snapshot**
-- `~/.config/dojo/sync/latest.json`  
-  Identity, system, projects, tasks, ideas, notes.
-
-### **System JSON (Legacy/Hybrid)**
-- `~/dojo/system/market_pairs.json`  
-- `~/dojo/system/bot_schedule.json`  
-- `~/dojo/system/market_events/*.json`  
-
-### **Knowledge**
-- `~/dojo/knowledge/inbox/ideas.json`  
-- `~/dojo/knowledge/threads/activity_log.ndjson`  
-- `~/dojo/knowledge/notes/*.md`  
+- **Global knowledge canonical**: `~/dojo/knowledge`.
+- **Ops-home local docs**: `~/dojo/projects/ops-home/knowledge`.
+- **App data**: `~/dojo/projects/ops-home/data/ops-home.db` and JSON registries in this project.
+- **Rules**: 
+  - Ops-home must not create durable state outside these locations and the Dojo paths defined in `SYSTEM.md`.
+  - **Ideas**: `~/dojo/knowledge/inbox/ideas.json` is canonical; the `ideas` table in SQLite is a cached view.
+  - **Daily focus**: `~/dojo/system/calendar/day_plan-YYYY-MM-DD.json` is canonical; the `daily_context` table is a cached view.
 
 ---
 
