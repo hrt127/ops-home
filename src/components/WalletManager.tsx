@@ -13,12 +13,12 @@ export function WalletManager({ wallets, selectedWallet, onSelectWallet }: Walle
     const [expandedLanes, setExpandedLanes] = useState<Set<string>>(new Set(["identity", "trading", "treasury"]));
 
     // Group wallets by lane
-    const walletsByLane = wallets.reduce((acc, wallet) => {
+    const walletsByLane = wallets.reduce((acc: Record<string, Wallet[]>, wallet: Wallet) => {
         const lane = wallet.lane || "other";
         if (!acc[lane]) acc[lane] = [];
         acc[lane].push(wallet);
         return acc;
-    }, {} as Record<string, Wallet[]>);
+    }, {});
 
     const toggleLane = (lane: string) => {
         const newExpanded = new Set(expandedLanes);
@@ -30,124 +30,151 @@ export function WalletManager({ wallets, selectedWallet, onSelectWallet }: Walle
         setExpandedLanes(newExpanded);
     };
 
-    const getLaneColor = (lane: string) => {
+    const getLaneStyles = (lane: string) => {
         switch (lane.toLowerCase()) {
             case "identity":
-                return "text-cyan-400 border-cyan-500/30";
+                return { color: "text-cyan-400", border: "border-cyan-500/20", glow: "shadow-[0_0_20px_rgba(34,211,238,0.1)]", icon: "👤", label: "NODE_IDENT" };
             case "trading":
-                return "text-amber-400 border-amber-500/30";
+                return { color: "text-amber-400", border: "border-amber-500/20", glow: "shadow-[0_0_20px_rgba(251,191,36,0.1)]", icon: "📈", label: "EXECUTION_LANE" };
             case "treasury":
-                return "text-emerald-400 border-emerald-500/30";
+                return { color: "text-emerald-400", border: "border-emerald-500/20", glow: "shadow-[0_0_20px_rgba(52,211,153,0.1)]", icon: "🏦", label: "VAULT_STORAGE" };
             case "lp":
-                return "text-purple-400 border-purple-500/30";
+                return { color: "text-purple-400", border: "border-purple-500/20", glow: "shadow-[0_0_20px_rgba(192,132,252,0.1)]", icon: "💧", label: "LIQ_PROVISION" };
             default:
-                return "text-gray-400 border-gray-500/30";
+                return { color: "text-gray-400", border: "border-gray-500/20", glow: "shadow-none", icon: "🔧", label: "OTHER_OPS" };
         }
     };
 
-    const getRiskBadge = (risk: string) => {
+    const getRiskLabel = (risk: string) => {
         switch (risk) {
-            case "safe":
-                return { bg: "bg-emerald-500/20", text: "text-emerald-400", label: "SAFE" };
+            case "high_sensitivity":
+                return { text: "CORE_SEC", color: "text-rose-400", bg: "bg-rose-500/5", border: "border-rose-500/20" };
             case "medium":
-                return { bg: "bg-amber-500/20", text: "text-amber-400", label: "MED" };
-            case "high":
-                return { bg: "bg-rose-500/20", text: "text-rose-400", label: "HIGH" };
+                return { text: "OPERATIONAL", color: "text-amber-400", bg: "bg-amber-500/5", border: "border-amber-500/20" };
+            case "low":
+                return { text: "STANDARD", color: "text-emerald-400", bg: "bg-emerald-500/5", border: "border-emerald-500/20" };
             default:
-                return { bg: "bg-gray-500/20", text: "text-gray-400", label: "UNK" };
+                return { text: "UNVERIFIED", color: "text-gray-500", bg: "bg-gray-500/5", border: "border-gray-500/20" };
         }
     };
 
     return (
-        <div className="glass panel-shadow overflow-hidden panel-mount">
+        <div className="glass panel-shadow overflow-hidden panel-mount h-full flex flex-col">
             {/* Header */}
-            <div className="panel-header flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                    </svg>
-                    <span className="upper">Wallet Lanes</span>
+            <div className="panel-header flex items-center justify-between shrink-0">
+                <div className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 pulse" />
+                    <span className="text-[11px] mono font-black uppercase tracking-[0.25em]">Registry_Lanes</span>
                 </div>
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse" />
+                <div className="flex items-center gap-4 px-2">
+                    <span className="text-[9px] mono text-gray-600 font-bold uppercase tracking-widest leading-none">
+                        Active: {wallets.length}
+                    </span>
+                    <div className="w-[1px] h-4 bg-white/5" />
+                    <button className="text-[9px] mono text-cyan-400 hover:text-cyan-300 transition-colors hover-press font-black uppercase tracking-widest">+ NEW_NODE</button>
+                </div>
             </div>
 
-            {/* Lanes */}
-            <div className="divide-y divide-gray-800/50 max-h-[600px] overflow-y-auto custom-scrollbar">
-                {Object.entries(walletsByLane).map(([lane, laneWallets]) => {
+            {/* Tactical Lanes */}
+            <div className="flex-1 p-4 space-y-6 overflow-y-auto custom-scrollbar bg-slate-950/20">
+                {Object.entries(walletsByLane).map(([lane, laneWallets], laneIdx) => {
                     const isExpanded = expandedLanes.has(lane);
-                    const laneColor = getLaneColor(lane);
+                    const styles = getLaneStyles(lane);
 
                     return (
-                        <div key={lane}>
-                            {/* Lane Header */}
+                        <div key={lane} className="space-y-3 scale-in" style={{ animationDelay: `${laneIdx * 0.1}s` }}>
+                            {/* Lane Identifier */}
                             <button
                                 onClick={() => toggleLane(lane)}
-                                className="w-full px-4 py-3 flex items-center justify-between hover:bg-slate-800/40 transition-all hover-press border-l-2 border-transparent hover:border-cyan-500/20"
+                                className="w-full flex items-center justify-between group py-1"
                             >
                                 <div className="flex items-center gap-3">
-                                    <svg
-                                        className={`w-3 h-3 text-gray-600 transition-transform ${isExpanded ? "rotate-90" : ""}`}
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                    </svg>
-                                    <span className={`text-[10px] mono font-black uppercase tracking-[0.15em] ${laneColor}`}>
-                                        {lane}
-                                    </span>
+                                    <div className={`w-1 h-4 rounded-full transition-all duration-300 ${isExpanded ? styles.color.replace('text-', 'bg-') : 'bg-gray-800'}`} />
+                                    <div className="flex flex-col items-start translate-y-[-1px]">
+                                        <span className={`text-[10px] mono font-black uppercase tracking-[0.3em] transition-colors ${isExpanded ? styles.color : 'text-gray-600 group-hover:text-gray-400'}`}>
+                                            {styles.label}
+                                        </span>
+                                        <div className={`text-[7px] mono font-bold uppercase opacity-40 ${styles.color}`}>
+                                            STATUS: {isExpanded ? 'BUFFER_IN_USE' : 'COLLAPSED'}
+                                        </div>
+                                    </div>
                                 </div>
-                                <span className="text-[10px] mono text-gray-500 font-bold bg-slate-900 border border-gray-800/50 px-2 py-0.5 rounded">
-                                    {laneWallets.length}
-                                </span>
+                                <div className="flex items-center gap-3">
+                                    <span className="text-[8px] mono text-gray-700 font-black tracking-widest">{laneWallets.length} UNITS</span>
+                                    <div className={`transition-transform duration-300 ${isExpanded ? "rotate-90" : ""}`}>
+                                        <svg className="w-3 h-3 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </button>
 
-                            {/* Lane Wallets */}
+                            {/* Wallet Cards */}
                             {isExpanded && (
-                                <div className="bg-slate-950/40 divide-y divide-gray-800/30 scale-in origin-top">
-                                    {laneWallets.map((wallet) => {
+                                <div className="grid grid-cols-1 gap-2 pl-4 origin-top transition-all">
+                                    {laneWallets.map((wallet, walletIdx) => {
                                         const isSelected = selectedWallet?.id === wallet.id;
-                                        const riskBadge = getRiskBadge(wallet.risk_band);
+                                        const risk = getRiskLabel(wallet.risk_band);
 
                                         return (
-                                            <button
+                                            <div
                                                 key={wallet.id}
                                                 onClick={() => onSelectWallet(wallet)}
-                                                className={`w-full px-6 py-4 text-left transition-all relative group hover-lift ${isSelected ? "bg-cyan-500/10" : "hover:bg-slate-800/30"
+                                                className={`p-3 rounded border transition-all cursor-pointer relative group ${isSelected
+                                                    ? `${styles.border} bg-slate-900/60 ${styles.glow} ring-1 ring-inset ring-white/5`
+                                                    : "bg-slate-900/30 border-white/5 hover:bg-slate-800/40 hover:border-white/10"
                                                     }`}
+                                                style={{ animationDelay: `${(laneIdx * 0.1) + (walletIdx * 0.05)}s` }}
                                             >
-                                                {isSelected && (
-                                                    <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-cyan-500 shadow-[0_0_12px_rgba(6,182,212,0.8)]" />
-                                                )}
+                                                {/* Left accent bar for selection */}
+                                                <div className={`absolute left-0 top-0 bottom-0 w-[2px] transition-all duration-300 ${isSelected ? styles.color.replace('text-', 'bg-') : 'bg-transparent'}`} />
+
                                                 <div className="flex items-start justify-between gap-4">
-                                                    {/* Wallet Info */}
                                                     <div className="flex-1 min-w-0">
-                                                        <div className="flex items-center gap-2.5 mb-2">
-                                                            <div className={`w-1.5 h-1.5 rounded-full ${isSelected ? "bg-cyan-400 pulse" : "bg-gray-700"}`} />
-                                                            <span className={`text-sm font-bold truncate transition-colors ${isSelected ? "text-cyan-400 uppercase tracking-tight" : "text-gray-300 group-hover:text-white"}`}>
-                                                                {wallet.id}
+                                                        {/* Identity & ENS */}
+                                                        <div className="flex items-center gap-2 mb-1">
+                                                            <span className={`text-xs font-black tracking-tight truncate uppercase italic leading-none ${isSelected ? 'text-white' : 'text-gray-400 group-hover:text-gray-200'}`}>
+                                                                {wallet.ens_name || wallet.id}
                                                             </span>
+                                                            {wallet.farcaster_handle && (
+                                                                <span className="text-[8px] mono text-purple-500/60 font-black uppercase tracking-widest leading-none">@{wallet.farcaster_handle}</span>
+                                                            )}
                                                         </div>
-                                                        <div className="flex items-center gap-2 text-[10px] mono text-gray-500">
-                                                            <span className="bg-slate-800/50 px-1.5 py-0.5 rounded border border-gray-700/50 group-hover:border-cyan-500/30 transition-colors">
-                                                                {wallet.address?.slice(0, 6)}...{wallet.address?.slice(-4)}
+
+                                                        {/* Purpose / Tags row */}
+                                                        <div className="flex items-center gap-2 mt-2">
+                                                            <span className="text-[8px] mono bg-black/40 px-1.5 py-0.5 rounded-sm border border-white/5 text-gray-600 font-bold tracking-widest uppercase">
+                                                                {wallet.address.slice(0, 4)}...{wallet.address.slice(-4)}
                                                             </span>
-                                                            <span className="opacity-30">|</span>
-                                                            <span className="uppercase tracking-widest">{wallet.provider || 'EOA'}</span>
+                                                            {wallet.browser_profile && (
+                                                                <span className="text-[8px] mono bg-cyan-500/5 px-1.5 py-0.5 rounded-sm border border-cyan-500/10 text-cyan-500/40 font-black tracking-widest uppercase truncate max-w-[80px]">
+                                                                    DEV_PROF_{wallet.browser_profile.toUpperCase()}
+                                                                </span>
+                                                            )}
                                                         </div>
                                                     </div>
 
-                                                    {/* Balance & Risk */}
-                                                    <div className="flex flex-col items-end gap-2">
-                                                        <div className="text-sm mono font-black text-emerald-400 tracking-tighter">
-                                                            4.20 ETH
+                                                    {/* Risk & Performance Dashboard */}
+                                                    <div className="flex flex-col items-end gap-1.5 shrink-0">
+                                                        <div className={`text-[7px] mono font-black px-1.5 py-0.5 rounded-sm border uppercase tracking-[0.2em] leading-none ${risk.bg} ${risk.color} ${risk.border}`}>
+                                                            {risk.text}
                                                         </div>
-                                                        <div className={`px-2 py-0.5 rounded-sm text-[9px] mono font-black tracking-widest border transition-all ${riskBadge.bg} ${riskBadge.text} ${riskBadge.text.replace('text-', 'border-').replace('400', '500/30')} group-hover:scale-105`}>
-                                                            {riskBadge.label}
+                                                        <div className="flex flex-col items-end">
+                                                            <div className={`text-[13px] mono font-black tracking-tighter transition-all duration-300 ${isSelected ? 'text-white scale-105' : 'text-gray-400'}`}>
+                                                                4.20<span className="text-[8px] opacity-40 ml-0.5">ETH</span>
+                                                            </div>
+                                                            <div className="text-[7px] mono text-emerald-500/60 font-black tracking-widest mt-0.5">
+                                                                +1.2%_SYNC
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </button>
+
+                                                {/* Selection corner piece */}
+                                                {isSelected && (
+                                                    <div className={`absolute top-0 right-0 w-2 h-2 border-t border-r ${styles.border.replace('border-', 'border-t-').replace('border-', 'border-r-')} opacity-60`} />
+                                                )}
+                                            </div>
                                         );
                                     })}
                                 </div>
@@ -158,10 +185,17 @@ export function WalletManager({ wallets, selectedWallet, onSelectWallet }: Walle
             </div>
 
             {/* Footer */}
-            <div className="glass-heavy border-t border-gray-800/50 px-4 py-2 flex items-center justify-between text-[10px] mono text-gray-500 uppercase tracking-widest font-black">
-                <span className="opacity-50">{wallets.length} active nodes</span>
-                <button className="text-cyan-400 hover:text-cyan-300 transition-colors hover-press">+ Provision</button>
+            <div className="glass-heavy border-t border-white/5 px-6 py-3 flex items-center justify-between shrink-0 bg-slate-950/60 backdrop-blur-md">
+                <div className="flex items-center gap-3">
+                    <div className="relative">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/60" />
+                        <div className="absolute inset-0 bg-emerald-500/20 rounded-full blur-[2px] animate-pulse" />
+                    </div>
+                    <span className="text-[9px] mono text-gray-600 font-black uppercase tracking-[0.25em]">Registry_Stream_Live</span>
+                </div>
+                <button className="text-[9px] mono text-gray-700 hover:text-cyan-400/80 transition-all font-black uppercase tracking-[0.3em] hover-press">SYNC_ALL_NODES</button>
             </div>
         </div>
     );
 }
+

@@ -16,7 +16,7 @@ export default function NotesPanel({ notes, setNotes }: any) {
     if (!text.trim()) return;
     setNotes((prev: any) => [...prev, { label: text.trim(), id: `tmp-${Date.now()}` }]);
     try {
-      const created = await createIdea({ label: text.trim() });
+      const created = await createIdea({ text: text.trim() });
       setNotes((prev: any) => prev.map((n: any) => n.id.startsWith("tmp-") ? created : n));
     } catch {
       setNotes((prev: any) => prev.filter((n: any) => !n.id.startsWith("tmp-")));

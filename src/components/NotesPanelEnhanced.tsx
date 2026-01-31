@@ -32,58 +32,90 @@ export function NotesPanelEnhanced() {
     };
 
     return (
-        <div className="glass panel-shadow overflow-hidden panel-mount">
+        <div className="glass panel-shadow overflow-hidden panel-mount flex flex-col h-full">
             {/* Header */}
-            <div className="panel-header flex items-center gap-2">
-                <svg className="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-                <span className="upper">Notes</span>
+            <div className="panel-header flex items-center justify-between shrink-0">
+                <div className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 pulse" />
+                    <span className="text-[11px] mono font-black uppercase tracking-[0.25em]">Nexus_Notes</span>
+                </div>
+                <div className="flex items-center gap-4 opacity-40">
+                    <span className="text-[9px] mono text-gray-400 font-bold uppercase tracking-widest leading-none">
+                        V_01.2
+                    </span>
+                </div>
             </div>
 
-            {/* Input */}
-            <div className="p-4 border-b border-gray-800/50">
-                <div className="flex gap-2">
+            {/* Tactical Input */}
+            <div className="p-4 border-b border-white/5 bg-slate-900/10 shrink-0">
+                <div className="flex gap-2 relative">
                     <input
                         type="text"
                         value={newNote}
-                        onChange={(e) => setNewNote(e.target.value)}
-                        onKeyDown={(e) => e.key === "Enter" && addNote()}
-                        placeholder="Quick note..."
-                        className="flex-1 bg-slate-900/50 border border-gray-700 rounded px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-all font-medium"
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewNote(e.target.value)}
+                        onKeyDown={(e: React.KeyboardEvent) => e.key === "Enter" && addNote()}
+                        placeholder="CAPTURE_OBSERVATION..."
+                        className="flex-1 bg-slate-950/80 border border-white/5 rounded-sm px-4 py-2 text-[11px] text-white mono placeholder-gray-800 focus:outline-none focus:border-cyan-500/30 transition-all font-bold uppercase tracking-widest"
                     />
                     <button
                         onClick={addNote}
-                        className="btn btn-primary text-xs font-black uppercase tracking-widest hover-press px-4"
+                        className="px-4 py-2 bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded-sm text-[9px] mono font-black uppercase tracking-widest hover:bg-cyan-500/20 hover-press transition-all"
                     >
-                        Add
+                        PUSH
                     </button>
+                    {/* Input accent */}
+                    <div className="absolute left-0 bottom-0 w-8 h-[1px] bg-cyan-500/40" />
                 </div>
             </div>
 
             {/* Notes List */}
-            <div className="p-4 space-y-3 max-h-96 overflow-y-auto custom-scrollbar">
-                <div className="space-y-3 scale-in">
-                    {notes.map((note) => (
-                        <div key={note.id} className="p-3 rounded-lg bg-slate-800/20 border border-gray-700/30 hover:border-cyan-500/30 transition-all hover-lift group">
-                            <div className="text-sm text-gray-200 mb-2 leading-relaxed group-hover:text-white transition-colors">{note.content}</div>
-                            <div className="text-[10px] mono text-gray-500 uppercase tracking-widest flex items-center justify-between">
-                                <span>{note.timestamp.toLocaleDateString()}</span>
-                                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-cyan-500/60 font-black">EDIT_DOC</span>
+            <div className="flex-1 p-4 space-y-3 overflow-y-auto custom-scrollbar bg-slate-950/20">
+                <div className="space-y-2 scale-in">
+                    {notes.map((note, idx) => (
+                        <div
+                            key={note.id}
+                            className="p-3 rounded border border-white/5 bg-slate-900/30 hover:bg-slate-900/50 hover:border-cyan-500/30 transition-all group scale-in relative overflow-hidden"
+                            style={{ animationDelay: `${idx * 0.05}s` }}
+                        >
+                            <div className="text-[11px] text-gray-300 mb-3 leading-relaxed group-hover:text-white transition-colors">
+                                <span className="text-cyan-500/40 mr-2 opacity-40">{"\u003E\u003E"}</span>
+                                {note.content}
                             </div>
+
+                            <div className="flex items-center justify-between border-t border-white/[0.02] pt-2">
+                                <div className="text-[8px] mono text-gray-600 font-black uppercase tracking-widest">
+                                    TS_{note.timestamp.getTime().toString().slice(-6)} // {note.timestamp.toLocaleDateString()}
+                                </div>
+                                <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-all">
+                                    <button className="text-[8px] mono text-cyan-500/40 hover:text-cyan-500 font-black uppercase tracking-widest">BRANCH</button>
+                                    <button className="text-[8px] mono text-rose-500/40 hover:text-rose-500 font-black uppercase tracking-widest">PURGE</button>
+                                </div>
+                            </div>
+
+                            {/* Card accent */}
+                            <div className="absolute top-0 right-0 w-8 h-[1px] bg-gradient-to-l from-cyan-500/20 to-transparent" />
                         </div>
                     ))}
+
+                    {notes.length === 0 && (
+                        <div className="py-12 flex flex-col items-center justify-center text-gray-800 opacity-40">
+                            <p className="mono text-[9px] uppercase tracking-[0.4em] font-black italic">Buffer_Void_Null</p>
+                        </div>
+                    )}
                 </div>
             </div>
 
             {/* Footer */}
-            <div className="glass-heavy border-t border-gray-800/50 px-4 py-2 text-[10px] mono text-gray-500 uppercase tracking-widest flex justify-between items-center font-black">
-                <span className="opacity-50">{notes.length} total captures</span>
-                <div className="flex items-center gap-2">
-                    <div className="w-1 h-1 rounded-full bg-emerald-400 pulse" />
-                    <span className="text-emerald-400">Capturing</span>
+            <div className="glass-heavy border-t border-white/5 px-6 py-3 flex justify-between items-center shrink-0 bg-slate-950/60">
+                <div className="flex items-center gap-3">
+                    <span className="text-[9px] mono text-gray-600 font-black uppercase tracking-widest">NODAT_SYNC_ACTIVE</span>
+                    <div className="w-1 h-1 rounded-full bg-emerald-500/60 pulse" />
+                </div>
+                <div className="text-[9px] mono text-gray-800 font-black uppercase tracking-widest font-black">
+                    COUNT: 0{notes.length}
                 </div>
             </div>
         </div>
     );
 }
+

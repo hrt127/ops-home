@@ -1,10 +1,9 @@
-
 import React, { useEffect, useState } from "react";
-import { getDailyFocus, addDailyTask, toggleDailyTask } from "../lib/api-client";
+import { getDailyFocus, addDailyTask, toggleDailyTask, DailyTask } from "../lib/api-client";
 import { clsx } from "clsx";
 
 export default function DailyFocusPanel() {
-    const [tasks, setTasks] = useState<any[]>([]);
+    const [tasks, setTasks] = useState<DailyTask[]>([]);
     const [newTask, setNewTask] = useState("");
     const [loading, setLoading] = useState(false);
 

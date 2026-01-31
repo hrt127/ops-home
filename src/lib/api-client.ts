@@ -60,12 +60,18 @@ export async function updateWallet(wallet: any) {
 }
 
 // --- Ideas (FS-based) ---
-export async function getIdeas() {
-  const data = await fetchAPI<{ items: any[] }>('/api/inbox');
+export interface Idea {
+  id: string;
+  text: string;
+  status: string;
+}
+
+export async function getIdeas(): Promise<Idea[]> {
+  const data = await fetchAPI<{ items: Idea[] }>('/api/inbox');
   return data.items || [];
 }
-export async function createIdea(idea: { text: string }) {
-  return fetchAPI('/api/inbox', {
+export async function createIdea(idea: { text: string }): Promise<Idea> {
+  return fetchAPI<Idea>('/api/inbox', {
     method: 'POST',
     body: JSON.stringify({ action: 'add', text: idea.text }),
   });
@@ -101,19 +107,30 @@ export async function getBuilderSignals() {
 }
 
 // --- Daily Focus ---
-export async function getDailyFocus() {
-  return fetchAPI('/api/daily-focus');
+export interface DailyTask {
+  id: string;
+  text: string;
+  done: boolean;
 }
 
-export async function addDailyTask(task: string) {
-  return fetchAPI('/api/daily-focus', {
+export interface DailyFocus {
+  date: string;
+  tasks: DailyTask[];
+}
+
+export async function getDailyFocus(): Promise<DailyFocus> {
+  return fetchAPI<DailyFocus>('/api/daily-focus');
+}
+
+export async function addDailyTask(task: string): Promise<DailyFocus> {
+  return fetchAPI<DailyFocus>('/api/daily-focus', {
     method: 'POST',
     body: JSON.stringify({ action: 'add', task }),
   });
 }
 
-export async function toggleDailyTask(id: string) {
-  return fetchAPI('/api/daily-focus', {
+export async function toggleDailyTask(id: string): Promise<DailyFocus> {
+  return fetchAPI<DailyFocus>('/api/daily-focus', {
     method: 'POST',
     body: JSON.stringify({ action: 'toggle', id }),
   });

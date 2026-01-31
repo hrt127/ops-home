@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 interface FeedItem {
     id: string;
@@ -17,7 +17,7 @@ interface FeedItem {
 }
 
 export function SocialFeed() {
-    const [items, setItems] = useState<FeedItem[]>([
+    const [items] = React.useState<FeedItem[]>([
         {
             id: "1",
             source: "farcaster",
@@ -47,148 +47,126 @@ export function SocialFeed() {
         }
     ]);
 
-    const [filter, setFilter] = useState<"all" | "farcaster" | "twitter" | "rss">("all");
+    const [filter, setFilter] = React.useState<"all" | "farcaster" | "twitter" | "rss">("all");
 
-    const getSourceIcon = (source: FeedItem["source"]) => {
+    const getSourceStyles = (source: FeedItem["source"]) => {
         switch (source) {
             case "farcaster":
-                return "🟣";
+                return { color: "text-purple-400", bg: "bg-purple-500/10", border: "border-purple-500/20", label: "FARC_NET" };
             case "twitter":
-                return "🐦";
+                return { color: "text-cyan-400", bg: "bg-cyan-500/10", border: "border-cyan-500/20", label: "X_STREAM" };
             case "rss":
-                return "📡";
-        }
-    };
-
-    const getSourceColor = (source: FeedItem["source"]) => {
-        switch (source) {
-            case "farcaster":
-                return "text-purple-400";
-            case "twitter":
-                return "text-cyan-400";
-            case "rss":
-                return "text-amber-400";
+                return { color: "text-amber-400", bg: "bg-amber-500/10", border: "border-amber-500/20", label: "RSS_FEED" };
         }
     };
 
     const formatTimestamp = (date: Date) => {
         const diff = Date.now() - date.getTime();
         const hours = Math.floor(diff / 3600000);
-        if (hours < 1) return `${Math.floor(diff / 60000)}m ago`;
-        if (hours < 24) return `${hours}h ago`;
-        return `${Math.floor(hours / 24)}d ago`;
+        if (hours < 1) return `${Math.floor(diff / 60000)}M_AGO`;
+        if (hours < 24) return `${hours}H_AGO`;
+        return `${Math.floor(hours / 24)}D_AGO`;
     };
 
     const filteredItems = filter === "all"
         ? items
-        : items.filter(item => item.source === filter);
+        : items.filter((item: FeedItem) => item.source === filter);
 
     return (
-        <div className="glass panel-shadow overflow-hidden panel-mount">
-            {/* Header */}
-            <div className="panel-header flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                    </svg>
-                    <span className="upper">Social Feed</span>
+        <React.Fragment>
+            <div className="glass panel-shadow overflow-hidden panel-mount flex flex-col h-full">
+                {/* Header */}
+                <div className="panel-header flex items-center justify-between shrink-0">
+                    <div className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 pulse" />
+                        <span className="text-[11px] mono font-black uppercase tracking-[0.25em]">Neural_Stream</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                        {(["all", "farcaster", "twitter", "rss"] as const).map((f) => (
+                            <button
+                                key={f}
+                                onClick={() => setFilter(f)}
+                                className={`text-[8px] mono uppercase tracking-widest px-2 py-1 rounded-sm transition-all hover-press font-black ${filter === f
+                                    ? "bg-white/10 text-white border-white/20 border"
+                                    : "text-gray-600 hover:text-gray-400 border border-transparent"
+                                    }`}
+                            >
+                                {f.slice(0, 3)}
+                            </button>
+                        ))}
+                    </div>
                 </div>
-                <div className="flex items-center gap-2">
-                    {(["all", "farcaster", "twitter", "rss"] as const).map((f) => (
-                        <button
-                            key={f}
-                            onClick={() => setFilter(f)}
-                            className={`text-[10px] mono uppercase tracking-widest px-2 py-1 rounded transition-colors hover-press ${filter === f
-                                ? "bg-cyan-500/20 text-cyan-400"
-                                : "text-gray-500 hover:text-gray-300"
-                                }`}
-                        >
-                            {f}
-                        </button>
-                    ))}
+
+                {/* Content Area */}
+                <div className="flex-1 p-4 space-y-3 overflow-y-auto custom-scrollbar bg-slate-950/20">
+                    <div key={filter} className="space-y-3 scale-in">
+                        {filteredItems.map((item: FeedItem, idx: number) => {
+                            const styles = getSourceStyles(item.source);
+                            return (
+                                <div
+                                    key={item.id}
+                                    className="p-3 rounded border border-white/5 bg-slate-900/30 hover:bg-slate-900/50 hover:border-cyan-500/30 transition-all group scale-in hover-lift relative"
+                                    style={{ animationDelay: `${idx * 0.05}s` }}
+                                >
+                                    {/* Header */}
+                                    <div className="flex items-start justify-between mb-2">
+                                        <div className="flex items-center gap-2">
+                                            <div className={`text-[12px] font-black italic tracking-tight group-hover:text-white transition-colors leading-none ${styles.color}`}>
+                                                {item.author}
+                                            </div>
+                                            <span className="text-[8px] mono text-gray-700 font-bold uppercase tracking-widest leading-none">
+                                                {formatTimestamp(item.timestamp)}
+                                            </span>
+                                        </div>
+                                        <div className={`text-[7px] mono font-black px-1.5 py-0.5 rounded-sm border uppercase tracking-widest leading-none ${styles.bg} ${styles.color} ${styles.border}`}>
+                                            {styles.label}
+                                        </div>
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="text-[11px] text-gray-400 group-hover:text-gray-200 transition-colors leading-relaxed font-medium mb-3 uppercase tracking-tight">
+                                        {item.content}
+                                    </div>
+
+                                    {/* Meta: Tags & Stats */}
+                                    <div className="flex items-center justify-between mt-auto">
+                                        <div className="flex gap-2">
+                                            {item.tags?.map((tag: string) => (
+                                                <span key={tag} className="text-[7px] mono text-cyan-500/30 font-black uppercase tracking-widest italic group-hover:text-cyan-500/50 transition-colors">
+                                                    #{tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        <div className="flex items-center gap-3">
+                                            <div className="flex items-center gap-1.5 text-[8px] mono text-gray-700 group-hover:text-gray-500 transition-colors font-black uppercase tracking-widest">
+                                                <div className="w-1.5 h-1.5 rounded-full border border-gray-800 bg-gray-900" />
+                                                {item.engagement?.likes} L_IDX
+                                            </div>
+                                            <div className="flex items-center gap-1.5 text-[8px] mono text-gray-700 group-hover:text-gray-500 transition-colors font-black uppercase tracking-widest">
+                                                <div className="w-1.5 h-1.5 rounded-full border border-gray-800 bg-gray-900" />
+                                                {item.engagement?.replies} R_IDX
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
-            </div>
 
-            {/* Feed Items */}
-            <div className={`p-4 space-y-4 max-h-96 overflow-y-auto custom-scrollbar`}>
-                <div key={filter} className="space-y-4 scale-in">
-                    {filteredItems.map((item) => (
-                        <div
-                            key={item.id}
-                            className="p-4 rounded-lg bg-slate-800/30 border border-gray-700/50 hover:border-cyan-500/30 transition-all group hover-lift"
-                        >
-                            {/* Header */}
-                            <div className="flex items-start justify-between mb-3">
-                                <div className="flex items-center gap-3">
-                                    <div className={`w-8 h-8 rounded-full border border-gray-700/50 bg-slate-900 flex items-center justify-center text-xs overflow-hidden`}>
-                                        {getSourceIcon(item.source)}
-                                    </div>
-                                    <div>
-                                        <div className={`text-sm font-bold group-hover:text-white transition-colors ${getSourceColor(item.source)}`}>
-                                            {item.author}
-                                        </div>
-                                        <div className="text-[10px] mono text-gray-500 uppercase tracking-widest">
-                                            {item.source} • {formatTimestamp(item.timestamp)}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Content */}
-                            <p className="text-sm text-gray-300 leading-relaxed group-hover:text-gray-100 transition-colors mb-4">{item.content}</p>
-
-                            {/* Tags */}
-                            {item.tags && item.tags.length > 0 && (
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {item.tags.map((tag) => (
-                                        <span
-                                            key={tag}
-                                            className="text-[10px] mono px-2 py-0.5 rounded-sm bg-slate-900/50 text-gray-500 border border-gray-800/50 uppercase tracking-widest group-hover:border-cyan-500/30 transition-colors"
-                                        >
-                                            #{tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            )}
-
-                            {/* Engagement */}
-                            {item.engagement && (
-                                <div className="flex items-center gap-5 text-[10px] mono text-gray-500 uppercase tracking-[0.1em]">
-                                    <span className="flex items-center gap-1.5 hover:text-cyan-400 cursor-pointer transition-colors hover-press">
-                                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                        </svg>
-                                        {item.engagement.likes}
-                                    </span>
-                                    <span className="flex items-center gap-1.5 hover:text-cyan-400 cursor-pointer transition-colors hover-press">
-                                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                                        </svg>
-                                        {item.engagement.replies}
-                                    </span>
-                                    {item.engagement.recasts && (
-                                        <span className="flex items-center gap-1.5 hover:text-cyan-400 cursor-pointer transition-colors hover-press">
-                                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                                            </svg>
-                                            {item.engagement.recasts}
-                                        </span>
-                                    )}
-                                </div>
-                            )}
+                {/* Footer */}
+                <div className="glass-heavy border-t border-white/5 px-6 py-3 flex items-center justify-between shrink-0 bg-slate-950/60">
+                    <div className="flex items-center gap-3">
+                        <div className="relative">
+                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/60" />
+                            <div className="absolute inset-0 bg-emerald-500/20 rounded-full blur-[2px] animate-pulse" />
                         </div>
-                    ))}
+                        <span className="text-[9px] mono text-gray-600 font-black uppercase tracking-[0.25em]">RELAY_STREAM_OK</span>
+                    </div>
+                    <div className="text-[8px] mono text-gray-800 font-black uppercase tracking-widest italic">PACKETS: 1.2MB_SEC</div>
                 </div>
             </div>
-
-            {/* Footer */}
-            <div className="glass-heavy border-t border-gray-800/50 px-4 py-2 flex items-center justify-between text-[10px] mono text-gray-500 uppercase tracking-widest">
-                <div className="flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-cyan-400 pulse" />
-                    <span className="font-bold opacity-50">{filteredItems.length} signal streams active</span>
-                </div>
-                <button className="text-cyan-400 hover:text-cyan-300 font-bold transition-colors hover-press">Refetch</button>
-            </div>
-        </div>
+        </React.Fragment>
     );
 }
+

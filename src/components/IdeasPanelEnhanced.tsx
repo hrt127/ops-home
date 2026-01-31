@@ -22,59 +22,83 @@ export function IdeasPanelEnhanced() {
         }
     ]);
 
-    const getStatusColor = (status: Idea["status"]) => {
+    const getStatusStyles = (status: Idea["status"]) => {
         switch (status) {
             case "live":
-                return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+                return { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", label: "LIVE_PROD" };
             case "shaping":
-                return "bg-amber-500/20 text-amber-400 border-amber-500/30";
+                return { color: "text-amber-400", bg: "bg-amber-500/10", border: "border-amber-500/20", label: "SHAPING" };
             case "idea":
-                return "bg-cyan-500/20 text-cyan-400 border-cyan-500/30";
+                return { color: "text-cyan-400", bg: "bg-cyan-500/10", border: "border-cyan-500/20", label: "CONCEPT" };
         }
     };
 
     return (
-        <div className="glass panel-shadow overflow-hidden panel-mount">
+        <div className="glass panel-shadow overflow-hidden panel-mount flex flex-col h-full">
             {/* Header */}
-            <div className="panel-header flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                    <span className="upper">Ideas</span>
+            <div className="panel-header flex items-center justify-between shrink-0">
+                <div className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 pulse" />
+                    <span className="text-[11px] mono font-black uppercase tracking-[0.25em]">Concept_Forge</span>
                 </div>
-                <button className="text-[10px] mono text-cyan-400 hover:text-cyan-300 uppercase tracking-widest font-black hover-press">+ Create</button>
+                <button className="px-2 py-0.5 rounded-sm bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 border border-cyan-500/20 text-[8px] mono font-black uppercase tracking-widest transition-all hover-press">
+                    + FORGE_NEW
+                </button>
             </div>
 
             {/* Ideas List */}
-            <div className="p-4 space-y-3 max-h-96 overflow-y-auto custom-scrollbar">
-                <div className="space-y-3 scale-in">
-                    {ideas.map((idea) => (
-                        <div
-                            key={idea.id}
-                            className="p-3 rounded-lg bg-slate-800/20 border border-gray-700/30 hover:border-cyan-500/30 transition-all group hover-lift cursor-default"
-                        >
-                            <div className="flex items-start justify-between gap-3">
-                                <div className="flex-1 text-sm text-gray-200 group-hover:text-white transition-colors leading-relaxed font-medium">
-                                    {idea.title}
+            <div className="flex-1 p-4 space-y-3 overflow-y-auto custom-scrollbar bg-slate-950/20">
+                <div className="space-y-2 scale-in">
+                    {ideas.map((idea, idx) => {
+                        const styles = getStatusStyles(idea.status);
+                        return (
+                            <div
+                                key={idea.id}
+                                className="p-3 rounded border border-white/5 bg-slate-900/30 hover:bg-slate-900/50 hover:border-cyan-500/30 transition-all group scale-in hover-lift relative overflow-hidden"
+                                style={{ animationDelay: `${idx * 0.05}s` }}
+                            >
+                                <div className="absolute top-0 right-0 w-8 h-[1px] bg-gradient-to-l from-cyan-500/20 to-transparent" />
+
+                                <div className="flex items-start justify-between gap-4 mb-2">
+                                    <div className="flex-1 text-[11px] text-gray-300 group-hover:text-white transition-colors leading-relaxed font-bold uppercase tracking-tight">
+                                        {idea.title}
+                                    </div>
+                                    <span className={`px-1.5 py-0.5 rounded-sm text-[7px] mono font-black uppercase tracking-[0.2em] border leading-none shrink-0 ${styles.bg} ${styles.color} ${styles.border}`}>
+                                        {styles.label}
+                                    </span>
                                 </div>
-                                <span className={`px-2 py-0.5 rounded text-[9px] mono uppercase tracking-widest border transition-all group-hover:scale-105 ${getStatusColor(idea.status)}`}>
-                                    {idea.status}
-                                </span>
+
+                                <div className="flex items-center justify-between mt-3 opacity-40 group-hover:opacity-100 transition-opacity">
+                                    <div className="flex gap-2">
+                                        <div className="w-1.5 h-[1px] bg-gray-700" />
+                                        <div className="w-4 h-[1px] bg-gray-700" />
+                                        <div className="w-1.5 h-[1px] bg-gray-700" />
+                                    </div>
+                                    <span className="text-[7px] mono text-gray-600 font-bold uppercase tracking-widest leading-none">ID_0{idea.id} // SEC_CLEARED</span>
+                                </div>
                             </div>
+                        );
+                    })}
+
+                    {ideas.length === 0 && (
+                        <div className="py-12 flex flex-col items-center justify-center text-gray-800 opacity-40">
+                            <p className="mono text-[9px] uppercase tracking-[0.4em] font-black italic">No_Strategic_Leaks</p>
                         </div>
-                    ))}
+                    )}
                 </div>
             </div>
 
             {/* Footer */}
-            <div className="glass-heavy border-t border-gray-800/50 px-4 py-2 text-[10px] mono text-gray-500 uppercase tracking-widest flex justify-between items-center font-black">
-                <span className="opacity-50">{ideas.length} concept{ideas.length !== 1 ? 's' : ''} in pipeline</span>
-                <div className="flex items-center gap-2">
-                    <div className="w-1 h-1 rounded-full bg-cyan-500 pulse" />
-                    <span className="text-cyan-400">Synced</span>
+            <div className="glass-heavy border-t border-white/5 px-6 py-3 flex justify-between items-center shrink-0 bg-slate-950/60">
+                <div className="flex items-center gap-3">
+                    <span className="text-[9px] mono text-gray-600 font-black uppercase tracking-widest">INCUBATION_STREAM</span>
+                    <div className="w-1 h-1 rounded-full bg-cyan-500/40" />
+                </div>
+                <div className="text-[9px] mono text-gray-800 font-black uppercase tracking-widest font-black">
+                    COUNT: 0{ideas.length}
                 </div>
             </div>
         </div>
     );
 }
+

@@ -13,32 +13,32 @@ export function SystemLog() {
         {
             timestamp: new Date().toISOString(),
             level: "success",
-            message: "SYSTEM: Connection established to Node-01. Latency: 12ms."
+            message: "SYSTEM: Kernel_Connection_Established >> Latency: 12ms."
         },
         {
             timestamp: new Date(Date.now() - 1000).toISOString(),
             level: "info",
-            message: "AUTH: User 'MachiSamurai' authenticated via hardware key."
+            message: "AUTH: Hardware_Session_Init >> User: MachiSamurai"
         },
         {
             timestamp: new Date(Date.now() - 2000).toISOString(),
             level: "success",
-            message: "NETWORK: Monitoring deployment for try.base.eth, SOL, BNB. OK refreshed."
+            message: "NETWORK: Multi_Chain_Sync >> Base | Sol | Eth :: OK"
         },
         {
             timestamp: new Date(Date.now() - 3000).toISOString(),
             level: "warning",
-            message: "SECURITY: Alert! High gas fee detected on contract '0x...A' contract."
+            message: "SECURITY: Gas_Spike_Detected >> Contract: 0x...A"
         },
         {
             timestamp: new Date(Date.now() - 4000).toISOString(),
             level: "info",
-            message: "RECEIVED: Querying deployment for try.base.eth, SOL, BNB. OK refreshed."
+            message: "DATA: Registry_Query >> Mapping tactical deployment assets"
         },
         {
             timestamp: new Date(Date.now() - 5000).toISOString(),
             level: "success",
-            message: "SYSTEM: Data feed updated successfully for all tracked pairs."
+            message: "SYSTEM: Watcher_Active >> All feeds nominal"
         },
     ]);
 
@@ -51,33 +51,23 @@ export function SystemLog() {
         }
     }, [logs, autoScroll]);
 
-    const getLevelColor = (level: LogEntry["level"]) => {
+    const getLevelStyles = (level: LogEntry["level"]) => {
         switch (level) {
-            case "success":
-                return "text-emerald-400";
-            case "info":
-                return "text-cyan-400";
-            case "warning":
-                return "text-amber-400";
-            case "error":
-                return "text-rose-400";
-            default:
-                return "text-gray-400";
+            case "success": return "text-emerald-400";
+            case "info": return "text-cyan-400";
+            case "warning": return "text-amber-400";
+            case "error": return "text-rose-400";
+            default: return "text-gray-400";
         }
     };
 
     const getLevelIcon = (level: LogEntry["level"]) => {
         switch (level) {
-            case "success":
-                return "✓";
-            case "info":
-                return "→";
-            case "warning":
-                return "⚠";
-            case "error":
-                return "✕";
-            default:
-                return "•";
+            case "success": return "●";
+            case "info": return "○";
+            case "warning": return "▲";
+            case "error": return "×";
+            default: return "·";
         }
     };
 
@@ -95,56 +85,51 @@ export function SystemLog() {
         <div className="glass panel-shadow overflow-hidden panel-mount">
             {/* Header */}
             <div className="panel-header flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse" />
-                    <span className="upper tracking-[0.2em] text-emerald-500/80">Kernel_Event_Stream</span>
+                    <span className="text-[11px] mono font-black uppercase tracking-[0.25em]">Kernel_Event_Stream</span>
                 </div>
                 <div className="flex items-center gap-4">
-                    <button
-                        onClick={() => setAutoScroll(!autoScroll)}
-                        className={`text-[9px] mono uppercase tracking-widest px-2.5 py-0.5 rounded-sm transition-all hover-press font-black ${autoScroll ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" : "bg-slate-800/50 text-gray-500 border border-gray-700/30"
-                            }`}
-                    >
-                        AUTOSCROLL_{autoScroll ? "ACTIVE" : "STALLED"}
-                    </button>
+                    <div className="flex items-center gap-2">
+                        <span className="text-[8px] mono text-gray-700 font-black uppercase tracking-widest">AUTOSCROLL:</span>
+                        <button
+                            onClick={() => setAutoScroll(!autoScroll)}
+                            className={`w-3 h-3 rounded-full border transition-all ${autoScroll ? "bg-emerald-500/40 border-emerald-500/60 pulse" : "bg-slate-800 border-gray-700"}`}
+                        />
+                    </div>
                     <button
                         onClick={() => setLogs([])}
-                        className="text-[9px] mono uppercase tracking-widest text-gray-500 hover:text-rose-400 transition-all font-black hover-press"
+                        className="text-[9px] mono uppercase tracking-widest text-gray-600 hover:text-rose-400 transition-all font-black hover-press"
                     >
-                        FLUSH_STACK
+                        FLUSH
                     </button>
-                    <div className="flex gap-1.5">
-                        <div className="w-2.5 h-2.5 rounded-full border border-gray-700/50 bg-slate-800 hover:bg-slate-700 transition-colors hover-press" />
-                        <div className="w-2.5 h-2.5 rounded-full border border-gray-700/50 bg-slate-800 hover:bg-slate-700 transition-colors hover-press" />
-                        <div className="w-2.5 h-2.5 rounded-full border border-gray-800/50 bg-slate-900 hover:bg-rose-500/40 transition-colors hover-press" />
-                    </div>
                 </div>
             </div>
 
             {/* Log Content */}
             <div
                 ref={logContainerRef}
-                className="h-64 overflow-y-auto bg-black/40 custom-scrollbar"
+                className="h-64 overflow-y-auto bg-black/60 custom-scrollbar relative"
             >
+                {/* Simulated Scanline Effect */}
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-white/[0.01] to-transparent bg-[length:100%_4px] opacity-20" />
+
                 {logs.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center h-full text-gray-700 opacity-40 scale-in">
-                        <div className="text-3xl mb-3">⊘</div>
-                        <p className="mono text-[10px] uppercase tracking-[0.2em] font-black">Memory_Grid_Clear</p>
+                    <div className="flex flex-col items-center justify-center h-full text-gray-800 scale-in opacity-40">
+                        <div className="w-12 h-[1px] bg-gray-800 mb-4" />
+                        <p className="mono text-[9px] uppercase tracking-[0.4em] font-black italic">Buffer_Purged</p>
                     </div>
                 ) : (
-                    <div className="p-3 space-y-1">
+                    <div className="p-3 space-y-0.5">
                         {logs.map((log, idx) => (
-                            <div key={idx} className="flex items-start gap-3 hover:bg-white/[0.02] px-2 py-1.5 rounded-sm transition-all group scale-in cursor-default border border-transparent hover:border-gray-800/30">
-                                <span className="text-gray-600 mono text-[9px] mt-1 font-black min-w-[65px] tracking-tighter">
-                                    {formatTimestamp(log.timestamp)}
+                            <div key={idx} className="flex items-start gap-3 hover:bg-white/[0.03] px-2 py-0.5 rounded-sm transition-all group scale-in cursor-default border border-transparent hover:border-white/[0.05]">
+                                <span className="text-gray-700 mono text-[9px] mt-0.5 font-bold min-w-[60px] tracking-tighter">
+                                    [{formatTimestamp(log.timestamp)}]
                                 </span>
-                                <span className={`mono font-black text-[10px] mt-0.5 ${getLevelColor(log.level)}`}>
+                                <span className={`mono text-[8px] mt-1 flex-shrink-0 ${getLevelStyles(log.level)}`}>
                                     {getLevelIcon(log.level)}
                                 </span>
-                                <span className={`flex-1 mono text-[10px] leading-relaxed transition-colors font-medium ${getLevelColor(log.level)} group-hover:text-gray-200`}>
-                                    <span className="opacity-40 uppercase text-[8px] mr-2 font-black tracking-widest">
-                                        [{log.level}]
-                                    </span>
+                                <span className={`flex-1 mono text-[10px] leading-tight transition-colors font-medium ${getLevelStyles(log.level)} group-hover:text-white/90`}>
                                     {log.message}
                                 </span>
                             </div>
@@ -154,13 +139,18 @@ export function SystemLog() {
             </div>
 
             {/* Footer */}
-            <div className="glass-heavy border-t border-gray-800/50 px-4 py-2 flex items-center justify-between text-[9px] mono text-gray-500 uppercase tracking-widest font-black">
-                <span className="flex items-center gap-2">
-                    <div className="w-1 h-1 rounded-full bg-cyan-500 pulse" />
-                    {logs.length} RAW_PACKETS_TRACKED
-                </span>
-                <span className="text-gray-700 opacity-50">NODE_VERSION: OPSHOME-ALPHA</span>
+            <div className="glass-heavy border-t border-gray-800/50 px-6 py-3 flex items-center justify-between text-[9px] mono text-gray-500 uppercase tracking-[0.2em] font-black">
+                <div className="flex items-center gap-3">
+                    <span className="text-emerald-500/40">{logs.length} PKTS_SYNCED</span>
+                    <div className="w-1 h-3 bg-gray-800 rotate-12" />
+                    <span className="text-gray-700">NODE_ALPHA_v1</span>
+                </div>
+                <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 pulse" />
+                    <span className="text-cyan-500/60 animate-pulse">STREAMING_REALTIME</span>
+                </div>
             </div>
         </div>
     );
 }
+

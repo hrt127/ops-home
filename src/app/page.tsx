@@ -2,8 +2,9 @@
 
 import React, { useEffect, useState, useMemo } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import "./globals.css";
-import MarketStrip from "../components/MarketStrip";
+import { MarketStripEnhanced } from "../components/MarketStripEnhanced";
 import WalletLanes from "../components/WalletLanes";
 import WalletBriefing from "../components/WalletBriefing";
 import EventsPanel from "../components/EventsPanel";
@@ -308,12 +309,12 @@ function PageContent() {
       <div className="grid grid-cols-3 gap-4">
         <div>
           <div className="flex justify-between items-baseline mb-2">
-             <h2 className="text-sm font-semibold text-gray-200">Active Lanes</h2>
-             <Link href="/wallets" className="text-xs text-sky-400 hover:text-sky-300 transition-colors">
-               Full Registry →
-             </Link>
+            <h2 className="text-sm font-semibold text-gray-200">Active Lanes</h2>
+            <Link href="/wallets" className="text-xs text-sky-400 hover:text-sky-300 transition-colors">
+              Full Registry →
+            </Link>
           </div>
-          <MarketStrip />
+          <MarketStripEnhanced />
           <WalletLanes wallets={wallets} onChange={setWallets} selected={selectedWallet} onSelect={setSelectedWallet} />
         </div>
         <div>

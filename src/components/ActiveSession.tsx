@@ -10,12 +10,16 @@ interface ActiveSessionProps {
 export function ActiveSession({ wallet }: ActiveSessionProps) {
     if (!wallet) {
         return (
-            <div className="rounded-xl border border-gray-800 bg-gray-900/50 p-6 backdrop-blur-sm">
-                <div className="text-center text-gray-500 py-12">
-                    <div className="text-4xl mb-2">🔒</div>
-                    <p className="text-sm">No active session</p>
-                    <p className="text-xs text-gray-600 mt-1">Select a wallet to begin</p>
+            <div className="glass panel-shadow p-8 flex flex-col items-center justify-center min-h-[400px] panel-mount border-dashed border-gray-800">
+                <div className="w-16 h-16 rounded-full bg-slate-900 flex items-center justify-center border border-gray-800/50 mb-6 scale-in">
+                    <svg className="w-8 h-8 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
                 </div>
+                <div className="text-[11px] mono font-black text-gray-600 uppercase tracking-[0.3em] mb-2">STATUS: NO_ACTIVE_SESSION</div>
+                <p className="text-[10px] mono text-gray-700 uppercase tracking-widest text-center max-w-[200px] leading-relaxed">
+                    Awaiting wallet selection for tactical interface deployment.
+                </p>
             </div>
         );
     }
@@ -23,125 +27,107 @@ export function ActiveSession({ wallet }: ActiveSessionProps) {
     const allowedActions = wallet.allowed_actions || [];
     const forbiddenActions = wallet.forbidden_actions || [];
     const allowedDapps = wallet.allowed_dapps || [];
-    const forbiddenDapps = wallet.forbidden_dapps || [];
 
-    const getRiskBadgeColor = (risk: string) => {
+    const getRiskStyles = (risk: string) => {
         switch (risk) {
             case "safe":
-                return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+                return { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20" };
             case "medium":
-                return "bg-amber-500/20 text-amber-400 border-amber-500/30";
+                return { color: "text-amber-400", bg: "bg-amber-500/10", border: "border-amber-500/20" };
             case "high":
-                return "bg-rose-500/20 text-rose-400 border-rose-500/30";
+                return { color: "text-rose-400", bg: "bg-rose-500/10", border: "border-rose-500/20" };
             default:
-                return "bg-gray-500/20 text-gray-400 border-gray-500/30";
+                return { color: "text-gray-400", bg: "bg-gray-500/10", border: "border-gray-500/20" };
         }
     };
+
+    const riskStyles = getRiskStyles(wallet.risk_band);
 
     return (
         <div className="glass panel-shadow overflow-hidden panel-mount">
             {/* Header */}
-            <div className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 border-b border-gray-700/50 px-6 py-4">
-                <div className="flex items-start justify-between">
-                    <div>
-                        <div className="flex items-center gap-3 mb-2">
-                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse" />
-                            <h2 className="text-sm font-black text-white tracking-widest uppercase">ACTIVE SESSION</h2>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <span className="text-[10px] mono text-gray-500 uppercase tracking-widest font-bold">ID:</span>
-                            <span className="text-[10px] mono text-cyan-400 font-black">{wallet.id.toUpperCase()}</span>
-                        </div>
+            <div className="panel-header flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse" />
+                    <span className="text-[11px] mono font-black uppercase tracking-[0.25em]">Session_Active</span>
+                </div>
+                <div className={`px-2 py-0.5 rounded-sm text-[8px] mono font-black uppercase tracking-widest border ${riskStyles.bg} ${riskStyles.color} ${riskStyles.border}`}>
+                    {wallet.risk_band}_RISK
+                </div>
+            </div>
+
+            {/* Tactical Display */}
+            <div className="p-8 bg-gradient-to-b from-slate-900/40 to-transparent border-b border-gray-800/40 relative overflow-hidden">
+                <div className="absolute top-2 right-4 text-[40px] font-black text-white/5 mono select-none pointer-events-none">
+                    {wallet.id.substring(0, 4).toUpperCase()}
+                </div>
+                <div className="relative z-10 text-center scale-in">
+                    <div className="text-[9px] mono text-cyan-500/50 uppercase tracking-[0.3em] font-black mb-4">Balance_Registry</div>
+                    <div className="flex items-baseline justify-center gap-3 mb-2">
+                        <span className="text-4xl mono font-black text-white tracking-tighter">4.2045</span>
+                        <span className="text-xl mono font-bold text-gray-600 uppercase">ETH</span>
                     </div>
-                    <div className={`px-2 py-0.5 rounded text-[9px] mono font-black uppercase tracking-widest border transition-colors ${getRiskBadgeColor(wallet.risk_band)}`}>
-                        {wallet.risk_band} RISK
+                    <div className="text-[11px] mono text-emerald-400 font-bold tracking-[0.15em] opacity-80">
+                        ≈ $16,380.42_USD
                     </div>
                 </div>
             </div>
 
-            {/* Balance Display */}
-            <div className="px-6 py-8 bg-black/20 border-b border-gray-800/50 scale-in">
-                <div className="text-center">
-                    <div className="text-[10px] mono text-gray-500 uppercase tracking-[0.2em] font-black mb-3">Balance Registry</div>
-                    <div className="text-4xl mono font-black text-white tracking-tighter mb-1">
-                        4.2045 <span className="text-xl text-gray-500">ETH</span>
-                    </div>
-                    <div className="text-[10px] mono text-emerald-400 font-black tracking-widest">
-                        ≈ $16,380.42 USD
-                    </div>
-                </div>
-            </div>
-
-            {/* Permissions */}
-            <div className="px-6 py-6 space-y-6 scale-in" style={{ animationDelay: '0.1s' }}>
-                {/* Allowed Actions */}
+            {/* Permission Matrix */}
+            <div className="p-6 space-y-8 scale-in">
+                {/* Authorized Operations */}
                 <div>
-                    <div className="flex items-center gap-2 mb-3">
-                        <div className="w-4 h-4 rounded bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-                            <svg className="w-2.5 h-2.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                            </svg>
-                        </div>
-                        <h3 className="text-[10px] mono font-black text-gray-400 uppercase tracking-widest">Authorized_Ops</h3>
+                    <div className="flex items-center gap-3 mb-4">
+                        <div className="h-px flex-1 bg-gradient-to-r from-transparent to-emerald-500/20" />
+                        <h3 className="text-[9px] mono font-black text-emerald-400/60 uppercase tracking-widest whitespace-nowrap">Authorized_Ops</h3>
+                        <div className="h-px flex-1 bg-gradient-to-l from-transparent to-emerald-500/20" />
                     </div>
                     <div className="flex flex-wrap gap-2">
-                        {allowedActions.length > 0 ? (
-                            allowedActions.map((action) => (
-                                <div
-                                    key={action}
-                                    className="px-2.5 py-1 rounded-sm bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 text-[9px] mono font-black tracking-widest hover-lift cursor-default"
-                                >
-                                    {action.replace(/_/g, " ").toUpperCase()}
-                                </div>
-                            ))
-                        ) : (
-                            <span className="text-[9px] mono text-gray-600 font-bold uppercase">No_Permissions_Found</span>
-                        )}
+                        {allowedActions.map((action) => (
+                            <div
+                                key={action}
+                                className="px-2 py-1 rounded-sm bg-slate-900/50 border border-emerald-500/20 text-emerald-400/80 text-[8px] mono font-black tracking-widest hover-lift cursor-default group"
+                            >
+                                <span className="text-emerald-500/30 mr-1 opacity-0 group-hover:opacity-100 transition-opacity">+</span>
+                                {action.replace(/_/g, " ").toUpperCase()}
+                            </div>
+                        ))}
                     </div>
                 </div>
 
-                {/* Forbidden Actions */}
+                {/* Restricted Zone */}
                 <div>
-                    <div className="flex items-center gap-2 mb-3">
-                        <div className="w-4 h-4 rounded bg-rose-500/10 flex items-center justify-center border border-rose-500/20">
-                            <svg className="w-2.5 h-2.5 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </div>
-                        <h3 className="text-[10px] mono font-black text-gray-400 uppercase tracking-widest">Restricted_Zone</h3>
+                    <div className="flex items-center gap-3 mb-4">
+                        <div className="h-px flex-1 bg-gradient-to-r from-transparent to-rose-500/20" />
+                        <h3 className="text-[9px] mono font-black text-rose-400/60 uppercase tracking-widest whitespace-nowrap">Restricted_Zone</h3>
+                        <div className="h-px flex-1 bg-gradient-to-l from-transparent to-rose-500/20" />
                     </div>
                     <div className="flex flex-wrap gap-2">
-                        {forbiddenActions.length > 0 ? (
-                            forbiddenActions.map((action) => (
-                                <div
-                                    key={action}
-                                    className="px-2.5 py-1 rounded-sm bg-rose-500/5 border border-rose-500/20 text-rose-400 text-[9px] mono font-black tracking-widest line-through opacity-60 hover-lift cursor-default"
-                                >
-                                    {action.replace(/_/g, " ").toUpperCase()}
-                                </div>
-                            ))
-                        ) : (
-                            <span className="text-[9px] mono text-gray-600 font-bold uppercase">No_Restrictions_Active</span>
-                        )}
+                        {forbiddenActions.map((action) => (
+                            <div
+                                key={action}
+                                className="px-2 py-1 rounded-sm bg-slate-900/30 border border-gray-800/40 text-gray-600 text-[8px] mono font-black tracking-widest line-through opacity-70 group cursor-not-allowed"
+                            >
+                                <span className="text-rose-500/20 mr-1 opacity-40 group-hover:opacity-100 transition-opacity">!</span>
+                                {action.replace(/_/g, " ").toUpperCase()}
+                            </div>
+                        ))}
                     </div>
                 </div>
 
-                {/* Allowed Dapps */}
+                {/* Whitelisted Dapps */}
                 {allowedDapps.length > 0 && (
                     <div>
-                        <div className="flex items-center gap-2 mb-3">
-                            <div className="w-4 h-4 rounded bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
-                                <svg className="w-2.5 h-2.5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                            </div>
-                            <h3 className="text-[10px] mono font-black text-gray-400 uppercase tracking-widest">Whitelisted_Dapps</h3>
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="h-px flex-1 bg-gradient-to-r from-transparent to-cyan-500/20" />
+                            <h3 className="text-[9px] mono font-black text-cyan-400/60 uppercase tracking-widest whitespace-nowrap">Whitelisted_Dapps</h3>
+                            <div className="h-px flex-1 bg-gradient-to-l from-transparent to-cyan-500/20" />
                         </div>
                         <div className="flex flex-wrap gap-2">
                             {allowedDapps.map((dapp) => (
                                 <div
                                     key={dapp}
-                                    className="px-2.5 py-1 rounded-sm bg-blue-500/5 border border-blue-500/20 text-blue-400 text-[9px] mono font-black tracking-widest hover-lift cursor-default"
+                                    className="px-2 py-1 rounded-sm bg-cyan-500/5 border border-cyan-500/20 text-cyan-400/70 text-[8px] mono font-black tracking-widest hover-lift cursor-default"
                                 >
                                     {dapp.toUpperCase()}
                                 </div>
@@ -150,6 +136,19 @@ export function ActiveSession({ wallet }: ActiveSessionProps) {
                     </div>
                 )}
             </div>
+
+            {/* Footer */}
+            <div className="glass-heavy border-t border-gray-800/50 px-6 py-3 flex items-center justify-between text-[9px] mono text-gray-500 uppercase tracking-[0.2em] font-black">
+                <div className="flex items-center gap-2">
+                    <span className="text-gray-700">SESSION_ID:</span>
+                    <span className="text-cyan-500/60 font-black">{wallet.id.toUpperCase()}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                    <span className="w-1 h-3 bg-gray-800 -rotate-12" />
+                    <span className="text-emerald-500/40 animate-pulse">ENCRYPTION_SAFE</span>
+                </div>
+            </div>
         </div>
     );
 }
+

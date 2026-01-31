@@ -1,11 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { getIdeas, updateIdea } from "../lib/api-client";
+import React, { useEffect, useState, useCallback } from "react";
+import { getIdeas, updateIdea, Idea } from "../lib/api-client";
+import { clsx } from "clsx";
 
-export default function IdeasPanel({ ideas: initialIdeas, setIdeas }: any) {
-  const [localIdeas, setLocalIdeas] = useState<any[]>([]);
+interface IdeasPanelProps {
+  ideas?: Idea[];
+  setIdeas?: (ideas: Idea[]) => void;
+}
+
+export default function IdeasPanel({ ideas: initialIdeas, setIdeas }: IdeasPanelProps) {
+  const [localIdeas, setLocalIdeas] = useState<Idea[]>([]);
   const [newIdea, setNewIdea] = useState("");
   const [filter, setFilter] = useState<"all" | string>("all");
   const [loading, setLoading] = useState(false);
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    try {
+      const data = await getIdeas();
+      setLocalIdeas(data);
+      if (setIdeas) setIdeas(data);
+    } finally {
+      setLoading(false);
+    }
+  }, [setIdeas]);
 
   // Sync props if provided, else fetch
   useEffect(() => {
@@ -14,22 +31,9 @@ export default function IdeasPanel({ ideas: initialIdeas, setIdeas }: any) {
     } else {
       load();
     }
-  }, [initialIdeas]);
+  }, [initialIdeas, load]);
 
-  const load = async () => {
-    setLoading(true);
-    try {
-      const data = await getIdeas();
-      // API returns { items: [...] } but fetchAPI wrapper returns items array effectively in my implementation?
-      // Wait, api-client getIdeas returns `data.items || []`.
-      setLocalIdeas(data);
-      if (setIdeas) setIdeas(data);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const visible = filter === "all" ? localIdeas : localIdeas.filter((i: any) => i.status === filter);
+  const visible = filter === "all" ? localIdeas : localIdeas.filter((i: Idea) => i.status === filter);
 
   const cycleStatus = async (id: string) => {
     const current = localIdeas.find(i => i.id === id);
@@ -108,13 +112,13 @@ export default function IdeasPanel({ ideas: initialIdeas, setIdeas }: any) {
           </div>
         )}
 
-        {visible.map((i: any) => (
+        {visible.map((i: Idea) => (
           <div
             key={i.id}
             className="p-3 rounded-lg bg-slate-800/20 border border-gray-700/50 hover:border-emerald-500/30 transition-all group cursor-pointer flex items-center justify-between"
             onClick={() => cycleStatus(i.id)}
           >
-            <span className="text-sm font-medium text-gray-200 group-hover:text-white transition-colors flex-1">{i.text || i.label}</span>
+            <span className="text-sm font-medium text-gray-200 group-hover:text-white transition-colors flex-1">{i.text}</span>
             <div className={clsx(
               "text-[10px] mono font-bold uppercase tracking-widest px-2 py-0.5 rounded-sm border transition-all",
               i.status === 'promoted'
