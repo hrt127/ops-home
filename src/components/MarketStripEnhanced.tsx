@@ -15,7 +15,12 @@ export function MarketStripEnhanced() {
     const [loading, setLoading] = React.useState(false);
     const [editing, setEditing] = React.useState(false);
     const [pairsInput, setPairsInput] = React.useState("");
-    const [time, setTime] = React.useState(new Date());
+    const [time, setTime] = React.useState<Date | null>(null);
+
+    React.useEffect(() => {
+        // Initial time set only on client
+        setTime(new Date());
+    }, []);
 
     const loadData = React.useCallback(async () => {
         setLoading(true);
@@ -185,15 +190,15 @@ export function MarketStripEnhanced() {
                         <div className="flex items-center gap-4 px-4 py-1 rounded bg-white/[0.02] border border-white/5">
                             <div className="flex flex-col items-end">
                                 <div className="text-xl mono font-black text-white tracking-[-0.08em] leading-none mb-0.5">
-                                    {time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}
+                                    {time ? time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) : '00:00:00'}
                                 </div>
                                 <div className="flex items-center gap-1.5 opacity-40">
                                     <span className="text-[8px] mono text-gray-400 uppercase tracking-widest font-black">
-                                        {time.toLocaleDateString('en-US', { month: 'short', day: '2-digit' }).toUpperCase()}
+                                        {time ? time.toLocaleDateString('en-US', { month: 'short', day: '2-digit' }).toUpperCase() : '--'}
                                     </span>
                                     <div className="w-[1px] h-2 bg-gray-700" />
                                     <span className="text-[8px] mono text-gray-400 uppercase tracking-widest font-black">
-                                        UTC{time.getTimezoneOffset() / -60 >= 0 ? '+' : ''}{time.getTimezoneOffset() / -60}
+                                        UTC{time ? (time.getTimezoneOffset() / -60 >= 0 ? '+' : '') : ''}{time ? time.getTimezoneOffset() / -60 : ''}
                                     </span>
                                 </div>
                             </div>

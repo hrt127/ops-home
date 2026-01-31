@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
 import type { AgentTodayContext, UIWallet, UIEvent } from "../lib/agent-types";
 
 interface AgentConsoleProps {

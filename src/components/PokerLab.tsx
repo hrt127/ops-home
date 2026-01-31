@@ -64,9 +64,9 @@ export function PokerLab() {
                             <button
                                 key={v}
                                 onClick={() => setView(v)}
-                                className={`text-[8px] mono uppercase tracking-widest px-2.3 py-0.5 rounded border transition-all hover-press font-black ${view === v
-                                    ? "bg-cyan-500/20 text-cyan-400 border-cyan-500/30"
-                                    : "text-gray-600 border-transparent hover:text-gray-400"
+                                className={`text-[8px] mono uppercase tracking-widest px-3 py-1 rounded-sm border transition-all hover-press font-black ${view === v
+                                    ? "bg-cyan-500/20 text-cyan-400 border-cyan-500/30 shadow-[0_0_10px_rgba(6,182,212,0.1)]"
+                                    : "text-gray-600 border-gray-800/40 hover:text-gray-400"
                                     }`}
                             >
                                 {v}
@@ -178,8 +178,8 @@ export function PokerLab() {
                             EST_EV: ${Math.floor(totalProfit * 0.9)}
                         </span>
                     </div>
-                    <button className="px-3 py-1 rounded-sm bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 border border-cyan-500/20 transition-all hover-press">
-                        + CAPTURE
+                    <button className="px-3 py-1 rounded-sm bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 border border-cyan-500/20 transition-all hover-press shadow-lg shadow-cyan-500/5 uppercase mono font-black tracking-widest text-[9px]">
+                        + CAPTURE_NODE
                     </button>
                 </div>
             </div>

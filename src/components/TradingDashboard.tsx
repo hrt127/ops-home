@@ -122,7 +122,7 @@ export function TradingDashboard() {
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
                                                 <span className="text-[12px] font-black text-white uppercase italic tracking-tight">{position.pair}</span>
-                                                <div className={`w-1 h-1 rounded-full ${isActive ? 'bg-emerald-500 pulse' : 'bg-gray-700'}`} />
+                                                <div className={`w-1 h-1 rounded-full ${position.status === 'active' ? 'bg-emerald-500 pulse' : 'bg-gray-700'}`} />
                                             </div>
                                             <div className="flex items-center gap-2">
                                                 <span className={`text-[7px] mono font-black px-1.5 py-0.5 rounded-sm border uppercase tracking-widest leading-none ${styles.bg} ${styles.color} ${styles.border}`}>
@@ -185,6 +185,4 @@ export function TradingDashboard() {
         </div>
     );
 }
-
-const isActive = true; // Temporary for the rewrite
 

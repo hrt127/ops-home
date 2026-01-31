@@ -41,12 +41,9 @@ type Wallet = UIWallet;
 type EventItem = UIEvent;
 type EventImportance = UIEvent["importance"];
 
+import { getEvents, getIdeas, getWallets, Idea } from "../lib/api-client";
 
-export type IdeaItem = {
-  id: string;
-  text: string;
-  status: "open" | "promoted";
-};
+export type IdeaItem = Idea;
 
 export type NoteItem = {
   id: string;
@@ -163,21 +160,20 @@ const DEFAULT_EVENTS: EventItem[] = [
 const DEFAULT_NOTES: NoteItem[] = [
   {
     id: "note-1",
-    label: "Anchor: Ops Home + Dojo CLI are the base.",
-    detail: "No new surfaces until this is stable and trusted.",
+    text: "Anchor: Ops Home + Dojo CLI are the base. No new surfaces until this is stable and trusted.",
   },
 ];
 
 const DEFAULT_IDEAS: IdeaItem[] = [
   {
     id: "idea-1",
-    label: "Farcaster mini-app for alerts + publishing.",
-    status: "shaping",
+    text: "Farcaster mini-app for alerts + publishing.",
+    status: "promoted",
   },
   {
     id: "idea-2",
-    label: "Agent that summarises my last 24h from notes/logs.",
-    status: "idea",
+    text: "Agent that summarises my last 24h from notes/logs.",
+    status: "open",
   },
 ];
 
@@ -351,7 +347,7 @@ function PageContent() {
             <ul className="space-y-1 text-xs">
               {recentNotes.map((n) => (
                 <li key={n.id} className="rounded bg-zinc-900/80 px-2 py-1 flex items-center justify-between">
-                  <span className="text-zinc-100">{n.label}</span>
+                  <span className="text-zinc-100">{n.text}</span>
                 </li>
               ))}
             </ul>
@@ -365,7 +361,7 @@ function PageContent() {
             <ul className="space-y-1 text-xs">
               {recentIdeas.map((i) => (
                 <li key={i.id} className="rounded bg-zinc-900/80 px-2 py-1 flex items-center justify-between">
-                  <span className="text-zinc-100">{i.label}</span>
+                  <span className="text-zinc-100">{i.text}</span>
                   <span className="text-[10px] text-zinc-400">{i.status}</span>
                 </li>
               ))}
