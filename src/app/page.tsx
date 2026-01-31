@@ -307,6 +307,12 @@ function PageContent() {
     <div className="space-y-6">
       <div className="grid grid-cols-3 gap-4">
         <div>
+          <div className="flex justify-between items-baseline mb-2">
+             <h2 className="text-sm font-semibold text-gray-200">Active Lanes</h2>
+             <Link href="/wallets" className="text-xs text-sky-400 hover:text-sky-300 transition-colors">
+               Full Registry →
+             </Link>
+          </div>
           <MarketStrip />
           <WalletLanes wallets={wallets} onChange={setWallets} selected={selectedWallet} onSelect={setSelectedWallet} />
         </div>

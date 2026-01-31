@@ -24,22 +24,63 @@ export function initializeDatabase(dbPath: string): any {
 
   // Create tables if they don't exist
   db.exec(`
-    -- Wallets table (extended for Ops Home)
+    -- Wallets table (Ops Home Schema)
     CREATE TABLE IF NOT EXISTS wallets (
       id TEXT PRIMARY KEY,
-      label TEXT NOT NULL,
-      layer TEXT CHECK(layer IN ('identity', 'vault', 'ops', 'project')),
-      role TEXT,
-      address_evm TEXT,
-      address_solana TEXT,
+      address TEXT NOT NULL,
+      type TEXT,
+      lane TEXT,
       chains TEXT, -- JSON array
+      ens_name TEXT,
+      farcaster_handle TEXT,
+      browser_profile TEXT,
+      preferred_wallet_extension TEXT,
+      risk_band TEXT,
       purpose TEXT,
-      security_level TEXT CHECK(security_level IN ('high', 'medium', 'low')),
-      notes TEXT,
-      project_slug TEXT,
-      is_active BOOLEAN DEFAULT 1,
+      allowed_actions TEXT, -- JSON array
+      forbidden_actions TEXT, -- JSON array
+      allowed_dapps TEXT, -- JSON array
+      forbidden_dapps TEXT, -- JSON array
+      linked_projects TEXT, -- JSON array
+      status TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    -- Projects table
+    CREATE TABLE IF NOT EXISTS projects (
+      id TEXT PRIMARY KEY,
+      name TEXT NOT NULL,
+      chain TEXT,
+      farcaster_identity_wallet_id TEXT,
+      treasury_wallet_id TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    -- Contracts table
+    CREATE TABLE IF NOT EXISTS contracts (
+      id TEXT PRIMARY KEY,
+      project_id TEXT NOT NULL,
+      type TEXT,
+      address TEXT,
+      deployer_wallet_id TEXT,
+      admin_wallet_id TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY(project_id) REFERENCES projects(id) ON DELETE CASCADE
+    );
+
+    -- Liquidity table
+    CREATE TABLE IF NOT EXISTS liquidity (
+      id TEXT PRIMARY KEY,
+      project_id TEXT NOT NULL,
+      venue TEXT,
+      pair TEXT,
+      lp_wallet_id TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY(project_id) REFERENCES projects(id) ON DELETE CASCADE
     );
 
     -- Events table
@@ -100,6 +141,8 @@ export function initializeDatabase(dbPath: string): any {
     CREATE INDEX IF NOT EXISTS idx_ideas_status ON ideas(status);
     CREATE INDEX IF NOT EXISTS idx_wallets_risk ON wallets(risk_band);
     CREATE INDEX IF NOT EXISTS idx_sync_unsynced ON sync_metadata(synced) WHERE synced = FALSE;
+    CREATE INDEX IF NOT EXISTS idx_contracts_project ON contracts(project_id);
+    CREATE INDEX IF NOT EXISTS idx_liquidity_project ON liquidity(project_id);
   `);
 
   return db;

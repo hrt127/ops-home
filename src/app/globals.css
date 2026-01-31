@@ -1,0 +1,476 @@
+/* Tailwind layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------------------------------
+   GLOBAL RESET + BASE STYLES
+------------------------------------------------------- */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #020617;
+  /* slate-950 */
+  color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  height: 100%;
+}
+
+/* Smooth transitions for all UI elements */
+* {
+  box-sizing: border-box;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease, opacity 0.15s ease;
+}
+
+/* -------------------------------------------------------
+   SELECTION COLOR
+------------------------------------------------------- */
+
+::selection {
+  background: rgba(34, 211, 238, 0.4);
+  /* cyan-400 */
+  color: white;
+}
+
+/* -------------------------------------------------------
+   CUSTOM SCROLLBARS
+------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.4);
+  /* slate-800/40 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.4);
+  /* cyan-400/40 */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.6);
+}
+
+/* -------------------------------------------------------
+   GLASSMORPHISM UTILITIES
+------------------------------------------------------- */
+
+.glass {
+  background: rgba(15, 23, 42, 0.55);
+  /* slate-900/55 */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  /* slate-400/15 */
+  border-radius: 0.75rem;
+}
+
+.glass-heavy {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 0.75rem;
+}
+
+/* -------------------------------------------------------
+   PANEL SHADOWS
+------------------------------------------------------- */
+
+.panel-shadow {
+  box-shadow:
+    0 0 20px rgba(34, 211, 238, 0.05),
+    0 0 40px rgba(34, 211, 238, 0.03);
+}
+
+.panel-shadow-strong {
+  box-shadow:
+    0 0 25px rgba(34, 211, 238, 0.12),
+    0 0 60px rgba(34, 211, 238, 0.08);
+}
+
+/* -------------------------------------------------------
+   BUTTONS + INTERACTIONS
+------------------------------------------------------- */
+
+.btn {
+  @apply px-3 py-1.5 rounded-md font-medium;
+  @apply transition-all duration-150 ease-out;
+}
+
+.btn-primary {
+  @apply bg-cyan-500 text-white hover:bg-cyan-400 active:bg-cyan-600;
+}
+
+.btn-secondary {
+  @apply bg-gray-800 border border-gray-700 text-gray-300;
+  @apply hover:bg-gray-700 hover:text-white;
+}
+
+.btn-danger {
+  @apply bg-rose-500 text-white hover:bg-rose-400 active:bg-rose-600;
+}
+
+/* -------------------------------------------------------
+   FOCUS RINGS
+------------------------------------------------------- */
+
+:focus-visible {
+  outline: 2px solid rgba(34, 211, 238, 0.8);
+  outline-offset: 2px;
+}
+
+/* -------------------------------------------------------
+   MOTION SYSTEM — OPS-HOME
+   Subtle, responsive, cyberpunk micro-interactions
+------------------------------------------------------- */
+
+/* EASING CURVES */
+:root {
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-soft: cubic-bezier(0.32, 0, 0.67, 0);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* -------------------------------------------------------
+   FADE PRIMITIVES
+------------------------------------------------------- */
+
+.fade-in {
+  animation: fadeIn 0.35s var(--ease-out-soft) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.25s var(--ease-smooth) forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* -------------------------------------------------------
+   SLIDE PRIMITIVES
+------------------------------------------------------- */
+
+.slide-up {
+  animation: slideUp 0.35s var(--ease-out-soft) forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-down {
+  animation: slideDown 0.35s var(--ease-out-soft) forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-left {
+  animation: slideLeft 0.35s var(--ease-out-soft) forwards;
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-right {
+  animation: slideRight 0.35s var(--ease-out-soft) forwards;
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* -------------------------------------------------------
+   SCALE PRIMITIVES
+------------------------------------------------------- */
+
+.scale-in {
+  animation: scaleIn 0.25s var(--ease-spring) forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-out {
+  animation: scaleOut 0.2s var(--ease-smooth) forwards;
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+/* -------------------------------------------------------
+   HOVER PHYSICS
+------------------------------------------------------- */
+
+.hover-lift {
+  transition: transform 0.18s var(--ease-out-soft),
+    box-shadow 0.18s var(--ease-out-soft);
+}
+
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(34, 211, 238, 0.12);
+}
+
+.hover-press:active {
+  transform: scale(0.97);
+}
+
+/* -------------------------------------------------------
+   SHIMMER (LOADING STATES)
+------------------------------------------------------- */
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.12),
+      transparent);
+  transform: translateX(-100%);
+  animation: shimmerMove 1.6s infinite;
+}
+
+@keyframes shimmerMove {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* -------------------------------------------------------
+   PULSE INDICATORS (Bots, Risk Bands, Logs)
+------------------------------------------------------- */
+
+.pulse {
+  animation: pulse 1.8s infinite var(--ease-smooth);
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.glow {
+  animation: pulseStrong 1.4s infinite var(--ease-smooth);
+}
+
+@keyframes pulseStrong {
+  0% {
+    box-shadow: 0 0 0 rgba(34, 211, 238, 0.0);
+  }
+
+  50% {
+    box-shadow: 0 0 12px rgba(34, 211, 238, 0.5);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(34, 211, 238, 0.0);
+  }
+}
+
+/* -------------------------------------------------------
+   TERMINAL TYPEWRITER (System Log)
+------------------------------------------------------- */
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid rgba(34, 211, 238, 0.8);
+  animation: typing 1.8s steps(40, end), blink 0.9s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* -------------------------------------------------------
+   ATTENTION CUES (Critical Events)
+------------------------------------------------------- */
+
+.attention {
+  animation: attentionPulse 0.9s var(--ease-spring);
+}
+
+@keyframes attentionPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* -------------------------------------------------------
+   PANEL MOUNT ANIMATION
+------------------------------------------------------- */
+
+.panel-mount {
+  animation: panelMount 0.45s var(--ease-out-soft) forwards;
+}
+
+@keyframes panelMount {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* -------------------------------------------------------
+   TYPOGRAPHY UTILITIES
+------------------------------------------------------- */
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+.upper {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------
+   PANEL HEADER STYLE (matches your mockup)
+------------------------------------------------------- */
+
+.panel-header {
+  background: linear-gradient(to right, #0f172a, #1e293b);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* -------------------------------------------------------
+   UTILITY: DIVIDER LINES
+------------------------------------------------------- */
+
+.divider {
+  height: 1px;
+  background: rgba(148, 163, 184, 0.15);
+  margin: 0.5rem 0;
+}

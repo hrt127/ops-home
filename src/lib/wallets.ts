@@ -1,71 +1,75 @@
-export type WalletLayer = "identity" | "vault" | "ops" | "tracking" | "project";
+import { z } from 'zod';
 
-export type WalletRole =
-  | "identity"
-  | "vault_tokens"
-  | "vault_nft"
-  | "ops_user"
-  | "ops_sandbox"
-  | "portfolio_tracker"
-  | "project_admin"
-  | "project_treasury";
+export const WalletLaneSchema = z.enum([
+  'identity',
+  'trading',
+  'deployer',
+  'treasury',
+  'lp',
+  'mint',
+  'test',
+  'other'
+]);
 
-export type Wallet = {
-  layer: WalletLayer;
-  name: string;
-  address: string | null;
-  profile: string;
-  role: WalletRole;
-  notes?: string;
-};
+export const RiskBandSchema = z.enum([
+  'high_sensitivity',
+  'medium',
+  'low',
+  'test'
+]);
 
-export const wallets: Wallet[] = [
-  {
-    layer: "identity",
-    name: "ID_MAIN",
-    address: null,
-    profile: "Comet – profcgrandma",
-    role: "identity",
-    notes: "Main identity"
-  },
-  {
-    layer: "vault",
-    name: "VAULT_TOKENS",
-    address: "0xcaf7a657AE496Bea23AFcAbB89ee744a755de99a",
-    profile: "Comet – profcgrandma",
-    role: "vault_tokens",
-    notes: "Token cold vault"
-  },
-  {
-    layer: "vault",
-    name: "VAULT_NFT",
-    address: "0x45DA50F7d6d4B0eeEb66D693dC71d62545c563E7",
-    profile: "Comet – profcgrandma",
-    role: "vault_nft",
-    notes: "NFT vault"
-  },
-  {
-    layer: "ops",
-    name: "OPS_USER2",
-    address: "0xf2773C0213E8001c8c1b9C955aC414D0Fc79a696",
-    profile: "Comet – profb769ops",
-    role: "ops_user",
-    notes: "Main ops wallet"
-  },
-  {
-    layer: "ops",
-    name: "OPS_SB1",
-    address: "0xba5E19c98b84400B1fA1E845206EFd70D6634689",
-    profile: "Comet – profb769ops",
-    role: "ops_sandbox",
-    notes: "Degen / experiments"
-  },
-  {
-    layer: "tracking",
-    name: "TRACKER_ZERION",
-    address: "0xa8ef89128f00fd9bd4159e2aa7c2aab567e28bb3",
-    profile: "Comet – profcgrandma",
-    role: "portfolio_tracker",
-    notes: "Zerion tracker"
-  }
-];
+export const WalletTypeSchema = z.enum(['EOA', 'SAFE', 'SMART_ACCOUNT']);
+
+export const WalletStatusSchema = z.enum(['active', 'archived', 'rotated']);
+
+export const WalletActionSchema = z.enum([
+  'social_connect',
+  'sign_message',
+  'trade',
+  'lp_provide',
+  'lp_remove',
+  'mint_nft',
+  'mint_token',
+  'deploy_contract',
+  'treasury_move',
+  'admin_action',
+  'unknown_dapp_interaction'
+]);
+
+// Note: This list allows strings but we could enforce specific dapps if we had a comprehensive list.
+// For now, we allow any string as a dapp identifier.
+export const DappSchema = z.string();
+
+export const WalletSchema = z.object({
+  id: z.string(),
+  address: z.string(), // We could add .regex(/^0x[a-fA-F0-9]{40}$/) but keeping it simple for now
+  type: WalletTypeSchema,
+  lane: WalletLaneSchema,
+  chains: z.array(z.string()),
+  ens_name: z.string().optional(),
+  farcaster_handle: z.string().optional(),
+  browser_profile: z.string().optional(),
+  preferred_wallet_extension: z.string().optional(),
+  risk_band: RiskBandSchema,
+  purpose: z.string(),
+  allowed_actions: z.array(WalletActionSchema),
+  forbidden_actions: z.array(WalletActionSchema),
+  allowed_dapps: z.array(DappSchema),
+  forbidden_dapps: z.array(DappSchema),
+  linked_projects: z.array(z.string()),
+  status: WalletStatusSchema
+});
+
+export const WalletRegistrySchema = z.object({
+  version: z.string(),
+  wallets: z.array(WalletSchema)
+});
+
+// Types inferred from Zod schemas
+export type WalletLane = z.infer<typeof WalletLaneSchema>;
+export type RiskBand = z.infer<typeof RiskBandSchema>;
+export type WalletType = z.infer<typeof WalletTypeSchema>;
+export type WalletStatus = z.infer<typeof WalletStatusSchema>;
+export type WalletAction = z.infer<typeof WalletActionSchema>;
+export type Wallet = z.infer<typeof WalletSchema>;
+export type WalletRegistry = z.infer<typeof WalletRegistrySchema>;

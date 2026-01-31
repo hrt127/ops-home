@@ -9,21 +9,23 @@ This is the primary interface for operating the Dojo.
 ---
 
 ## Goal (Now)
-**Phase 3 → Phase 4 Transition**
+**Phase 3 → Phase 4: Eyes & Memory**
 
-- **Phase 3:** Integrate external APIs  
-  - Market data (CoinGecko)  
-  - Wallet balances (Etherscan/Alchemy)  
-  - Social feeds (Farcaster/Twitter)  
-  - Market events  
+- **Phase 3 (In Progress):** Integrate external APIs  
+  - ✅ SQLite database layer
+  - ✅ Wallet registry with risk bands & permissions
+  - ✅ Live balance API endpoint (Etherscan)
+  - ⏳ Market data (CoinGecko)  
+  - ⏳ Social feeds (Farcaster/Twitter)  
+  - ⏳ Market events  
 
-- **Phase 4:** Add long-term memory  
-  - SQLite + Prisma  
-  - Multi-device sync  
-  - Persistent task + idea + project state  
+- **Phase 4 (Partially Started):** Long-term memory  
+  - ✅ SQLite + better-sqlite3
+  - ✅ Database schema (wallets, projects, contracts, liquidity)
+  - ⏳ Multi-device sync  
+  - ⏳ Persistent task + idea + project state  
 
-Ops-Home is already production-ready for local use (Phase 2).  
-The next phases give it *eyes* (live data) and *memory* (database).
+**Current Status**: Database-first architecture implemented. UI components ready. Blocked by Node.js version (need v20+).
 
 ---
 
@@ -44,85 +46,119 @@ No fragmentation.
 
 ## Architecture
 
-### Current (Phase 2)
-- Next.js 16 (App Router)  
-- React 19  
-- Tailwind CSS 4  
-- TypeScript (strict)  
-- Local persistence (localStorage)  
-- Next.js Route Handlers for filesystem APIs  
-- No database  
+### Current (Phase 3→4)
+- **Framework**: Next.js 16 (App Router)  
+- **UI**: React 19 + Tailwind CSS 4  
+- **Language**: TypeScript (strict)  
+- **Database**: SQLite (`data/ops-home.db`) via better-sqlite3
+- **Schema Validation**: Zod
+- **Data Flow**:
+  ```
+  JSON Registries (wallets.json, projects.json)
+      ↓
+  SQLite Database (data/ops-home.db)
+      ↓
+  API Routes (/api/wallets/*, /api/projects/*)
+      ↓
+  React Components
+      ↓
+  User Interface
+  ```
 
-### Intended (Phase 3–4)
-- SQLite + Prisma  
-- External API integrations  
-- Unified data layer (`dojo-sync.ts`)  
-- Server Actions for snapshot + system file access  
-- Event-driven updates (activity log, alerts)  
+### Data Layer
+- **Primary Storage**: SQLite database
+- **Schemas**: Defined in `src/lib/db-schema.ts`
+- **Tables**: wallets, projects, contracts, liquidity, events, notes, ideas, daily_context, sync_metadata
+- **Type Safety**: Zod schemas in `src/lib/wallets.ts` and `src/lib/projects.ts`
+
+### External Integrations
+- **Etherscan API**: Live wallet balances
+- **CoinGecko API**: Market data (planned)
+- **Farcaster/Twitter**: Social feeds (planned)
 
 ---
 
 ## Panel Breakdown (12 Panels)
 
-### **1. Market Strip (Top Bar)**
-Ambient situational awareness: BTC/ETH/SOL, gas, fear/greed, funding rates.  
-**Phase:** Partial → needs live data.
+### **Panel 1: Market Strip (Top Bar)** ✅ IMPLEMENTED
+Ambient situational awareness: BTC/ETH/SOL prices, branding, live clock.  
+**Component**: `MarketStripEnhanced.tsx`  
+**Status**: Complete with live ticker and time display.
 
-### **2. Wallet Manager (Left Column)**
-Risk-banded wallets: SAFE / OPS / SPEC.  
-**Phase:** Implemented → needs live balances.
+### **Panel 2: Wallet Manager (Left Column)** ✅ IMPLEMENTED
+Risk-banded wallets grouped by lane (Identity, Trading, Treasury, LP).  
+**Component**: `WalletManager.tsx`  
+**Status**: Complete with collapsible lanes, selection state, risk badges.
 
-### **3. Events & Calendar (Center Column)**
+### **Panel 2b: Active Session (Right Column)** ✅ IMPLEMENTED
+Detailed view of selected wallet with live balance and permission gating.  
+**Component**: `ActiveSession.tsx`  
+**Status**: Complete with allowed/forbidden actions and dapps display.
+
+### **Panel 3: Events & Calendar (Center Column)** ✅ SCAFFOLDED
 3-day tactical view: Today / Tomorrow / +2.  
-**Phase:** Implemented → needs market events.
+**Component**: `CalendarPanel.tsx`  
+**Status**: Basic implementation. Needs market events integration.
 
-### **4. Notes (Right Column – Top)**
+### **Panel 4: Notes (Center Column)** ✅ SCAFFOLDED
 Frictionless capture + search.  
-**Phase:** Implemented.
+**Component**: `NotesPanelEnhanced.tsx`  
+**Status**: Quick capture implemented. Needs database persistence.
 
-### **5. Ideas (Right Column – Middle)**
+### **Panel 5: Ideas (Right Column)** ✅ SCAFFOLDED
 Idea → Shaping → Live pipeline.  
-**Phase:** Implemented.
+**Component**: `IdeasPanelEnhanced.tsx`  
+**Status**: Status badges implemented. Needs database persistence.
 
-### **6. Agent Console (Bottom)**
-AI co-pilot with system context.  
-Modes: Daily Plan, Risk Audit, Market Scan.  
-**Phase:** Implemented.
+### **Panel 6: System Log (Center Column)** ✅ IMPLEMENTED
+Terminal-style activity log with color-coded levels.  
+**Component**: `SystemLog.tsx`  
+**Status**: Complete with auto-scroll and log filtering.
 
-### **7. Trading Dashboard**
+### **Panel 7: Trading Dashboard** ⏳ NOT STARTED
 Execution layer: DCA/Grid bots, manual trades.  
-**Phase:** Not started.
+**Status**: Future phase.
 
-### **8. Task Manager**
+### **Panel 8: Task Manager** ⏳ NOT STARTED
 GTD-style tasks, subtasks, timers.  
-**Phase:** Not started.
+**Status**: Future phase.
 
-### **9. Social Feed Aggregator**
+### **Panel 9: Social Feed Aggregator** ⏳ NOT STARTED
 Curated signal: Farcaster, Twitter lists, RSS.  
-**Phase:** Not started.
+**Status**: Future phase.
 
-### **10. Poker Lab**
+### **Panel 10: Poker Lab** ⏳ NOT STARTED
 Deliberate practice: hand replayer, ranges, tracking.  
-**Phase:** Not started.
+**Status**: Future phase.
 
-### **11. Learning Lab**
+### **Panel 11: Learning Lab** ⏳ NOT STARTED
 Spaced repetition for skills (Solidity, trading).  
-**Phase:** Not started.
+**Status**: Future phase.
 
-### **12. Project Manager (Dojo Map)**
+### **Panel 12: Project Manager (Right Column)** ✅ SCAFFOLDED
 Strategic view of all active projects.  
-**Phase:** Partial.
+**Component**: `ProjectManager.tsx`  
+**Status**: Grid layout implemented. Needs database integration.
 
 ---
 
 ## Data Sources
 
 ### **Primary**
+- **SQLite Database**: `~/dojo/projects/ops-home/data/ops-home.db`
+  - Wallets, projects, contracts, liquidity
+  - Events, notes, ideas
+  - Daily context, sync metadata
+
+### **Registries (Genesis State)**
+- `~/dojo/projects/ops-home/wallets.json`  
+- `~/dojo/projects/ops-home/projects.json`  
+
+### **Dojo Snapshot**
 - `~/.config/dojo/sync/latest.json`  
   Identity, system, projects, tasks, ideas, notes.
 
-### **System JSON**
-- `~/dojo/system/wallets.json`  
+### **System JSON (Legacy/Hybrid)**
 - `~/dojo/system/market_pairs.json`  
 - `~/dojo/system/bot_schedule.json`  
 - `~/dojo/system/market_events/*.json`  
@@ -134,54 +170,27 @@ Strategic view of all active projects.
 
 ---
 
-## Phase 2 Data Schemas (Legacy but Active)
+## API Endpoints
 
-### Daily Focus
-File: `~/dojo/system/calendar/day_plan-YYYY-MM-DD.json`
-Used by: `/api/daily-focus`, `DailyFocusPanel`
+### Implemented
+- `GET /api/wallets` - Fetch all wallets from SQLite
+- `POST /api/wallets` - Add or update wallet
+- `GET /api/wallets/[id]/balance` - Fetch live ETH balance via Etherscan
 
-```json
-{
-  "date": "YYYY-MM-DD",
-  "tasks": [
-    { "id": "uuid", "text": "Task description", "done": false }
-  ]
-}
-```
-
-### Ideas / Inbox
-File: `~/dojo/knowledge/inbox/ideas.json`
-Used by: `/api/inbox`, `IdeasInboxPanel`
-
-```json
-{
-  "items": [
-    { "id": "uuid", "text": "Idea text", "tags": [], "status": "open" }
-  ]
-}
-```
-
-### Activity Log
-File: `~/dojo/knowledge/threads/activity_log.ndjson`  
-Append-only log of system actions.
-
-### Events / Alerts
-Files:  
-- `~/dojo/system/market_events/*.json`  
-- `~/dojo/system/bot_schedule.json`  
-
-### Market Strip
-File: `~/dojo/system/market_pairs.json`
-
-### Wallets
-File: `~/dojo/system/wallets.json`
+### Planned
+- `GET /api/projects` - Fetch all projects
+- `GET /api/market` - Market data (CoinGecko)
+- `GET /api/events` - Calendar events
+- `POST /api/notes` - Create/update notes
+- `POST /api/ideas` - Create/update ideas
 
 ---
 
 ## Tech / Environment
-- Languages: TypeScript, Node.js  
-- Tools: Next.js App Router, TailwindCSS  
-- Canonical Path:  
+- **Languages**: TypeScript, Node.js  
+- **Tools**: Next.js App Router, TailwindCSS, better-sqlite3, Zod  
+- **Node Version**: Requires v20.9.0+ (currently v18.19.1 - **BLOCKER**)
+- **Canonical Path**:  
   ```
   ~/dojo/projects/ops-home
   ```
@@ -191,12 +200,36 @@ File: `~/dojo/system/wallets.json`
 ## Constraints
 - Use WSL paths only  
 - No silos  
-- All state must live under `~/dojo`  
+- All state must live under `~/dojo` or in documented databases  
 - All changes must be logged (activity_log)  
 - Agents must follow Dojo protocols  
 
 ---
 
+## Implementation Status
+
+### ✅ Complete
+1. Database schema and singleton
+2. Wallet API routes (SQLite-backed)
+3. Live balance endpoint
+4. Enhanced UI components (Market Strip, Wallet Manager, Active Session, System Log)
+5. Zod type schemas
+6. JSON registries
+
+### ⏳ In Progress
+1. Node.js upgrade (v18 → v20+)
+2. Database seeding script
+3. Panel scaffolding (Calendar, Notes, Ideas, Projects)
+
+### 🔜 Next Steps
+1. Fix Node.js version
+2. Complete `npm install`
+3. Seed database with registries
+4. Configure Etherscan API key
+5. Test dashboard page
+6. Implement remaining API endpoints
+
+---
+
 ## Open Questions
 None currently.
-

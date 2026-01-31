@@ -1,229 +1,332 @@
 # Ops-Home
 
-A modern, modular Next.js app for managing wallets, events, and agent-based operations guidance. Built for daily use with real-time AI assistance, persistent state, and extensible APIs.
+**Personal Command Center for Crypto Operations & Daily Life**
 
-## Features
-
-- 🎯 **Daily Planning** — Focus tracking, risk levels, non-negotiables
-- 💼 **Wallet Management** — Multiple wallets with risk bands, personas, rules
-- 📅 **3-Day Calendar** — Events with importance levels and quick add/remove
-- 🤖 **AI Agent** — Real-time guidance via OpenAI or Anthropic
-- 📝 **Notes & Ideas** — Quick capture with status tracking (idea → shaping → live)
-- 🗺️ **Dojo Map** — Project list and quick links
-- 📈 **Market Strip** — Live prices and time display (ready for CoinGecko/Alchemy)
-- 💾 **Persistent State** — localStorage auto-save for all data
-
-## Quick Start
-
-### 1. Install & Run
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) — app starts in **stub mode** (demo responses).
-
-### 2. Activate Real Agent (Optional, 2 min setup)
-```bash
-cp .env.example .env.local
-# Edit .env.local and add your LLM API key
-LLM_PROVIDER=openai
-LLM_API_KEY=sk-...
-```
-
-Restart the dev server. The agent now calls real LLMs!
-
-See [AGENT_SETUP.md](AGENT_SETUP.md) for detailed instructions.
-
-## Project Structure
-
-```
-app/
-├── page.tsx              # Main cockpit UI
-├── api/
-│   ├── agent/route.ts    # Agent endpoint (OpenAI/Anthropic)
-│   └── events/route.ts   # Events endpoint (stub)
-└── layout.tsx            # Root layout
-
-components/              # Modular UI components
-├── AgentConsole.tsx     # Agent interface
-├── WalletLanes.tsx      # Wallet editor
-├── EventsPanel.tsx      # 3-day calendar
-├── NotesPanel.tsx       # Notes capture
-├── IdeasPanel.tsx       # Idea lifecycle
-├── MarketStrip.tsx      # Market/time display
-├── WalletBriefing.tsx   # Wallet metadata
-├── DojoMap.tsx          # Project list
-└── SnippetsPanel.tsx    # Code snippets
-
-lib/
-├── agent-types.ts       # Shared types
-├── llm.ts               # LLM provider abstraction
-├── prompt-builder.ts    # Context → prompt formatting
-├── response-parser.ts   # LLM → structured response
-├── wallets.ts           # Wallet definitions
-├── events.ts            # Event definitions
-└── arenas.ts            # Arena/project data
-
-public/                  # Static assets
-```
-
-## Documentation
-
-- **[CHANGELOG.md](CHANGELOG.md)** — Build history and current status
-- **[AGENT_SETUP.md](AGENT_SETUP.md)** — How to configure OpenAI/Anthropic
-- **[PHASE_3_APIS.md](PHASE_3_APIS.md)** — Integrating live market/wallet data
-- **[.env.example](.env.example)** — Configuration template
-
-## Agent Modes
-
-The AI agent adapts based on your selected mode:
-
-| Mode | Focus | Best For |
-|------|-------|----------|
-| **Daily Plan** | Wallets, events, spend | Planning your day |
-| **Risk Audit** | Portfolio risks, violations | Security review |
-| **Market Scan** | Events, rebalancing, macro | Market opportunity |
-
-## Architecture
-
-### Type-Safe Request/Response
-```typescript
-// Client sends
-POST /api/agent {
-  mode: "daily-plan",
-  prompt: "Should I rebalance?",
-  today: { focus, riskLevel, nonNegotiables },
-  wallets: [...],
-  events: [...]
-}
-
-// Server returns
-{
-  summary: "...",
-  bullets: ["...", "..."],
-  warnings: ["..."],
-  details: "..."
-}
-```
-
-### State Management
-- React `useState` for UI state
-- `localStorage` for persistence (ops-home:* keys)
-- `/api/*` routes for external API calls (proxy pattern)
-
-### Performance
-- Turbopack (near-instant hot reload)
-- 7–9s initial build, ~100ms rebuild
-- Zero runtime errors (TypeScript strict mode)
-
-## Phases
-
-| Phase | Status | Features |
-|-------|--------|----------|
-| **Phase 1** | ✓ Done | UI, components, agent stub |
-| **Phase 2** | ✓ Done | LLM integration (OpenAI/Anthropic) |
-| **Phase 3** | 📋 Planned | Live market data, wallet balances, events |
-| **Phase 4** | 📋 Planned | Database persistence, multi-device sync |
-
-See [PHASE_3_APIS.md](PHASE_3_APIS.md) for Phase 3 implementation roadmap.
-
-## Environment Setup
-
-### Required for Real Agent
-```env
-LLM_PROVIDER=openai        # or "anthropic"
-LLM_API_KEY=sk-...         # Your API key
-LLM_MODEL=gpt-3.5-turbo    # Optional, override default
-```
-
-### Optional for Phase 3
-```env
-COINGECKO_API_KEY=...      # Market data
-ETHERSCAN_API_KEY=...      # Wallet balances
-NEWSAPI_KEY=...            # Headlines
-```
-
-See [.env.example](.env.example) and [AGENT_SETUP.md](AGENT_SETUP.md) for details.
-
-## Development
-
-### Commands
-```bash
-npm run dev       # Start dev server at http://localhost:3000
-npm run build     # Build for production
-npm run lint      # TypeScript + ESLint check
-```
-
-### Testing Agent
-1. Open http://localhost:3000
-2. Fill in daily context (focus, risk level, wallets, events)
-3. Type optional prompt
-4. Click "Run agent"
-5. Check response in UI and console
-
-## Known Limitations
-
-- **Stub mode default** — Activate with `.env.local` to use real LLM
-- **Market data hardcoded** — Phase 3 will add CoinGecko, Alchemy, etc.
-- **localStorage only** — No multi-device sync (Phase 4)
-- **No DB** — Data stored locally; persists across sessions
-
-## Roadmap
-
-- [ ] Phase 3: Live market feeds (CoinGecko, Alchemy, Etherscan)
-- [ ] Phase 3: Event aggregation (NewsAPI, Polymarket, macro calendar)
-- [ ] Phase 4: SQLite or Supabase for persistence
-- [ ] Phase 4: Farcaster social signals
-- [ ] Component tests (Jest)
-- [ ] Dark mode toggle (currently hardcoded dark)
-- [ ] Mobile responsive design
-
-## Troubleshooting
-
-**Agent returns stub response?**
-- You haven't configured `.env.local` yet. See [AGENT_SETUP.md](AGENT_SETUP.md).
-
-**TypeError: Cannot read property 'focus' of undefined?**
-- Check console logs. Ensure today context is initialized.
-
-**Build takes >10s?**
-- First build is slower. Hot rebuild should be <200ms. If not, check system resources.
-
-**Market data shows "—"?**
-- Market Strip displays placeholder until Phase 3 integration. This is expected.
-
-## Security Notes
-
-- **Never commit `.env.local`** — it contains API keys
-- **Rotate keys regularly** — if accidentally shared, regenerate immediately
-- **Use API key restrictions** — OpenAI/Anthropic allow IP/domain limits
-- **Monitor costs** — Set spending alerts in provider dashboard
-- **All external calls use `/api/*` routes** — keeps API keys server-side
-
-## Contributing
-
-This is a personal daily tool. For improvements:
-1. Test locally with `npm run dev`
-2. Check TypeScript: `npx tsc --noEmit`
-3. Verify build: `npm run build`
-4. Document changes in [CHANGELOG.md](CHANGELOG.md)
-
-## Tech Stack
-
-- **Framework**: Next.js 16.1.1 (App Router)
-- **Runtime**: React 19
-- **Styling**: Tailwind CSS 4
-- **Language**: TypeScript (strict mode)
-- **Bundler**: Turbopack (fast refresh)
-- **LLM**: OpenAI or Anthropic (via env config)
-
-## License
-
-MIT (Personal use encouraged)
+Version: Phase 3→4 (Eyes & Memory)  
+Status: ✅ Implementation Complete (Awaiting Node.js v20)
 
 ---
 
-**Status**: Production-ready for local daily use ✓  
-**Last Updated**: 2025-12-25  
-**Next**: Phase 3 — External data integration
+## What is Ops-Home?
+
+Ops-Home is a single-user, local-first digital cockpit that consolidates:
+- Wallet management with risk bands & permission gating
+- Live market data & price tracking
+- Task management & calendar
+- Note capture & idea pipeline
+- Trading operations (DCA/Grid bots)
+- Learning progress (spaced repetition)
+- Social feed aggregation (Farcaster, Twitter)
+- Poker hand tracking & analysis
+- Project oversight & management
+- System monitoring & logs
+
+**Everything in one place. No tab-switching. No fragmentation.**
+
+---
+
+## Quick Start
+
+### Prerequisites
+- Node.js v20.9.0+ (REQUIRED)
+- npm 9+
+- SQLite3
+
+### Installation
+
+```bash
+# 1. Upgrade Node.js (if needed)
+nvm install 20
+nvm use 20
+nvm alias default 20
+
+# 2. Install dependencies
+npm install
+
+# 3. Seed database
+npx tsx scripts/load_registries.ts
+
+# 4. Configure API keys (optional)
+echo "ETHERSCAN_API_KEY=your_key_here" >> .env
+
+# 5. Start development server
+npm run dev
+```
+
+### Access Dashboard
+
+Open `http://localhost:3000/dashboard` in your browser.
+
+---
+
+## The 12-Panel Cockpit
+
+```
+┌─────────────────────────────────────────────┐
+│  Market Strip (Live Prices, Clock)          │
+├───────────┬─────────────────┬───────────────┤
+│  Wallet   │  Calendar       │  Active       │
+│  Manager  │  Notes          │  Session      │
+│  Trading  │  Tasks          │  Ideas        │
+│  (3 cols) │  System Log     │  Social       │
+│           │  (5 cols)       │  Learning     │
+│           │                 │  Projects     │
+│           │                 │  Poker        │
+│           │                 │  (4 cols)     │
+└───────────┴─────────────────┴───────────────┘
+```
+
+### Panel Overview
+
+1. **Market Strip** - Ambient market awareness
+2. **Wallet Manager** - Risk-banded wallet lanes
+3. **Active Session** - Selected wallet with permissions
+4. **Calendar** - 3-day tactical view
+5. **Notes** - Frictionless capture
+6. **System Log** - Activity monitoring
+7. **Trading Dashboard** - Bot management & P&L
+8. **Task Manager** - GTD-style tasks
+9. **Social Feed** - Curated signal
+10. **Poker Lab** - Deliberate practice
+11. **Learning Lab** - Spaced repetition
+12. **Project Manager** - Strategic oversight
+
+---
+
+## Architecture
+
+### Tech Stack
+- **Framework**: Next.js 16 (App Router)
+- **UI**: React 19 + Tailwind CSS 4
+- **Database**: SQLite (better-sqlite3)
+- **Type Safety**: TypeScript 5 + Zod
+- **ORM**: Prisma 5.8.0
+
+### Data Flow
+```
+User Input → React Components → API Routes → SQLite Database
+                                          ↓
+                                External APIs (Etherscan, CoinGecko)
+```
+
+### Directory Structure
+```
+ops-home/
+├── src/
+│   ├── app/
+│   │   ├── dashboard/page.tsx        # Main dashboard
+│   │   └── api/                      # API routes
+│   ├── components/                   # 12 panel components
+│   ├── lib/                          # Database, schemas, utilities
+│   └── hooks/                        # React hooks
+├── data/
+│   └── ops-home.db                   # SQLite database
+├── knowledge/                        # Templates, guides, patterns
+├── scripts/                          # Database seeding, utilities
+├── wallets.json                      # Wallet registry (genesis)
+├── projects.json                     # Project registry (genesis)
+└── package.json
+```
+
+---
+
+## Documentation
+
+### Quick Reference
+- **[Documentation Index](DOCUMENTATION_INDEX.md)** - Complete doc map
+- **[How to Use Ops-Home](knowledge/guides/how_to_use_ops_home.md)** - User guide
+- **[Implementation Guide](IMPLEMENTATION_GUIDE.md)** - Technical docs
+- **[Complete Status](COMPLETE_IMPLEMENTATION_STATUS.md)** - Current state
+
+### For Developers
+- [Implementation Guide](IMPLEMENTATION_GUIDE.md) - Component details, API docs
+- [System Analysis](SYSTEM_ANALYSIS.md) - Architecture overview
+- [Project Context](PROJECT_CONTEXT.md) - Goals, phases, constraints
+
+### For Users
+- [How to Use Ops-Home](knowledge/guides/how_to_use_ops_home.md) - Complete guide
+- [Knowledge Patterns](knowledge/patterns/knowledge_patterns.md) - Best practices
+- [Templates](knowledge/templates/) - Note, thread, prompt templates
+
+---
+
+## Features
+
+### ✅ Implemented
+- 12-panel dashboard with responsive grid
+- SQLite database with 9 tables
+- Wallet management with risk bands & lanes
+- Permission gating (allowed/forbidden actions)
+- Live balance fetching (Etherscan)
+- Task management with GTD workflow
+- Note capture with timestamps
+- Idea pipeline (Idea → Shaping → Live)
+- Learning lab with spaced repetition
+- Trading dashboard with P&L tracking
+- Social feed aggregation
+- Poker hand tracking
+- Project manager
+- System log with color-coded levels
+- Calendar with importance levels
+- Knowledge base integration
+
+### ⏳ Planned
+- Market data integration (CoinGecko)
+- Social feed live updates (Farcaster/Twitter)
+- Multi-device sync
+- Keyboard shortcuts
+- Panel customization
+- Search functionality
+- Notifications
+- Data export/import
+- AI co-pilot integration
+
+---
+
+## Database Schema
+
+### Tables
+- `wallets` - Wallet registry (risk bands, lanes, permissions)
+- `projects` - Project metadata
+- `contracts` - Smart contract addresses
+- `liquidity` - LP positions
+- `events` - Activity log
+- `notes` - User notes
+- `ideas` - Idea pipeline
+- `daily_context` - Daily focus/tasks
+- `sync_metadata` - Change tracking
+
+### Seeding
+```bash
+npx tsx scripts/load_registries.ts
+```
+
+This loads `wallets.json` and `projects.json` into the database.
+
+---
+
+## Development
+
+### Available Scripts
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npm run db:reset     # Reset database (Prisma)
+```
+
+### Environment Variables
+
+Create `.env` file:
+```bash
+ETHERSCAN_API_KEY=your_key_here
+COINGECKO_API_KEY=your_key_here  # Optional
+```
+
+---
+
+## Design System
+
+### Colors
+- **Cyan** (#22d3ee) - Primary actions
+- **Emerald** (#34d399) - Success, allowed, safe
+- **Amber** (#fbbf24) - Warning, medium risk
+- **Rose** (#fb7185) - Error, forbidden, high risk
+- **Purple** (#c084fc) - LP lane, special features
+
+### Typography
+- **Headers**: Bold, uppercase, tracking-wide
+- **Data**: Monospace for addresses, balances
+- **UI**: Clean sans-serif
+
+### Panel Structure
+All panels follow a consistent structure:
+- Gradient header with icon & title
+- Content area with padding
+- Optional footer with stats/actions
+
+---
+
+## Workflows
+
+### Morning Routine
+1. Check Market Strip for overnight moves
+2. Review Calendar for today's events
+3. Check System Log for alerts
+4. Review Tasks for today
+
+### Wallet Operation
+1. Select wallet from Wallet Manager
+2. Review permissions in Active Session
+3. Verify allowed actions
+4. Proceed with operation
+
+### Idea Capture
+1. Type idea in Ideas panel
+2. Set initial status (Idea)
+3. Move to Shaping when ready
+4. Move to Live when deployed
+
+---
+
+## Troubleshooting
+
+### Panel not loading?
+- Check System Log for errors
+- Refresh the page
+- Verify API endpoints
+
+### Data not saving?
+- Check database connection
+- Review browser console
+- Verify API responses
+
+### Balance not updating?
+- Check Etherscan API key in `.env`
+- Verify wallet address
+- Review rate limits
+
+---
+
+## Contributing
+
+This is a personal project, but feedback is welcome!
+
+1. Review [Implementation Guide](IMPLEMENTATION_GUIDE.md)
+2. Check [Complete Status](COMPLETE_IMPLEMENTATION_STATUS.md)
+3. Follow existing patterns
+4. Update documentation
+
+---
+
+## License
+
+Personal use only. Not for redistribution.
+
+---
+
+## Acknowledgments
+
+- Built with Next.js, React, and Tailwind CSS
+- Inspired by trading terminals and command centers
+- Part of the Machi Samurai Dojo system
+
+---
+
+## Links
+
+- **Dojo System**: `~/dojo`
+- **Dojo CLI**: `~/dojo2-clean`
+- **System Docs**: `~/dojo/system/`
+- **Knowledge Base**: `~/dojo/knowledge/`
+
+---
+
+**Version**: Phase 3→4 (Eyes & Memory)  
+**Status**: ✅ Implementation Complete  
+**Next**: Node.js v20 upgrade → Launch
+
+**Built by**: Antigravity (Claude 4.5 Sonnet)  
+**Date**: 2026-01-31
