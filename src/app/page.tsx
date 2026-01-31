@@ -345,8 +345,8 @@ function PageContent() {
             <div className="text-xs text-zinc-400">No notes yet.</div>
           ) : (
             <ul className="space-y-1 text-xs">
-              {recentNotes.map((n) => (
-                <li key={n.id} className="rounded bg-zinc-900/80 px-2 py-1 flex items-center justify-between">
+              {recentNotes.map((n, i) => (
+                <li key={n.id || i} className="rounded bg-zinc-900/80 px-2 py-1 flex items-center justify-between">
                   <span className="text-zinc-100">{n.text}</span>
                 </li>
               ))}

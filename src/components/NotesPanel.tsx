@@ -65,9 +65,9 @@ export default function NotesPanel({ notes, setNotes }: any) {
           </div>
         )}
 
-        {notes.map((n: any) => (
+        {notes.map((n: any, i: number) => (
           <div
-            key={n.id}
+            key={n.id || i}
             className="p-3 rounded-lg bg-slate-800/10 border border-gray-700/50 hover:border-cyan-500/30 transition-all group relative hover-lift"
           >
             <span className="text-xs text-gray-300 leading-relaxed block pr-6 font-medium font-inter">{n.text}</span>
