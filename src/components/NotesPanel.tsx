@@ -14,7 +14,7 @@ export default function NotesPanel({ notes, setNotes }: any) {
 
   const addNote = async () => {
     if (!text.trim()) return;
-    setNotes((prev: any) => [...prev, { label: text.trim(), id: `tmp-${Date.now()}` }]);
+    setNotes((prev: any) => [...prev, { text: text.trim(), id: `tmp-${Date.now()}` }]);
     try {
       const created = await createIdea({ text: text.trim() });
       setNotes((prev: any) => prev.map((n: any) => n.id.startsWith("tmp-") ? created : n));
@@ -45,7 +45,7 @@ export default function NotesPanel({ notes, setNotes }: any) {
           <span className="upper tracking-[0.2em] text-cyan-500/80">Thought_Vault</span>
         </div>
         <div className="text-[9px] mono text-gray-400 uppercase tracking-widest bg-slate-900/80 px-2 py-0.5 rounded-sm border border-gray-800/50 font-black">
-          {notes.length} Active_Nodes
+          {notes?.length || 0} Active_Nodes
         </div>
       </div>
 
@@ -70,7 +70,7 @@ export default function NotesPanel({ notes, setNotes }: any) {
             key={n.id}
             className="p-3 rounded-lg bg-slate-800/10 border border-gray-700/50 hover:border-cyan-500/30 transition-all group relative hover-lift"
           >
-            <span className="text-xs text-gray-300 leading-relaxed block pr-6 font-medium font-inter">{n.label}</span>
+            <span className="text-xs text-gray-300 leading-relaxed block pr-6 font-medium font-inter">{n.text}</span>
             <button
               className="absolute top-2 right-2 text-gray-600 hover:text-rose-500 transition-all opacity-0 group-hover:opacity-100 hover-press"
               onClick={() => removeNote(n.id)}

@@ -42,16 +42,15 @@ type EventItem = UIEvent;
 type EventImportance = UIEvent["importance"];
 
 
-type NoteItem = {
+export type IdeaItem = {
   id: string;
-  label: string;
-  detail?: string;
+  text: string;
+  status: "open" | "promoted";
 };
 
-type IdeaItem = {
+export type NoteItem = {
   id: string;
-  label: string;
-  status: "idea" | "shaping" | "live";
+  text: string;
 };
 
 type SnippetItem = {

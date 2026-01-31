@@ -1,7 +1,18 @@
+import React, { useState } from "react";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import type { AgentTodayContext, UIWallet, UIEvent } from "../lib/agent-types";
 
-export default function AgentConsole({ mode, setMode, today, setToday, wallets, events }: any) {
+interface AgentConsoleProps {
+  mode: string;
+  setMode: (mode: string) => void;
+  today: AgentTodayContext;
+  setToday: (today: AgentTodayContext) => void;
+  wallets: UIWallet[];
+  events: UIEvent[];
+}
+
+export default function AgentConsole({ mode, setMode, today, setToday, wallets, events }: AgentConsoleProps) {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState<any | null>(null);
   const [loading, setLoading] = useState(false);
