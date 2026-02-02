@@ -1,246 +1,235 @@
 # Ops-Home Documentation Index
 
-**Version**: Phase 3→4  
-**Last Updated**: 2026-01-31
+**Last Updated**: 2026-02-02  
+**Status**: Active Development - WSL/Dojo Integration Phase
 
-This index provides a complete map of all Ops-Home documentation.
-
----
-
-## 📋 Quick Links
-
-### For Users
-- [How to Use Ops-Home](knowledge/guides/how_to_use_ops_home.md) - Complete user guide
-- [Knowledge Patterns](knowledge/patterns/knowledge_patterns.md) - Workflows and best practices
-- [ASCII Mockup](ASCII_MOCKUP.md) - Visual reference
-
-### For Developers
-- [Implementation Guide](IMPLEMENTATION_GUIDE.md) - Technical documentation
-- [System Analysis](SYSTEM_ANALYSIS.md) - Architecture overview
-- [Complete Status](COMPLETE_IMPLEMENTATION_STATUS.md) - Current state
-
-### For Context
-- [Project Context](PROJECT_CONTEXT.md) - Project goals and architecture
-- [Phase 3→4 Summary](PHASE_3_4_SUMMARY.md) - Executive summary
-- [Phase 3 Status](PHASE_3_STATUS.md) - Phase tracking
+Complete guide to all documentation in ops-home. **Start here** if you're new or lost.
 
 ---
 
-## 📚 Documentation Structure
+## 🚀 START HERE - Quick Navigation
 
-### System Documentation (~/dojo/system/)
+### New to ops-home?
+1. [README.md](./README.md) - What is ops-home? Features overview
+2. [LOCAL_SETUP.md](./LOCAL_SETUP.md) - Get it running on your machine
+3. [DOJO_INTEGRATION.md](./DOJO_INTEGRATION.md) - How Dojo + ops-home work together
+
+### Want to understand the system?
+1. [COMPLETE_IMPLEMENTATION_STATUS.md](./COMPLETE_IMPLEMENTATION_STATUS.md) - What's built, what's next
+2. [PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md) - Goals, architecture, constraints
+3. [SYSTEM_ANALYSIS.md](./SYSTEM_ANALYSIS.md) - Technical architecture
+
+### Want to build/extend?
+1. [IMPLEMENTATION_GUIDE.md](./IMPLEMENTATION_GUIDE.md) - How to implement features
+2. [BUILD_PROTOCOL.md](./BUILD_PROTOCOL.md) - Development workflow
+3. [.env.example](./.env.example) - Environment configuration template
+
+---
+
+## 📁 Documentation Organization
+
+All docs are organized into 4 categories:
+
+### 1. 🎯 **ESSENTIAL DOCS** (Read These First)
+
+| File | Purpose | Read If... |
+|------|---------|------------|
+| [README.md](./README.md) | Project overview, features, vision | You want to understand what ops-home is |
+| [LOCAL_SETUP.md](./LOCAL_SETUP.md) | Complete local setup with WSL | You're setting up for the first time |
+| [DOJO_INTEGRATION.md](./DOJO_INTEGRATION.md) | Dojo filesystem integration | You need to understand Dojo + ops-home |
+| [.env.example](./.env.example) | Environment variables template | You're configuring your environment |
+| [COMPLETE_IMPLEMENTATION_STATUS.md](./COMPLETE_IMPLEMENTATION_STATUS.md) | Current status, roadmap | You want to know what's done/next |
+
+### 2. 🏗️ **TECHNICAL/ARCHITECTURE**
+
+| File | Purpose | Read If... |
+|------|---------|------------|
+| [PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md) | Goals, tech stack, phases | You need project background |
+| [SYSTEM_ANALYSIS.md](./SYSTEM_ANALYSIS.md) | System architecture | You want deep technical understanding |
+| [IMPLEMENTATION_GUIDE.md](./IMPLEMENTATION_GUIDE.md) | How to implement features | You're building something |
+| [BUILD_PROTOCOL.md](./BUILD_PROTOCOL.md) | Development workflow | You're contributing code |
+| [AGENT_SETUP.md](./AGENT_SETUP.md) | Agent types and configuration | You're working with agents |
+
+### 3. 📚 **HISTORICAL/REFERENCE** (Lower Priority)
+
+| File | Purpose | Read If... |
+|------|---------|------------|
+| [PHASE_3_APIS.md](./PHASE_3_APIS.md) | Phase 3 API specs | You need historical API context |
+| [PHASE_3_STATUS.md](./PHASE_3_STATUS.md) | Phase 3 tracking | Historical reference only |
+| [PHASE_4_DB.md](./PHASE_4_DB.md) | Phase 4 database design | Historical reference only |
+| [PHASE_4_STATUS.md](./PHASE_4_STATUS.md) | Phase 4 tracking | Historical reference only |
+| [PHASE_3_4_SUMMARY.md](./PHASE_3_4_SUMMARY.md) | Combined phase summary | Historical reference only |
+| [knowledge/PHASE_HISTORY.md](./knowledge/PHASE_HISTORY.md) | Consolidated phase docs index | You need phase history |
+| [IMPLEMENTATION_SUMMARY.md](./IMPLEMENTATION_SUMMARY.md) | Old summary | Use COMPLETE_IMPLEMENTATION_STATUS instead |
+| [DELIVERABLES.md](./DELIVERABLES.md) | Old deliverables list | Historical reference |
+
+### 4. 📖 **SUPPLEMENTARY/VISUAL**
+
+| File | Purpose | Read If... |
+|------|---------|------------|
+| [ASCII_MOCKUP.md](./ASCII_MOCKUP.md) | Visual layout reference | You want to see dashboard layout |
+| [VISUAL_MOCKUP_FINAL.md](./VISUAL_MOCKUP_FINAL.md) | Final visual design | You want detailed visual mockup |
+| [DASHBOARD_WALKTHROUGH.md](./DASHBOARD_WALKTHROUGH.md) | Dashboard tour | You want a guided tour |
+| [COMPONENT_SPECIFICATIONS.md](./COMPONENT_SPECIFICATIONS.md) | Component details | You're implementing UI components |
+| [DOCUMENTATION.md](./DOCUMENTATION.md) | Old doc index | Use this file (DOCUMENTATION_INDEX.md) instead |
+| [SECURITY_AUDIT_REPORT.md](./SECURITY_AUDIT_REPORT.md) | Security audit | You're reviewing security |
+| [SYSTEM_STATE.md](./SYSTEM_STATE.md) | System state tracking | Historical reference |
+| [BACKUP_RESTORE_GUIDE.md](./BACKUP_RESTORE_GUIDE.md) | Backup procedures | You need to backup/restore |
+| [CHANGELOG.md](./CHANGELOG.md) | Change history | You want to see what changed |
+
+---
+
+## 🗂️ Knowledge Base (`knowledge/` directory)
+
+Structured documentation, templates, and guides:
+
 ```
-SYSTEM.md                 - System manifesto and architecture
-SYSTEM_STATE.md           - Operational reality and current state
-IDENTITY.md               - User identity and working style
-SOFTWARE_POLICY.md        - Tech stack and constraints
-```
-
-### Project Documentation (~/dojo/projects/ops-home/)
-```
-PROJECT_CONTEXT.md                    - Project goals, stack, phases
-IMPLEMENTATION_GUIDE.md               - Complete technical guide
-COMPLETE_IMPLEMENTATION_STATUS.md     - Final status report
-PHASE_3_4_SUMMARY.md                  - Executive summary
-PHASE_3_STATUS.md                     - Phase tracking
-SYSTEM_ANALYSIS.md                    - System overview
-ASCII_MOCKUP.md                       - Visual mockup
-```
-
-### Knowledge Base (~/dojo/projects/ops-home/knowledge/)
-```
-README.md                             - Knowledge base overview
-
-templates/
-├── note_template.md                  - Note structure
-├── thread_template.md                - Thread/log structure
-├── prompt_template.md                - LLM prompt structure
-└── project_template.md               - Project documentation structure
-
-guides/
-└── how_to_use_ops_home.md            - Complete user guide
-
-patterns/
-└── knowledge_patterns.md             - Workflows and best practices
+knowledge/
+├── PHASE_HISTORY.md           # Historical phase documentation index
+├── README.md                  # Knowledge base overview
+├── guides/
+│   └── how_to_use_ops_home.md # Complete user guide
+├── patterns/
+│   └── knowledge_patterns.md  # Workflows and best practices
+└── templates/
+    ├── note_template.md       # Note structure
+    ├── thread_template.md     # Thread/log structure
+    ├── prompt_template.md     # LLM prompt structure
+    └── project_template.md    # Project documentation structure
 ```
 
 ---
 
-## 🎯 Reading Paths
+## 🎯 Common Questions
 
-### Path 1: New User
-1. Read [How to Use Ops-Home](knowledge/guides/how_to_use_ops_home.md)
-2. Review [ASCII Mockup](ASCII_MOCKUP.md)
-3. Study [Knowledge Patterns](knowledge/patterns/knowledge_patterns.md)
-4. Explore templates in `knowledge/templates/`
+### "I'm completely new. Where do I start?"
+1. [README.md](./README.md) → Understand what ops-home is
+2. [LOCAL_SETUP.md](./LOCAL_SETUP.md) → Get it running
+3. [DOJO_INTEGRATION.md](./DOJO_INTEGRATION.md) → Understand Dojo integration
 
-### Path 2: Developer
-1. Read [Implementation Guide](IMPLEMENTATION_GUIDE.md)
-2. Review [System Analysis](SYSTEM_ANALYSIS.md)
-3. Check [Complete Status](COMPLETE_IMPLEMENTATION_STATUS.md)
-4. Study [Project Context](PROJECT_CONTEXT.md)
+### "How do I set up locally?"
+→ [LOCAL_SETUP.md](./LOCAL_SETUP.md) - Complete guide with WSL/Dojo setup
 
-### Path 3: Agent/LLM
-1. Read `~/dojo/system/SYSTEM.md`
-2. Read `~/dojo/system/IDENTITY.md`
-3. Read [Project Context](PROJECT_CONTEXT.md)
-4. Read [Implementation Guide](IMPLEMENTATION_GUIDE.md)
-5. Review [Complete Status](COMPLETE_IMPLEMENTATION_STATUS.md)
+### "What's the current status?"
+→ [COMPLETE_IMPLEMENTATION_STATUS.md](./COMPLETE_IMPLEMENTATION_STATUS.md) - Latest status and roadmap
 
-### Path 4: System Administrator
-1. Read `~/dojo/system/SYSTEM_STATE.md`
-2. Review [Complete Status](COMPLETE_IMPLEMENTATION_STATUS.md)
-3. Check [System Analysis](SYSTEM_ANALYSIS.md)
-4. Review `~/dojo/system/SOFTWARE_POLICY.md`
+### "How does Dojo integration work?"
+→ [DOJO_INTEGRATION.md](./DOJO_INTEGRATION.md) - Filesystem integration details
 
----
+### "What environment variables do I need?"
+→ [.env.example](./.env.example) - Template with all required vars
 
-## 📖 Document Descriptions
+### "How do I implement a new feature?"
+1. [IMPLEMENTATION_GUIDE.md](./IMPLEMENTATION_GUIDE.md) - Technical implementation guide
+2. [BUILD_PROTOCOL.md](./BUILD_PROTOCOL.md) - Development workflow
 
-### PROJECT_CONTEXT.md
-**Purpose**: Project overview and current state  
-**Audience**: Developers, agents  
-**Content**: Goals, architecture, phases, tech stack, constraints  
-**When to Read**: Before making any changes to the project
+### "What's the architecture?"
+1. [PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md) - High-level overview
+2. [SYSTEM_ANALYSIS.md](./SYSTEM_ANALYSIS.md) - Deep technical dive
 
-### IMPLEMENTATION_GUIDE.md
-**Purpose**: Complete technical documentation  
-**Audience**: Developers  
-**Content**: Component details, design system, API docs, workflows  
-**When to Read**: When implementing features or debugging
-
-### COMPLETE_IMPLEMENTATION_STATUS.md
-**Purpose**: Final status report  
-**Audience**: All  
-**Content**: What's done, what's next, blockers, metrics  
-**When to Read**: To understand current state
-
-### PHASE_3_4_SUMMARY.md
-**Purpose**: Executive summary  
-**Audience**: Stakeholders, quick reference  
-**Content**: High-level status, progress, next actions  
-**When to Read**: For quick overview
-
-### SYSTEM_ANALYSIS.md
-**Purpose**: System architecture overview  
-**Audience**: Developers, system administrators  
-**Content**: Dojo structure, Ops-Home architecture, data flow  
-**When to Read**: To understand the bigger picture
-
-### ASCII_MOCKUP.md
-**Purpose**: Visual reference  
-**Audience**: Designers, developers  
-**Content**: Text-based mockup of the dashboard  
-**When to Read**: To visualize the layout
-
-### knowledge/guides/how_to_use_ops_home.md
-**Purpose**: User manual  
-**Audience**: End users  
-**Content**: Panel descriptions, workflows, tips  
-**When to Read**: When learning to use Ops-Home
-
-### knowledge/patterns/knowledge_patterns.md
-**Purpose**: Best practices  
-**Audience**: Users, developers  
-**Content**: Workflows, patterns, anti-patterns  
-**When to Read**: To learn effective usage patterns
+### "I see PHASE_*.md files. Are they current?"
+No. Phase files are **historical reference only**. For current status, use [COMPLETE_IMPLEMENTATION_STATUS.md](./COMPLETE_IMPLEMENTATION_STATUS.md).  
+For phase history, see [knowledge/PHASE_HISTORY.md](./knowledge/PHASE_HISTORY.md).
 
 ---
 
-## 🔍 Finding Information
+## 🔄 Reading Paths by Role
 
-### "How do I...?"
-- **Use Ops-Home?** → [How to Use Ops-Home](knowledge/guides/how_to_use_ops_home.md)
-- **Implement a new panel?** → [Implementation Guide](IMPLEMENTATION_GUIDE.md)
-- **Understand the architecture?** → [System Analysis](SYSTEM_ANALYSIS.md)
-- **Check current status?** → [Complete Status](COMPLETE_IMPLEMENTATION_STATUS.md)
-- **Create a note?** → [Note Template](knowledge/templates/note_template.md)
-- **Follow a workflow?** → [Knowledge Patterns](knowledge/patterns/knowledge_patterns.md)
+### Path 1: New User/Developer
+```
+1. README.md                              (What is this?)
+2. LOCAL_SETUP.md                         (How do I run it?)
+3. DOJO_INTEGRATION.md                    (How does Dojo work?)
+4. COMPLETE_IMPLEMENTATION_STATUS.md      (What's the current state?)
+5. knowledge/guides/how_to_use_ops_home.md (How do I use it?)
+```
 
-### "What is...?"
-- **The Dojo?** → `~/dojo/system/SYSTEM.md`
-- **Ops-Home?** → [Project Context](PROJECT_CONTEXT.md)
-- **Phase 3→4?** → [Phase 3→4 Summary](PHASE_3_4_SUMMARY.md)
-- **The 12-panel cockpit?** → [How to Use Ops-Home](knowledge/guides/how_to_use_ops_home.md)
-- **SQLite schema?** → [Implementation Guide](IMPLEMENTATION_GUIDE.md)
+### Path 2: Contributing Developer
+```
+1. PROJECT_CONTEXT.md                     (Project goals)
+2. SYSTEM_ANALYSIS.md                     (Architecture)
+3. IMPLEMENTATION_GUIDE.md                (How to implement)
+4. BUILD_PROTOCOL.md                      (Workflow)
+5. AGENT_SETUP.md                         (If working with agents)
+```
 
-### "Where is...?"
-- **The database?** → `~/dojo/projects/ops-home/data/ops-home.db`
-- **The components?** → `~/dojo/projects/ops-home/src/components/`
-- **The API routes?** → `~/dojo/projects/ops-home/src/app/api/`
-- **The knowledge base?** → `~/dojo/projects/ops-home/knowledge/`
-- **The system docs?** → `~/dojo/system/`
+### Path 3: System Admin/DevOps
+```
+1. LOCAL_SETUP.md                         (Setup requirements)
+2. DOJO_INTEGRATION.md                    (Dojo filesystem)
+3. .env.example                           (Environment config)
+4. BACKUP_RESTORE_GUIDE.md                (Backup procedures)
+5. SECURITY_AUDIT_REPORT.md               (Security review)
+```
 
----
-
-## 🔄 Document Maintenance
-
-### When to Update
-
-**PROJECT_CONTEXT.md**
-- Phase changes
-- Architecture changes
-- Tech stack changes
-- Goal changes
-
-**IMPLEMENTATION_GUIDE.md**
-- New components
-- API changes
-- Design system updates
-- Workflow changes
-
-**COMPLETE_IMPLEMENTATION_STATUS.md**
-- Major milestones
-- Blocker resolution
-- Status changes
-
-**Knowledge Base**
-- New templates
-- New patterns
-- New guides
-- User feedback
-
-### Update Checklist
-
-When making significant changes:
-1. [ ] Update `PROJECT_CONTEXT.md` if architecture changed
-2. [ ] Update `IMPLEMENTATION_GUIDE.md` if components changed
-3. [ ] Update `COMPLETE_IMPLEMENTATION_STATUS.md` if status changed
-4. [ ] Update `~/dojo/system/SYSTEM_STATE.md` if system changed
-5. [ ] Update this index if new docs added
+### Path 4: Designer/UX
+```
+1. README.md                              (Feature overview)
+2. VISUAL_MOCKUP_FINAL.md                 (Visual design)
+3. ASCII_MOCKUP.md                        (Layout reference)
+4. DASHBOARD_WALKTHROUGH.md               (User flow)
+5. COMPONENT_SPECIFICATIONS.md            (Component specs)
+```
 
 ---
 
-## 📊 Documentation Metrics
+## 📊 Document Status
 
-- **Total Documents**: 15+
-- **System Docs**: 4
-- **Project Docs**: 7
-- **Knowledge Base**: 7
-- **Templates**: 4
-- **Guides**: 1
-- **Patterns**: 1
+### ✅ Active/Current (Use These)
+- README.md
+- LOCAL_SETUP.md (NEW - Feb 2)
+- DOJO_INTEGRATION.md (NEW - Feb 2)
+- .env.example (NEW - Feb 2)
+- COMPLETE_IMPLEMENTATION_STATUS.md
+- PROJECT_CONTEXT.md
+- SYSTEM_ANALYSIS.md
+- IMPLEMENTATION_GUIDE.md
+- BUILD_PROTOCOL.md
+- AGENT_SETUP.md
+- knowledge/PHASE_HISTORY.md (NEW - Feb 2)
 
----
+### 📦 Reference (Historical Context)
+- PHASE_*.md files
+- IMPLEMENTATION_SUMMARY.md
+- DELIVERABLES.md
+- SYSTEM_STATE.md
 
-## 🎓 Learning Resources
-
-### Beginner
-1. [How to Use Ops-Home](knowledge/guides/how_to_use_ops_home.md)
-2. [ASCII Mockup](ASCII_MOCKUP.md)
-3. Templates in `knowledge/templates/`
-
-### Intermediate
-1. [Knowledge Patterns](knowledge/patterns/knowledge_patterns.md)
-2. [Project Context](PROJECT_CONTEXT.md)
-3. [Phase 3→4 Summary](PHASE_3_4_SUMMARY.md)
-
-### Advanced
-1. [Implementation Guide](IMPLEMENTATION_GUIDE.md)
-2. [System Analysis](SYSTEM_ANALYSIS.md)
-3. `~/dojo/system/SYSTEM.md`
+### 📸 Visual/Supplementary
+- ASCII_MOCKUP.md
+- VISUAL_MOCKUP_FINAL.md
+- DASHBOARD_WALKTHROUGH.md
+- COMPONENT_SPECIFICATIONS.md
 
 ---
 
-**Maintained by**: Antigravity (Claude 4.5 Sonnet)  
-**Last Review**: 2026-01-31
+## 🛠️ Maintenance
+
+### When to Update This Index
+- New documentation file added
+- Documentation file deprecated/archived
+- Major reorganization
+- New features that need docs
+
+### Keep These Docs Updated
+1. **COMPLETE_IMPLEMENTATION_STATUS.md** - After every major milestone
+2. **README.md** - When features/vision changes
+3. **LOCAL_SETUP.md** - When setup process changes
+4. **DOJO_INTEGRATION.md** - When Dojo integration changes
+5. **This file (DOCUMENTATION_INDEX.md)** - When docs change
+
+---
+
+## 💡 Tips for Navigating Documentation
+
+1. **Lost?** Start with README.md
+2. **Setting up?** Go to LOCAL_SETUP.md
+3. **Building?** Check IMPLEMENTATION_GUIDE.md
+4. **Confused about status?** Read COMPLETE_IMPLEMENTATION_STATUS.md
+5. **Need historical context?** Check knowledge/PHASE_HISTORY.md
+6. **PHASE_*.md files?** Historical only - use COMPLETE_IMPLEMENTATION_STATUS.md instead
+
+---
+
+**Maintained by**: hrt127  
+**Last Major Update**: 2026-02-02 (Added LOCAL_SETUP.md, DOJO_INTEGRATION.md, .env.example, knowledge/PHASE_HISTORY.md)  
+**Next Review**: When new docs are added or major features implemented
