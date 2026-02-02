@@ -1,332 +1,338 @@
 # Ops-Home
 
-**Personal Command Center for Crypto Operations & Daily Life**
+**Your Local-First Operating System for Bets, Work, and Intelligence**
 
-Version: Phase 3→4 (Eyes & Memory)  
-Status: ✅ Implementation Complete (Awaiting Node.js v20)
+Version: v0.2-alpha  
+Status: 🚧 Active Development | Core Foundation Built | Integrations In Progress
 
 ---
 
 ## What is Ops-Home?
 
-Ops-Home is a single-user, local-first digital cockpit that consolidates:
-- Wallet management with risk bands & permission gating
-- Live market data & price tracking
-- Task management & calendar
-- Note capture & idea pipeline
-- Trading operations (DCA/Grid bots)
-- Learning progress (spaced repetition)
-- Social feed aggregation (Farcaster, Twitter)
-- Poker hand tracking & analysis
-- Project oversight & management
-- System monitoring & logs
+Ops-Home is a **local-first command OS** that unifies your entire operational stack into one rules-driven cockpit:
 
-**Everything in one place. No tab-switching. No fragmentation.**
+- **Capital & Bots**: Wallet lanes, Freqtrade bots, positions, and risk management
+- **Markets & Intelligence**: Smart-money tracking, ELFA narratives, social signals, and market data
+- **Time & Strategy**: Calendar-driven scenarios for options, sports, crypto cycles, and events
+- **Knowledge & Learning**: Notes, study queues, and integrated poker RL lab
+- **Agents & Automation**: LLM agents, research copilots, and experiment tracking
+
+Instead of juggling 10+ tools (portfolio trackers, smart-money dashboards, calendars, journals, trading bots), you get **one cockpit** where now/when/how much/why all line up around explicit scenarios and calendars—not vibes.
+
+---
+
+## Core Capabilities
+
+### 💰 Capital, Risk & Bots
+
+- **Wallet lanes**: Group wallets by risk bands (cold/core/tactical/degen) with exposure views
+- **Freqtrade integration**: Monitor bot status, PnL, drawdown, and regime; link to global risk state and calendar events
+- **Positions & exposure**: Aggregate holdings across chains into narrative-level views
+- **Permission gating**: Explicit allowed/forbidden actions per wallet
+
+### 🎯 Narratives, Smart-Money & Social
+
+- **ELFA narrative tracking**: EPL/Base/DeFi stories with state (building/mature/topping/dead) and scores
+- **Smart-money module**: Integrate [smart-money-dashboard](https://github.com/hrt127/smart-money-dashboard) outputs plus on-chain + Farcaster flows
+- **Social signal layer**: Quantified Farcaster/Twitter engagement per narrative—not raw doomscroll feeds
+
+### 📅 Calendar, Options & Scenarios
+
+- **Event & Scenario Engine**: Models events (fixtures, OpEx, unlocks, macro) and scenarios (EPL title race, BTC halving, options campaigns)
+- **Signals & Rules**: ΔxPts, odds/xG, IV, bot states → ADD/HOLD/EXIT/PREP_TASK recommendations
+- **Options panel**: Explicit structures (calendar spreads, condors) with expiries and review checkpoints tied to calendar
+
+### 📝 Tasks, Knowledge, Journaling & Learning
+
+- **Tasks/System Log**: GTD-style tasks driven by events, rules, and manual entries
+- **Knowledge & Notes**: Models, playbooks, study queues linked to scenarios and stats
+- **Journal & Review**: Daily/weekly review blocks that feed a change backlog for systematic iteration
+
+### 🤖 Agents, Poker Lab & AI Control
+
+- **Agent & LLM Control Center**: Track Freqtrade analyzers, doc agents, narrative digests, poker RL experiments
+- **Poker RL Lab**: Train and evaluate poker agent via self-play for off-table study and meta-skill development (discipline, tilt, sizing)
+- **AI-assisted analysis**: LLM summaries of sessions, anomalies, and study queues
+
+---
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router) + React 19
+- **UI**: Tailwind CSS 4
+- **Database**: SQLite (local) / PostgreSQL (deployed) via Prisma 5.8
+- **Type Safety**: TypeScript 5 + Zod
+- **Deployment**: Local-first; Vercel-ready for cloud deployment
 
 ---
 
 ## Quick Start
 
 ### Prerequisites
-- Node.js v20.9.0+ (REQUIRED)
+
+- Node.js v20.9.0+
 - npm 9+
-- SQLite3
+- SQLite3 (local) or PostgreSQL connection (deployed)
 
 ### Installation
 
 ```bash
-# 1. Upgrade Node.js (if needed)
-nvm install 20
-nvm use 20
-nvm alias default 20
+# 1. Clone the repo
+git clone https://github.com/hrt127/ops-home.git
+cd ops-home
 
 # 2. Install dependencies
 npm install
 
-# 3. Seed database
+# 3. Set up environment
+cp .env.example .env
+# Edit .env with your API keys and database URL
+
+# 4. Initialize database
+npx prisma migrate dev
+npx prisma generate
+
+# 5. Seed initial data (optional)
 npx tsx scripts/load_registries.ts
 
-# 4. Configure API keys (optional)
-echo "ETHERSCAN_API_KEY=your_key_here" >> .env
-
-# 5. Start development server
+# 6. Start development server
 npm run dev
 ```
 
 ### Access Dashboard
 
-Open `http://localhost:3000/dashboard` in your browser.
+Open [http://localhost:3000/dashboard](http://localhost:3000/dashboard) in your browser.
 
 ---
 
-## The 12-Panel Cockpit
+## Current Implementation Status
 
-```
-┌─────────────────────────────────────────────┐
-│  Market Strip (Live Prices, Clock)          │
-├───────────┬─────────────────┬───────────────┤
-│  Wallet   │  Calendar       │  Active       │
-│  Manager  │  Notes          │  Session      │
-│  Trading  │  Tasks          │  Ideas        │
-│  (3 cols) │  System Log     │  Social       │
-│           │  (5 cols)       │  Learning     │
-│           │                 │  Projects     │
-│           │                 │  Poker        │
-│           │                 │  (4 cols)     │
-└───────────┴─────────────────┴───────────────┘
-```
+### ✅ Core Foundation (Built)
 
-### Panel Overview
+- Next.js 16 app with TypeScript + Tailwind CSS 4
+- Prisma schema with core models (Wallet, Event, Note, Idea, User, Team)
+- Component library: 20+ panel components (WalletLanes, CalendarPanel, EventsPanel, NotesPanel, TaskManager, PokerLab, TradingDashboard, etc.)
+- API routes: /api/wallets, /api/events, /api/agent, /api/market-strip, /api/freqtrade (stub)
+- Dashboard layout with 12-panel grid system
 
-1. **Market Strip** - Ambient market awareness
-2. **Wallet Manager** - Risk-banded wallet lanes
-3. **Active Session** - Selected wallet with permissions
-4. **Calendar** - 3-day tactical view
-5. **Notes** - Frictionless capture
-6. **System Log** - Activity monitoring
-7. **Trading Dashboard** - Bot management & P&L
-8. **Task Manager** - GTD-style tasks
-9. **Social Feed** - Curated signal
-10. **Poker Lab** - Deliberate practice
-11. **Learning Lab** - Spaced repetition
-12. **Project Manager** - Strategic oversight
+### 🚧 In Progress (Active Development)
+
+- **Freqtrade integration**: API client + bot status panel (stub exists, needs live connection)
+- **Smart-money integration**: File readers for digest + signal_events.csv (planned)
+- **ELFA narratives**: Narrative scoring model + panel (schema designed, UI pending)
+- **Calendar ingestion**: Scenario JSON → events automation (scripts planned)
+- **Options structures**: OptionStructure model + panel (schema pending)
+- **Journal & review loop**: Daily/weekly review with change backlog (UI exists, automation pending)
+
+### 📋 Planned (Next Steps)
+
+- Calendar-driven scenario system with signals + rules engine
+- Smart-money digest panel + event table
+- Freqtrade bot control + regime switching
+- Narrative score computation + social sentiment layer
+- Poker RL lab integration (training outputs → study queue)
+- Agent orchestration + experiment tracking
+- Global risk state governor (RISK_OFF / NORMAL / AGGRESSIVE)
+- Weekly journal review automation
 
 ---
 
-## Architecture
+## A Day in the Life with Ops-Home
 
-### Tech Stack
-- **Framework**: Next.js 16 (App Router)
-- **UI**: React 19 + Tailwind CSS 4
-- **Database**: SQLite (better-sqlite3)
-- **Type Safety**: TypeScript 5 + Zod
-- **ORM**: Prisma 5.8.0
+**Morning: Align time, risk, and bots**
+- Dashboard shows market strip, wallet lanes, Freqtrade bot states, and 3-day calendar
+- Calendar highlights options structures and bot adjustments around today's events
+- If DD/risk thresholds hit, system nudges into RISK_OFF mode
 
-### Data Flow
-```
-User Input → React Components → API Routes → SQLite Database
-                                          ↓
-                                External APIs (Etherscan, CoinGecko)
-```
+**Midday: Narratives, execution, context**
+- Review ELFA narratives, smart-money flows, social heat per narrative
+- Adjust positions based on structured scenarios and rules—every trade logs setup, scenario, and rule adherence
 
-### Directory Structure
-```
-ops-home/
-├── src/
-│   ├── app/
-│   │   ├── dashboard/page.tsx        # Main dashboard
-│   │   └── api/                      # API routes
-│   ├── components/                   # 12 panel components
-│   ├── lib/                          # Database, schemas, utilities
-│   └── hooks/                        # React hooks
-├── data/
-│   └── ops-home.db                   # SQLite database
-├── knowledge/                        # Templates, guides, patterns
-├── scripts/                          # Database seeding, utilities
-├── wallets.json                      # Wallet registry (genesis)
-├── projects.json                     # Project registry (genesis)
-└── package.json
-```
+**Afternoon: Systems, learning, poker lab**
+- Calendar-scheduled study blocks for trading, options, narratives, or poker
+- Agent Center shows overnight analyzer outputs and suggested tweaks
+- Poker RL Lab: inspect training runs and curated hands for off-table review
+
+**Evening: Review, decisions, planning**
+- Daily review panel aggregates trades, bot actions, events; LLM drafts summary
+- Weekly (on set days): journal stats → change backlog
+- Strategic calendar scan: upcoming clusters (fixtures, OpEx, unlocks) → confirm active scenarios
+
+---
+
+## System Improvements (Roadmap)
+
+### 1. Global Risk Layer
+- Single risk state (RISK_OFF / NORMAL / AGGRESSIVE) read by bots, options, manual trades
+- Automated safety rails: DD triggers, volume spikes, circuit breakers
+- Risk dashboard panel: current state, realized DD, VAR, active triggers
+
+### 2. Journal → Strategy Pipeline
+- Structured journal fields: setup, scenario, rule tag, size, outcome, emotional state
+- Weekly "Journal Review" ritual: aggregate stats, LLM pattern detection, change backlog
+- Change log + experiments panel: track active experiments with start date and success criteria
+
+### 3. Narrative "Model of Models"
+- Composite narrative score: `f(on-chain flows, smart-money, social engagement, price trend)`
+- Sentiment as bounded factor: high sentiment reduces new risk, low + improving flows flags contrarian setups
+- Narrative lab panel: scores over time, tradable vs watch-only, allowed instruments
+
+### 4. Agent Roles & Boundaries
+- Explicit agent permissions: purpose, inputs, allowed outputs, forbidden actions
+- Agent evaluation loops: track PnL/error impact, promote or demote agent outputs
+- Sandboxing for new agents: shadow mode predictions before influencing real rules
+
+### 5. Poker Lab ↔ Trading Meta-Skills
+- Shared skill metrics: tilt incidents, adherence, hero call frequency, revenge trades
+- Cross-domain review: LLM compares poker + trading journals for shared leaks
+- Pre-session checklists: mood, goals, risk bounds for both trading and poker
+
+### 6. Strategy Density Calendar
+- Overlay showing how many strategies (bots, structures, narratives) are active per day
+- Flags days with too much overlap → pre-emptive simplification
+- Hard-coded review cadences: daily wrap, weekly strategy review, monthly system health
 
 ---
 
 ## Documentation
 
 ### Quick Reference
-- **[Documentation Index](DOCUMENTATION_INDEX.md)** - Complete doc map
-- **[How to Use Ops-Home](knowledge/guides/how_to_use_ops_home.md)** - User guide
-- **[Implementation Guide](IMPLEMENTATION_GUIDE.md)** - Technical docs
-- **[Complete Status](COMPLETE_IMPLEMENTATION_STATUS.md)** - Current state
+- [Documentation Index](./DOCUMENTATION_INDEX.md) - Complete doc map
+- [How to Use Ops-Home](./knowledge/guides/how_to_use_ops_home.md) - User guide
+- [Implementation Guide](./IMPLEMENTATION_GUIDE.md) - Technical docs
+- [Complete Status](./COMPLETE_IMPLEMENTATION_STATUS.md) - Current state
 
 ### For Developers
-- [Implementation Guide](IMPLEMENTATION_GUIDE.md) - Component details, API docs
-- [System Analysis](SYSTEM_ANALYSIS.md) - Architecture overview
-- [Project Context](PROJECT_CONTEXT.md) - Goals, phases, constraints
+- [System Analysis](./SYSTEM_ANALYSIS.md) - Architecture overview
+- [Project Context](./PROJECT_CONTEXT.md) - Goals, phases, constraints
+- [Build Protocol](./BUILD_PROTOCOL.md) - Development workflow
 
 ### For Users
-- [How to Use Ops-Home](knowledge/guides/how_to_use_ops_home.md) - Complete guide
-- [Knowledge Patterns](knowledge/patterns/knowledge_patterns.md) - Best practices
-- [Templates](knowledge/templates/) - Note, thread, prompt templates
+- [Knowledge Patterns](./knowledge/patterns/knowledge_patterns.md) - Best practices
+- [Templates](./knowledge/templates) - Note, thread, prompt templates
 
 ---
 
-## Features
+## Directory Structure
 
-### ✅ Implemented
-- 12-panel dashboard with responsive grid
-- SQLite database with 9 tables
-- Wallet management with risk bands & lanes
-- Permission gating (allowed/forbidden actions)
-- Live balance fetching (Etherscan)
-- Task management with GTD workflow
-- Note capture with timestamps
-- Idea pipeline (Idea → Shaping → Live)
-- Learning lab with spaced repetition
-- Trading dashboard with P&L tracking
-- Social feed aggregation
-- Poker hand tracking
-- Project manager
-- System log with color-coded levels
-- Calendar with importance levels
-- Knowledge base integration
-
-### ⏳ Planned
-- Market data integration (CoinGecko)
-- Social feed live updates (Farcaster/Twitter)
-- Multi-device sync
-- Keyboard shortcuts
-- Panel customization
-- Search functionality
-- Notifications
-- Data export/import
-- AI co-pilot integration
-
----
-
-## Database Schema
-
-### Tables
-- `wallets` - Wallet registry (risk bands, lanes, permissions)
-- `projects` - Project metadata
-- `contracts` - Smart contract addresses
-- `liquidity` - LP positions
-- `events` - Activity log
-- `notes` - User notes
-- `ideas` - Idea pipeline
-- `daily_context` - Daily focus/tasks
-- `sync_metadata` - Change tracking
-
-### Seeding
-```bash
-npx tsx scripts/load_registries.ts
 ```
-
-This loads `wallets.json` and `projects.json` into the database.
-
----
-
-## Development
-
-### Available Scripts
-
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-npm run db:reset     # Reset database (Prisma)
-```
-
-### Environment Variables
-
-Create `.env` file:
-```bash
-ETHERSCAN_API_KEY=your_key_here
-COINGECKO_API_KEY=your_key_here  # Optional
+ops-home/
+├── src/
+│   ├── app/
+│   │   ├── dashboard/           # Main dashboard page
+│   │   ├── wallets/             # Wallet management pages
+│   │   └── api/                 # API routes
+│   │       ├── wallets/
+│   │       ├── events/
+│   │       ├── agent/
+│   │       ├── freqtrade/
+│   │       └── market-strip/
+│   ├── components/              # React components
+│   │   ├── WalletLanes.tsx
+│   │   ├── CalendarPanel.tsx
+│   │   ├── EventsPanel.tsx
+│   │   ├── NotesPanel.tsx
+│   │   ├── TaskManager.tsx
+│   │   ├── PokerLab.tsx
+│   │   ├── TradingDashboard.tsx
+│   │   ├── AgentConsole.tsx
+│   │   └── ...
+│   ├── lib/                     # Utilities & DB client
+│   └── hooks/                   # React hooks
+├── prisma/
+│   └── schema.prisma            # Database schema
+├── scripts/                     # Data ingestion & automation
+├── knowledge/                   # Guides, patterns, templates
+├── data/                        # Local data & scenarios
+└── docs/                        # Additional documentation
 ```
 
 ---
 
-## Design System
+## Database Schema (Core Models)
 
-### Colors
-- **Cyan** (#22d3ee) - Primary actions
-- **Emerald** (#34d399) - Success, allowed, safe
-- **Amber** (#fbbf24) - Warning, medium risk
-- **Rose** (#fb7185) - Error, forbidden, high risk
-- **Purple** (#c084fc) - LP lane, special features
+```prisma
+model Wallet {
+  id        String   @id @default(uuid())
+  name      String
+  address   String?  @unique
+  metadata  Json?    // risk band, permissions, etc.
+  version   Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+}
 
-### Typography
-- **Headers**: Bold, uppercase, tracking-wide
-- **Data**: Monospace for addresses, balances
-- **UI**: Clean sans-serif
+model Event {
+  id         String   @id @default(uuid())
+  title      String
+  when_ts    DateTime
+  importance Int      @default(0)
+  metadata   Json?    // category, subtype, scenario_id, rules, etc.
+  version    Int      @default(1)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  deletedAt  DateTime?
+}
 
-### Panel Structure
-All panels follow a consistent structure:
-- Gradient header with icon & title
-- Content area with padding
-- Optional footer with stats/actions
+model Note {
+  id        String   @id @default(uuid())
+  title     String
+  body      String
+  metadata  Json?
+  version   Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+}
+
+model Idea {
+  id        String   @id @default(uuid())
+  title     String
+  body      String
+  metadata  Json?
+  status    String   @default("idea") // idea, shaping, live, done
+  version   Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+}
+
+// Additional planned models:
+// - Scenario, Trade, BotInstance, Narrative, NarrativeSignal, AgentRun, OptionStructure
+```
 
 ---
 
-## Workflows
+## Related Projects
 
-### Morning Routine
-1. Check Market Strip for overnight moves
-2. Review Calendar for today's events
-3. Check System Log for alerts
-4. Review Tasks for today
-
-### Wallet Operation
-1. Select wallet from Wallet Manager
-2. Review permissions in Active Session
-3. Verify allowed actions
-4. Proceed with operation
-
-### Idea Capture
-1. Type idea in Ideas panel
-2. Set initial status (Idea)
-3. Move to Shaping when ready
-4. Move to Live when deployed
-
----
-
-## Troubleshooting
-
-### Panel not loading?
-- Check System Log for errors
-- Refresh the page
-- Verify API endpoints
-
-### Data not saving?
-- Check database connection
-- Review browser console
-- Verify API responses
-
-### Balance not updating?
-- Check Etherscan API key in `.env`
-- Verify wallet address
-- Review rate limits
+- [smart-money-dashboard](https://github.com/hrt127/smart-money-dashboard) - Smart-money tracking and daily digests (integrated as data source)
+- Freqtrade bots - Automated crypto trading (integrated via REST API)
+- Poker RL agent - Reinforcement learning poker trainer (outputs integrated for study)
 
 ---
 
 ## Contributing
 
-This is a personal project, but feedback is welcome!
-
-1. Review [Implementation Guide](IMPLEMENTATION_GUIDE.md)
-2. Check [Complete Status](COMPLETE_IMPLEMENTATION_STATUS.md)
-3. Follow existing patterns
-4. Update documentation
+This is a personal command OS project, but contributions, ideas, and feedback are welcome. Open an issue or submit a PR.
 
 ---
 
 ## License
 
-Personal use only. Not for redistribution.
+MIT License - See [LICENSE](./LICENSE) for details.
 
 ---
 
 ## Acknowledgments
 
-- Built with Next.js, React, and Tailwind CSS
-- Inspired by trading terminals and command centers
-- Part of the Machi Samurai Dojo system
+Built with inspiration from:
+- Trading journals and performance analytics tools
+- Smart-money tracking platforms (Nansen, Arkham)
+- Calendar-based options strategies
+- Poker training tools and RL research
+- GTD and knowledge management systems
 
 ---
 
-## Links
-
-- **Dojo System**: `~/dojo`
-- **Dojo CLI**: `~/dojo2-clean`
-- **System Docs**: `~/dojo/system/`
-- **Knowledge Base**: `~/dojo/knowledge/`
-
----
-
-**Version**: Phase 3→4 (Eyes & Memory)  
-**Status**: ✅ Implementation Complete  
-**Next**: Node.js v20 upgrade → Launch
-
-**Built by**: Antigravity (Claude 4.5 Sonnet)  
-**Date**: 2026-01-31
+**Ready to build your command OS?** Start with `npm run dev` and explore the dashboard at `localhost:3000/dashboard`.
