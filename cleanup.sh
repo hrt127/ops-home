@@ -1,3 +1,7 @@
+#!/bin/bash
+cd ~/dojo/projects/ops-home
+
+cat > README.md <<'END_README'
 # Ops-Home
 
 Personal command center for crypto operations. Local-first, single-user.
@@ -87,3 +91,24 @@ Next.js 16 + React 19 + Tailwind CSS 4 + SQLite (Prisma) + Zod
 MIT
 
 **Last updated**: 2026-02-05
+END_README
+
+mkdir -p docs/archive
+
+echo "Moving old docs to docs/archive/..."
+mv DOCUMENTATION_INDEX.md IMPLEMENTATION_GUIDE.md COMPLETE_IMPLEMENTATION_STATUS.md BUILD_PROTOCOL.md AGENT_SETUP.md SYSTEM_ANALYSIS.md PROJECT_CONTEXT.md SYSTEM_STATE.md DELIVERABLES.md IMPLEMENTATION_SUMMARY.md DOCUMENTATION.md ASCII_MOCKUP.md VISUAL_MOCKUP_FINAL.md DASHBOARD_WALKTHROUGH.md SECURITY_AUDIT_REPORT.md BACKUP_RESTORE_GUIDE.md LOCAL_SETUP.md DOJO_INTEGRATION.md docs/archive/ 2>/dev/null
+
+mv docs/architecture docs/archive/ 2>/dev/null
+mv docs/guides docs/archive/ 2>/dev/null
+mv docs/phases docs/archive/ 2>/dev/null
+
+echo ""
+echo "✅ Cleanup complete!"
+echo ""
+echo "📁 Root now has:"
+ls -1 *.md 2>/dev/null
+echo ""
+echo "📦 Archived in docs/archive/"
+echo ""
+echo "🔍 Review: git status"
+echo "📝 Commit: git add . && git commit -m 'docs: cleanup - rewrite README, archive old docs' && git push"
