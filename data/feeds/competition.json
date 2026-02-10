@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "generated_at": "2026-02-09T17:44:56.161797",
+    "project": "kyan-feb-2026",
+    "phase": "COMP_2_SPRINT"
+  },
+  "highlights": [
+    "Daily Target: 17 Multi-Legs",
+    "Complexity Alpha: Iron Condor on BTC",
+    "Current Krystals Target: 5000"
+  ],
+  "kpi_tracker": {
+    "complexity_target": 45.0,
+    "krystals_target": 5000,
+    "current_run": "Activity-Skewed"
+  }
+}

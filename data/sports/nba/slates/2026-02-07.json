@@ -1,0 +1,490 @@
+{
+  "meta": {
+    "date": "2026-02-07",
+    "bankroll_start": 10000,
+    "unit_size": 100,
+    "book_list": ["primary"]
+  },
+"games": [
+  {
+    "id": "WAS-BKN-2026-02-07",
+    "home": "Brooklyn Nets",
+    "away": "Washington Wizards",
+    "tip_local": "2026-02-07T22:00:00+02:00",
+    "priority": "A",
+
+    "market": {
+      "spread": "BKN -4.5",
+      "total": 219.5,
+      "moneyline_home": null,
+      "moneyline_away": null,
+      "spread_open": null,
+      "total_open": null,
+      "notes": ""
+    },
+
+    "context": {
+      "rest_home": "rest edge",
+      "rest_away": "B2B off road win",
+      "travel_home": "home stand",
+      "travel_away": "road trip",
+      "form_home": "",
+      "form_away": "",
+      "intentions_home": "",
+      "intentions_away": "retooling with AD; evaluate impact",
+      "trades_home": "",
+      "trades_away": "added AD; new pecking order",
+      "injuries_home": "",
+      "injuries_away": "",
+      "lineup_flags": "new on-ball usage, role shifts around AD"
+    },
+
+    "angle": {
+      "summary": "Brooklyn -4.5 at home makes them a solid favorite against a Wizards team coming in on a back-to-back after a road win. The total of 219.5 is modest, suggesting a medium-paced game rather than a shootout. Key questions are how much fatigue hits Washington, how AD changes their ceiling and floor, and whether Brooklyn’s offense can actually separate enough to cover this number.",
+      "side_thoughts": "",
+      "total_thoughts": "",
+      "props_ideas": ""
+    },
+
+    "edge": {
+      "lean_side": "",
+      "lean_total": "",
+      "confidence": "",
+      "notes": ""
+    }
+  },
+
+  {
+    "id": "HOU-OKC-2026-02-07",
+    "home": "Oklahoma City Thunder",
+    "away": "Houston Rockets",
+    "tip_local": "2026-02-07T22:30:00+02:00",
+    "priority": "A",
+
+    "market": {
+      "spread": "OKC -2.5",
+      "total": 211.5,
+      "moneyline_home": null,
+      "moneyline_away": null,
+      "spread_open": null,
+      "total_open": null,
+      "notes": ""
+    },
+
+    "context": {
+      "rest_home": "even",
+      "rest_away": "even",
+      "travel_home": "",
+      "travel_away": "",
+      "form_home": "",
+      "form_away": "",
+      "intentions_home": "",
+      "intentions_away": "",
+      "trades_home": "",
+      "trades_away": "",
+      "injuries_home": "",
+      "injuries_away": "",
+      "lineup_flags": ""
+    },
+
+    "angle": {
+      "summary": "OKC -2.5 at home makes them a small favorite in what the market sees as a fairly tight matchup. The low total of 211.5 points to slower pace or solid defense on one or both sides. Need to check recent form, on-ball creators and whether either team’s pace or shot profile makes this number look too low or too respectful of the defenses.",
+      "side_thoughts": "",
+      "total_thoughts": "",
+      "props_ideas": ""
+    },
+
+    "edge": {
+      "lean_side": "",
+      "lean_total": "",
+      "confidence": "",
+      "notes": ""
+    }
+  },
+
+  {
+    "id": "DAL-SAS-2026-02-08",
+    "home": "San Antonio Spurs",
+    "away": "Dallas Mavericks",
+    "tip_local": "2026-02-08T01:00:00+02:00",
+    "priority": "B",
+
+    "market": {
+      "spread": "SA -10.5",
+      "total": 230.5,
+      "moneyline_home": null,
+      "moneyline_away": null,
+      "spread_open": null,
+      "total_open": null,
+      "notes": ""
+    },
+
+    "context": {
+      "rest_home": "B2B vs same opponent",
+      "rest_away": "B2B vs same opponent",
+      "travel_home": "home",
+      "travel_away": "short trip",
+      "form_home": "",
+      "form_away": "",
+      "intentions_home": "",
+      "intentions_away": "",
+      "trades_home": "",
+      "trades_away": "",
+      "injuries_home": "",
+      "injuries_away": "",
+      "lineup_flags": "adjustments after last game"
+    },
+
+    "angle": {
+      "summary": "San Antonio -10.5 at home makes them a big favorite in the immediate rematch after beating Dallas last night. The total of 230.5 is high, signaling expectation of pace and scoring again. Need to decide if this is an overreaction to the first result, how each side may adjust tactically, and whether fatigue or rotations could flip some of the edges from the prior game.",
+      "side_thoughts": "",
+      "total_thoughts": "",
+      "props_ideas": ""
+    },
+
+    "edge": {
+      "lean_side": "",
+      "lean_total": "",
+      "confidence": "",
+      "notes": ""
+    }
+  },
+
+  {
+    "id": "UTA-ORL-2026-02-08",
+    "home": "Orlando Magic",
+    "away": "Utah Jazz",
+    "tip_local": "2026-02-08T02:00:00+02:00",
+    "priority": "B",
+
+    "market": {
+      "spread": "ORL -8.5",
+      "total": 237.5,
+      "moneyline_home": null,
+      "moneyline_away": null,
+      "spread_open": null,
+      "total_open": null,
+      "notes": ""
+    },
+
+    "context": {
+      "rest_home": "",
+      "rest_away": "",
+      "travel_home": "home stand",
+      "travel_away": "road trip",
+      "form_home": "",
+      "form_away": "",
+      "intentions_home": "",
+      "intentions_away": "",
+      "trades_home": "",
+      "trades_away": "",
+      "injuries_home": "",
+      "injuries_away": "",
+      "lineup_flags": ""
+    },
+
+    "angle": {
+      "summary": "Orlando -8.5 at home makes them a clear favorite over Utah by multiple possessions. The total of 237.5 is very high, projecting a fast game with a lot of scoring. Need to check whether both teams’ recent pace and offensive efficiency justify such a high total and whether Utah’s defense or depth could make the spread or total mispriced.",
+      "side_thoughts": "",
+      "total_thoughts": "",
+      "props_ideas": ""
+    },
+
+    "edge": {
+      "lean_side": "",
+      "lean_total": "",
+      "confidence": "",
+      "notes": ""
+    }
+  },
+
+  {
+    "id": "CHA-ATL-2026-02-08",
+    "home": "Atlanta Hawks",
+    "away": "Charlotte Hornets",
+    "tip_local": "2026-02-08T02:30:00+02:00",
+    "priority": "B",
+
+    "market": {
+      "spread": "CHA -1.5",
+      "total": 230.5,
+      "moneyline_home": null,
+      "moneyline_away": null,
+      "spread_open": null,
+      "total_open": null,
+      "notes": ""
+    },
+
+    "context": {
+      "rest_home": "",
+      "rest_away": "",
+      "travel_home": "home",
+      "travel_away": "road",
+      "form_home": "",
+      "form_away": "",
+      "intentions_home": "",
+      "intentions_away": "",
+      "trades_home": "",
+      "trades_away": "",
+      "injuries_home": "",
+      "injuries_away": "",
+      "lineup_flags": ""
+    },
+
+    "angle": {
+      "summary": "Charlotte -1.5 being favored over Atlanta on the road makes this effectively a coin-flip spread with a slight nod to the Hornets. The total of 230.5 is high, implying a more offense-driven game with plenty of possessions. Need to check lineups, any key injuries and whether Charlotte’s recent form and shot quality really justify them being road favorites in a high-variance scoring environment.",
+      "side_thoughts": "",
+      "total_thoughts": "",
+      "props_ideas": ""
+    },
+
+    "edge": {
+      "lean_side": "",
+      "lean_total": "",
+      "confidence": "",
+      "notes": ""
+    }
+  },
+
+  {
+    "id": "DEN-CHI-2026-02-08",
+    "home": "Chicago Bulls",
+    "away": "Denver Nuggets",
+    "tip_local": "2026-02-08T03:00:00+02:00",
+    "priority": "A",
+
+    "market": {
+      "spread": "DEN -5.5",
+      "total": 232.5,
+      "moneyline_home": null,
+      "moneyline_away": null,
+      "spread_open": null,
+      "total_open": null,
+      "notes": ""
+    },
+
+    "context": {
+      "rest_home": "",
+      "rest_away": "",
+      "travel_home": "home",
+      "travel_away": "road trip",
+      "form_home": "",
+      "form_away": "",
+      "intentions_home": "",
+      "intentions_away": "",
+      "trades_home": "",
+      "trades_away": "",
+      "injuries_home": "",
+      "injuries_away": "",
+      "lineup_flags": ""
+    },
+
+    "angle": {
+      "summary": "Denver -5.5 on the road makes them a solid favorite even in Chicago, which shows clear market respect for the Nuggets. The total of 232.5 is high, suggesting good offensive efficiency and reasonable pace. Need to check how weak Chicago’s defense has actually been, whether Denver’s travel spot is clean, and if matchup edges (size, creation, spacing) support laying points on the road.",
+      "side_thoughts": "",
+      "total_thoughts": "",
+      "props_ideas": ""
+    },
+
+    "edge": {
+      "lean_side": "",
+      "lean_total": "",
+      "confidence": "",
+      "notes": ""
+    }
+  },
+
+  {
+    "id": "GSW-LAL-2026-02-08",
+    "home": "Los Angeles Lakers",
+    "away": "Golden State Warriors",
+    "tip_local": "2026-02-08T03:30:00+02:00",
+    "priority": "A",
+
+    "market": {
+      "spread": "LAL -2.5",
+      "total": 221.5,
+      "moneyline_home": null,
+      "moneyline_away": null,
+      "spread_open": null,
+      "total_open": null,
+      "notes": ""
+    },
+
+    "context": {
+      "rest_home": "",
+      "rest_away": "",
+      "travel_home": "home stand",
+      "travel_away": "road trip",
+      "form_home": "",
+      "form_away": "",
+      "intentions_home": "",
+      "intentions_away": "",
+      "trades_home": "",
+      "trades_away": "",
+      "injuries_home": "",
+      "injuries_away": "",
+      "lineup_flags": ""
+    },
+
+    "angle": {
+      "summary": "Lakers -2.5 at home makes them a small favorite over the Warriors in what profiles as a competitive game. The total of 221.5 is around average, pointing to neither an extreme shootout nor a grindy defensive slugfest. Need to check star availability, recent three-point variance and whether pace is likely to be more LAL-controlled or Golden State-driven.",
+      "side_thoughts": "",
+      "total_thoughts": "",
+      "props_ideas": ""
+    },
+
+    "edge": {
+      "lean_side": "",
+      "lean_total": "",
+      "confidence": "",
+      "notes": ""
+    }
+  },
+
+  {
+    "id": "PHI-PHX-2026-02-08",
+    "home": "Phoenix Suns",
+    "away": "Philadelphia 76ers",
+    "tip_local": "2026-02-08T04:00:00+02:00",
+    "priority": "B",
+
+    "market": {
+      "spread": "PHX -1.5",
+      "total": 222.5,
+      "moneyline_home": null,
+      "moneyline_away": null,
+      "spread_open": null,
+      "total_open": null,
+      "notes": ""
+    },
+
+    "context": {
+      "rest_home": "",
+      "rest_away": "",
+      "travel_home": "home",
+      "travel_away": "road trip",
+      "form_home": "",
+      "form_away": "",
+      "intentions_home": "",
+      "intentions_away": "",
+      "trades_home": "",
+      "trades_away": "",
+      "injuries_home": "monitor stars",
+      "injuries_away": "monitor Embiid/usage",
+      "lineup_flags": ""
+    },
+
+    "angle": {
+      "summary": "Phoenix -1.5 at home makes them only a slight favorite over Philadelphia, suggesting the market sees these teams as close in strength. The total of 222.5 is slightly above average, indicating expectation of reasonable scoring but not an extreme pace game. Need to check travel, star health and whether either defense is soft enough to tilt the side or total.",
+      "side_thoughts": "",
+      "total_thoughts": "",
+      "props_ideas": ""
+    },
+
+    "edge": {
+      "lean_side": "",
+      "lean_total": "",
+      "confidence": "",
+      "notes": ""
+    }
+  },
+
+  {
+    "id": "MEM-POR-2026-02-08",
+    "home": "Portland Trail Blazers",
+    "away": "Memphis Grizzlies",
+    "tip_local": "2026-02-08T05:00:00+02:00",
+    "priority": "C",
+
+    "market": {
+      "spread": "POR -9.5",
+      "total": 237.5,
+      "moneyline_home": null,
+      "moneyline_away": null,
+      "spread_open": null,
+      "total_open": null,
+      "notes": ""
+    },
+
+    "context": {
+      "rest_home": "",
+      "rest_away": "",
+      "travel_home": "home stand",
+      "travel_away": "road",
+      "form_home": "",
+      "form_away": "",
+      "intentions_home": "",
+      "intentions_away": "",
+      "trades_home": "",
+      "trades_away": "",
+      "injuries_home": "",
+      "injuries_away": "",
+      "lineup_flags": ""
+    },
+
+    "angle": {
+      "summary": "Portland -9.5 at home makes them a strong favorite over Memphis in a game where the market expects a lot of points. The total of 237.5 is very high, pointing towards fast pace and weaker defense. Need to check whether Memphis has enough offensive punch and depth to hang or if this is just a run-and-gun spot where variance is huge and the dog has backdoor potential.",
+      "side_thoughts": "",
+      "total_thoughts": "",
+      "props_ideas": ""
+    },
+
+    "edge": {
+      "lean_side": "",
+      "lean_total": "",
+      "confidence": "",
+      "notes": ""
+    }
+  },
+
+  {
+    "id": "CLE-SAC-2026-02-08",
+    "home": "Sacramento Kings",
+    "away": "Cleveland Cavaliers",
+    "tip_local": "2026-02-08T05:00:00+02:00",
+    "priority": "B",
+
+    "market": {
+      "spread": "CLE -12.5",
+      "total": 234.5,
+      "moneyline_home": null,
+      "moneyline_away": null,
+      "spread_open": null,
+      "total_open": null,
+      "notes": ""
+    },
+
+    "context": {
+      "rest_home": "",
+      "rest_away": "",
+      "travel_home": "home",
+      "travel_away": "road trip",
+      "form_home": "",
+      "form_away": "",
+      "intentions_home": "",
+      "intentions_away": "",
+      "trades_home": "",
+      "trades_away": "",
+      "injuries_home": "",
+      "injuries_away": "",
+      "lineup_flags": ""
+    },
+
+    "angle": {
+      "summary": "Cleveland -12.5 as a road favorite over Sacramento is an extremely strong statement by the market. The total of 234.5 is high, expecting plenty of scoring even with the big spread. Need to check injuries and rotation issues for Sacramento, whether Cleveland has been dominating enough to justify laying this many on the road, and if late blowout risk shapes side or live/props angles more than pregame spread.",
+      "side_thoughts": "",
+      "total_thoughts": "",
+      "props_ideas": ""
+    },
+
+    "edge": {
+      "lean_side": "",
+      "lean_total": "",
+      "confidence": "",
+      "notes": ""
+    }
+  }
+  ],
+  "bets": []
+}
