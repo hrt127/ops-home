@@ -15,40 +15,40 @@
       "tip_local": "2026-02-27",
       "priority": "B",
       "market": {
-        "spread": -5.5,
-        "total": 227.5,
-        "moneyline_home": 1.45,
-        "moneyline_away": 3.0,
-        "spread_open": null,
-        "total_open": null,
-        "notes": ""
+        "spread": -7.5,
+        "total": 225.5,
+        "moneyline_home": 1.34,
+        "moneyline_away": 3.25,
+        "spread_open": -6.5,
+        "total_open": 225.5,
+        "notes": "Market pushed DET out with CLE injury cluster."
       },
       "context": {
-        "rest_home": "",
-        "rest_away": "",
-        "travel_home": "",
-        "travel_away": "",
-        "form_home": "",
-        "form_away": "",
-        "intentions_home": "",
-        "intentions_away": "",
-        "trades_home": "",
-        "trades_away": "",
-        "injuries_home": "",
-        "injuries_away": "",
-        "lineup_flags": ""
+        "rest_home": "Pistons on 1-day rest after 124-116 home win vs OKC.",
+        "rest_away": "Cavs on 1-day rest off 118-116 road loss at MIL, short rotation.",
+        "travel_home": "DET home again (no travel) after last game at Little Caesars.",
+        "travel_away": "CLE on road again after MIL, short regional travel.",
+        "form_home": "DET 43-14 overall and 19-7 vs .500+ teams; profile as elite defense.",
+        "form_away": "CLE competitive but just lost to MIL; new-look after Harden trade, offense volatile.",
+        "intentions_home": "Contender at home vs shorthanded opponent; projects as full effort, possible national TV focus.",
+        "intentions_away": "Signals of 'punt' spot with stars sitting plus multiple rotation guys listed questionable.",
+        "trades_home": "No major last-minute changes noted.",
+        "trades_away": "Added James Harden at deadline; now hurt and in flux.",
+        "injuries_home": "DET relatively clean; no major new absences reported.",
+        "injuries_away": "Donovan Mitchell OUT (groin); Harden Q with fractured thumb; Dennis Schroder Q; Keon Ellis Q; market pricing some/all as out.",
+        "lineup_flags": "Cavs likely missing primary creators; potential mixed/experimental lineups, increased volatility."
       },
       "angle": {
-        "summary": "",
-        "side_thoughts": "",
-        "total_thoughts": "",
-        "props_ideas": ""
+        "summary": "Classic injury-inflated home favorite vs skeleton-road-dog spot. DET has been elite vs good teams and has rest + continuity, while CLE is likely without multiple creators and may be semi-punting.",
+        "side_thoughts": "Market near -7.5/-8; fair closer probably higher if Harden/Schroder sit. Taking DET earlier made sense; at inflated numbers dog or pass is more interesting given letdown risk and variance.",
+        "total_thoughts": "CLE missing shot creation can drag pace/efficiency, but garbage-time plus Pistons efficiency vs short-handed defense keeps Over live. Number ~225.5 looks close; lean small to Under only if more CLE outs confirm.",
+        "props_ideas": "DET usage consolidation: Cade + Duren on points/rebounds; alt PRA vs thin Cavs backcourt. On CLE side, Jarrett Allen volume bump without Mitchell/Harden, but blowout risk; ladder R+P in correlated DET alt spreads."
       },
       "edge": {
-        "lean_side": "",
-        "lean_total": "",
-        "confidence": "",
-        "notes": ""
+        "lean_side": "DET -7.5 or Cavs alt +double-digits only if full punt confirmed; live-entry preferred.",
+        "lean_total": "Slight Under lean at 225.5 if CLE is missing multiple guards; otherwise no clear edge.",
+        "confidence": "Medium on DET ML in parlays; Low-Med on spread and total.",
+        "notes": "If Harden unexpectedly plays and looks full go, re-rate towards shorter number or even small CLE +pts. Watch final injury report 60–90 min pre-tip."
       }
     },
     {
@@ -59,39 +59,39 @@
       "priority": "B",
       "market": {
         "spread": -17.5,
-        "total": 208.5,
+        "total": 214.5,
         "moneyline_home": 1.07,
         "moneyline_away": 11.8,
-        "spread_open": null,
-        "total_open": null,
-        "notes": ""
+        "spread_open": -16.0,
+        "total_open": 214.5,
+        "notes": "Massive favorite spot; BOS depth vs weak Nets defense."
       },
       "context": {
-        "rest_home": "",
-        "rest_away": "",
-        "travel_home": "",
-        "travel_away": "",
-        "form_home": "",
-        "form_away": "",
-        "intentions_home": "",
-        "intentions_away": "",
-        "trades_home": "",
-        "trades_away": "",
-        "injuries_home": "",
-        "injuries_away": "",
-        "lineup_flags": ""
+        "rest_home": "Celtics at home with routine schedule; last played DEN recently with a loss, now bounce-back angle.",
+        "rest_away": "Nets on standard rest; young group but overmatched talent-wise.",
+        "travel_home": "BOS at home (TD Garden), no travel.",
+        "travel_away": "Short East travel workload for BKN, nothing extreme.",
+        "form_home": "BOS is one of league’s top teams; coming off loss to Nuggets; generally crush weaker opponents.",
+        "form_away": "Nets below average with issues on defense, rebounding, and pace metrics.",
+        "intentions_home": "Likely to be fully locked in post-loss; high motivation to blow out a bad defense at home.",
+        "intentions_away": "Developmental reps; win is upside rather than expectation; live tank potential if down big.",
+        "trades_home": "Roster stable; only small role pieces shifting recently.",
+        "trades_away": "Young core build (Demin, Traore, MPJ Jr.); still sorting rotations.",
+        "injuries_home": "Jayson Tatum QUESTIONABLE with Achilles; Chris Boucher OUT (illness).",
+        "injuries_away": "No major fresh injuries; typical day-to-day tags.",
+        "lineup_flags": "If Tatum sits, BOS still big favorite but offensive ceiling lower; blowout rotation risk up for props."
       },
       "angle": {
-        "summary": "",
-        "side_thoughts": "",
-        "total_thoughts": "",
-        "props_ideas": ""
+        "summary": "Heavy home-chalk vs young, poor-defense dog. BOS should dominate, but 17+ spreads bring backdoor and rotation risk, especially if Tatum sits.",
+        "side_thoughts": "BOS better suited for ML round-robins/alt spreads than standard -17.5. BKN live if BOS sleepwalks early or if Tatum ruled out late and market over-adjusts.",
+        "total_thoughts": "Total in low 210s; Nets defense and pace lean Overs, but BOS blowout script brings 4Q under risk. Small lean Over if Tatum in; flat/no bet if out.",
+        "props_ideas": "Jaylen Brown points/alt points (primary usage without Tatum) and MPJ Jr. scoring overs as Nets’ first option. BOS role players threes vs soft perimeter defense."
       },
       "edge": {
-        "lean_side": "",
-        "lean_total": "",
-        "confidence": "",
-        "notes": ""
+        "lean_side": "BOS in alt spreads / 1H -10.5 type markets; pass main spread unless big misprice appears.",
+        "lean_total": "Slight Over lean if full BOS, otherwise neutral.",
+        "confidence": "Low-Medium; number-heavy game with rotation noise.",
+        "notes": "Key is Tatum status; late scratch could swing edge from BOS alt to small BKN +points and Brown usage overs."
       }
     },
     {
@@ -101,40 +101,40 @@
       "tip_local": "2026-02-27",
       "priority": "B",
       "market": {
-        "spread": 8.5,
+        "spread": 7.5,
         "total": 221.5,
         "moneyline_home": 3.73,
         "moneyline_away": 1.33,
-        "spread_open": null,
-        "total_open": null,
-        "notes": ""
+        "spread_open": 7.5,
+        "total_open": 220.5,
+        "notes": "Knicks road favorites vs Giannis-less Bucks."
       },
       "context": {
-        "rest_home": "",
-        "rest_away": "",
-        "travel_home": "",
-        "travel_away": "",
-        "form_home": "",
-        "form_away": "",
-        "intentions_home": "",
-        "intentions_away": "",
-        "trades_home": "",
-        "trades_away": "",
-        "injuries_home": "",
-        "injuries_away": "",
-        "lineup_flags": ""
+        "rest_home": "MIL at home on normal rest; coming off narrow 118-116 win vs CLE.",
+        "rest_away": "NYK on road, recently lost 94-109 to CLE; standard rest.",
+        "travel_home": "MIL home stand; no major travel.",
+        "travel_away": "Knicks traveling into Milwaukee; regular East/Midwest road rhythm.",
+        "form_home": "Bucks just 26-31 and 11th in East; heavily dependent on shooting; 0-10 when eFG is 50% or below.",
+        "form_away": "Knicks 37-22 with strong ATS and solid overall metrics; free-throw rate and defensive consistency travel well.",
+        "intentions_home": "Short-handed but desperate for wins; young core pieces (Porter Jr., Rollins, Turner, Portis) should stay aggressive.",
+        "intentions_away": "NYK push for seeding, tend to show up vs weaker defenses; full effort expected.",
+        "trades_home": "Re-tooled supporting cast around Giannis archetype; now forced into no-Giannis offense.",
+        "trades_away": "Wing-heavy build with Bridges, OG, KAT alongside Brunson; stable rotation.",
+        "injuries_home": "Giannis Antetokounmpo OUT (right calf strain); Taurean Prince OUT (neck surgery).",
+        "injuries_away": "Miles McBride OUT (ankle); core otherwise intact.",
+        "lineup_flags": "MIL playing without its main engine; spacing and rim pressure rely on Turner/Portis and guards’ creation. NYK stable starting five; better continuity."
       },
       "angle": {
-        "summary": "",
-        "side_thoughts": "",
-        "total_thoughts": "",
-        "props_ideas": ""
+        "summary": "Strong road favorite vs Giannis-less home dog. Knicks’ physical defense and halfcourt scoring travel well, while MIL’s offense is fragile when the shooting isn’t elite.",
+        "side_thoughts": "Projection has NYK around -7.5; lean NYK side or NYK alt spreads in correlated parlays given Bucks’ 0-10 record when eFG% dips.",
+        "total_thoughts": "MIL’s high 3P% can spike Overs, but without Giannis, pace/paint pressure fade. 221–222 is close; slight lean Under if NYK control tempo and live on offensive glass.",
+        "props_ideas": "Jalen Brunson points + assists vs weaker MIL POA defense; KAT points/rebounds vs Giannis-less frontcourt. For MIL, Kevin Porter Jr. assists and Myles Turner threes/points as they stretch NYK bigs."
       },
       "edge": {
-        "lean_side": "",
-        "lean_total": "",
-        "confidence": "",
-        "notes": ""
+        "lean_side": "NYK -7.5, stronger in 1H -4/-4.5 markets where talent gap shows early.",
+        "lean_total": "Tiny Under lean at 221.5 unless MIL is in pure shootout mode.",
+        "confidence": "Medium on NYK side with current injuries; Low on total.",
+        "notes": "If unexpected NYK rest news drops, re-evaluate; current edge anchored in Giannis out and Knicks continuity."
       }
     },
     {
@@ -148,36 +148,36 @@
         "total": 238.5,
         "moneyline_home": 1.55,
         "moneyline_away": 2.65,
-        "spread_open": null,
-        "total_open": null,
-        "notes": ""
+        "spread_open": -4.5,
+        "total_open": 238.5,
+        "notes": "Injury-ravaged matchup; both teams missing stars."
       },
       "context": {
-        "rest_home": "",
-        "rest_away": "",
-        "travel_home": "",
-        "travel_away": "",
-        "form_home": "",
-        "form_away": "",
-        "intentions_home": "",
-        "intentions_away": "",
-        "trades_home": "",
-        "trades_away": "",
-        "injuries_home": "",
-        "injuries_away": "",
-        "lineup_flags": ""
+        "rest_home": "DAL on short turnaround after recent 130-121 loss vs Kings and wins over Nets/Pacers in prior games; moderate fatigue.",
+        "rest_away": "MEM on 1–2 days rest after 133-112 loss vs GSW; rotation thin but young legs.",
+        "travel_home": "DAL at home again; limited travel.",
+        "travel_away": "MEM on the road; standard single-trip travel.",
+        "form_home": "Mavs offense around 110.7 rating, 47.4% FG, 34.4% 3P, with low assist rate; ball movement can stagnate.",
+        "form_away": "Grizzlies running on fumes but still competitive; GG Jackson and others have stepped up scoring.",
+        "intentions_home": "DAL still pushing for seeding/play-in; no Kyrie/Flagg reduces ceiling; may lean into role-player spread offense.",
+        "intentions_away": "MEM evaluating young core; still trying but depth is thin; volatility high night-to-night.",
+        "trades_home": "Cooper Flagg addition earlier in season but now injured; otherwise patched-together roster.",
+        "trades_away": "Reworked post-Morant group; various pieces in/out due to injuries.",
+        "injuries_home": "Kyrie Irving OUT for season; Dereck Lively II OUT for season; Cooper Flagg OUT; P.J. Washington QUESTIONABLE; Daniel Gafford recently missed time for ankle management.",
+        "injuries_away": "Ja Morant OUT; Zach Edey, Brandon Clarke, Santi Aldama, Cedric Coward, Kentavious Caldwell-Pope OUT; Ty Jerome DOUBTFUL.",
+        "lineup_flags": "Skeleton crews both sides. If Jerome sits and P.J. Washington plays, edge shifts strongly to DAL. Guard minutes for MEM likely go to Pippen Jr./Clayton/Small with efficiency drop."
       },
       "angle": {
-        "summary": "",
-        "side_thoughts": "",
-        "total_thoughts": "",
-        "props_ideas": ""
+        "summary": "Injury war between two short-handed squads. DAL has slightly better structure and home court; MEM has youth-driven variance and GG Jackson scoring upside.",
+        "side_thoughts": "At -4.5, lean DAL if P.J. Washington in and Ty Jerome out. If Jerome plays and DAL sits another key, number becomes rich and MEM +pts or live dog looks attractive.",
+        "total_thoughts": "High total (238.5) vs thin depth. Pace can be there, but tired legs and lack of creation on both sides can tank efficiency. Slight lean Under unless both teams show full offensive lineups.",
+        "props_ideas": "GG Jackson points + R+P; Cam Spencer usage for DAL; alt assists on whoever runs DAL’s offense with Kyrie out. Thin frontcourts make R+P ladders interesting."
       },
       "edge": {
-        "lean_side": "",
-        "lean_total": "",
-        "confidence": "",
-        "notes": ""
+        "lean_side": "DAL -4.5 conditional on P.J. Washington in and Ty Jerome out; otherwise pass or MEM live.",
+        "lean_total": "Slight Under at 238.5 with so many key creators out.",
+        "confidence": "Low-Medium given huge injury uncertainty.",
+        "notes": "News-driven game. Wait for confirmed lineups; attack live if books slow to adjust to one side’s thin rotation."
       }
     },
     {
@@ -191,36 +191,36 @@
         "total": 233.5,
         "moneyline_home": 1.34,
         "moneyline_away": 3.64,
-        "spread_open": null,
-        "total_open": null,
-        "notes": ""
+        "spread_open": -8.5,
+        "total_open": 233.5,
+        "notes": "Thunder favored with Shai back; DEN banged up around core."
       },
       "context": {
-        "rest_home": "",
-        "rest_away": "",
-        "travel_home": "",
-        "travel_away": "",
-        "form_home": "",
-        "form_away": "",
-        "intentions_home": "",
-        "intentions_away": "",
-        "trades_home": "",
-        "trades_away": "",
-        "injuries_home": "",
-        "injuries_away": "",
-        "lineup_flags": ""
+        "rest_home": "OKC 8-7 in last 15, moderate wear; at home with noisy injury reports but primary stars returning.",
+        "rest_away": "DEN 4-6 last 10; dealing with rotation injuries but still competitive.",
+        "travel_home": "Thunder at home; no travel.",
+        "travel_away": "Nuggets on road; standard West travel schedule.",
+        "form_home": "OKC strong when Shai plays; injuries have disrupted rhythm, but on/off suggests top-end ceiling when close to whole.",
+        "form_away": "DEN slightly underperforming lately; missing key forwards but still have main offensive structures intact when Murray plays.",
+        "intentions_home": "High-intent game with Shai back and at home vs defending champs; statement spot.",
+        "intentions_away": "Nuggets still trying to win but may manage minutes for banged-up players like Murray; forward depth thin.",
+        "trades_home": "Young additions (Mitchell, Sorber etc.) on roster but currently hurt.",
+        "trades_away": "Depth pieces around core (Strawther, Jones) shuffling with injuries.",
+        "injuries_home": "Jalen Williams OUT; Ajay Mitchell OUT; Branden Carlson OUT; Thomas Sorber OUT. Shai Gilgeous-Alexander, Alex Caruso, and Isaiah Joe expected to play.",
+        "injuries_away": "Aaron Gordon OUT; Peyton Watson OUT. Jamal Murray QUESTIONABLE (illness); Spencer Jones QUESTIONABLE; Julian Strawther PROBABLE.",
+        "lineup_flags": "If Murray sits, Denver creation drops significantly and spread may still be short. If he plays full, -8.5 on OKC is rich and favors DEN or pass."
       },
       "angle": {
-        "summary": "",
-        "side_thoughts": "",
-        "total_thoughts": "",
-        "props_ideas": ""
+        "summary": "OKC home favorite with Shai back vs shorthanded Denver frontcourt. Spread size hinges on Murray status and Thunder’s ability to exploit wing/forward mismatch.",
+        "side_thoughts": "If Murray out, OKC -8.5 becomes playable, possibly up to -9.5/-10. If Murray in and near full minutes, lean DEN +8.5 as an overreaction to recent record and injuries.",
+        "total_thoughts": "233.5 assumes high pace and efficiency. With Gordon/Watson out, DEN’s defense weakens, but if Murray is limited, scoring balance could suffer; mild lean Over only if both Shai and Murray are in without minutes caps.",
+        "props_ideas": "Shai points/PRAs against compromised Denver point-of-attack; Jokic assist and rebound props if Murray limited and Jokic has to orchestrate more. Caruso stocks (steals/blocks) live vs high-usage DEN guards."
       },
       "edge": {
-        "lean_side": "",
-        "lean_total": "",
-        "confidence": "",
-        "notes": ""
+        "lean_side": "Thunder -8.5 if Murray out; Nuggets +8.5 if Murray in and confirmed near-normal role.",
+        "lean_total": "Slight Over lean contingent on both primary creators active; otherwise no edge.",
+        "confidence": "Medium but news-dependent.",
+        "notes": "Classic wait-for-injury-report game. Best edge likely in live markets once rotations and pace are clear early."
       }
     }
   ],
