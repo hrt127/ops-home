@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "date": "2026-02-27",
+    "bankroll_start": 10000,
+    "unit_size": 100,
+    "book_list": [
+      "primary"
+    ]
+  },
+  "games": [
+    {
+      "id": "CLE-DET-2026-02-27",
+      "home": "Detroit Pistons",
+      "away": "Cleveland Cavaliers",
+      "tip_local": "2026-02-27",
+      "priority": "B",
+      "market": {
+        "spread": -5.5,
+        "total": 227.5,
+        "moneyline_home": 1.45,
+        "moneyline_away": 3.0,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "BRO-BOS-2026-02-27",
+      "home": "Boston Celtics",
+      "away": "Brooklyn Nets",
+      "tip_local": "2026-02-27",
+      "priority": "B",
+      "market": {
+        "spread": -17.5,
+        "total": 208.5,
+        "moneyline_home": 1.07,
+        "moneyline_away": 11.8,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "NEW-MIL-2026-02-27",
+      "home": "Milwaukee Bucks",
+      "away": "New York Knicks",
+      "tip_local": "2026-02-27",
+      "priority": "B",
+      "market": {
+        "spread": 8.5,
+        "total": 221.5,
+        "moneyline_home": 3.73,
+        "moneyline_away": 1.33,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "MEM-DAL-2026-02-27",
+      "home": "Dallas Mavericks",
+      "away": "Memphis Grizzlies",
+      "tip_local": "2026-02-27",
+      "priority": "B",
+      "market": {
+        "spread": -4.5,
+        "total": 238.5,
+        "moneyline_home": 1.55,
+        "moneyline_away": 2.65,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "DEN-OKL-2026-02-27",
+      "home": "Oklahoma City Thunder",
+      "away": "Denver Nuggets",
+      "tip_local": "2026-02-27",
+      "priority": "B",
+      "market": {
+        "spread": -8.5,
+        "total": 233.5,
+        "moneyline_home": 1.34,
+        "moneyline_away": 3.64,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    }
+  ],
+  "bets": []
+}

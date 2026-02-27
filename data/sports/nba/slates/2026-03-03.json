@@ -1,0 +1,443 @@
+{
+  "meta": {
+    "date": "2026-03-03",
+    "bankroll_start": 10000,
+    "unit_size": 100,
+    "book_list": [
+      "primary"
+    ]
+  },
+  "games": [
+    {
+      "id": "DAL-CHA-2026-03-03",
+      "home": "Charlotte Hornets",
+      "away": "Dallas Mavericks",
+      "tip_local": "2026-03-03",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "DET-CLE-2026-03-03",
+      "home": "Cleveland Cavaliers",
+      "away": "Detroit Pistons",
+      "tip_local": "2026-03-03",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "WAS-ORL-2026-03-03",
+      "home": "Orlando Magic",
+      "away": "Washington Wizards",
+      "tip_local": "2026-03-03",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "BRO-MIA-2026-03-03",
+      "home": "Miami Heat",
+      "away": "Brooklyn Nets",
+      "tip_local": "2026-03-03",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "NEW-TOR-2026-03-03",
+      "home": "Toronto Raptors",
+      "away": "New York Knicks",
+      "tip_local": "2026-03-03",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "SAN-PHI-2026-03-03",
+      "home": "Philadelphia 76ers",
+      "away": "San Antonio Spurs",
+      "tip_local": "2026-03-03",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "OKL-CHI-2026-03-03",
+      "home": "Chicago Bulls",
+      "away": "Oklahoma City Thunder",
+      "tip_local": "2026-03-03",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "MEM-MIN-2026-03-03",
+      "home": "Minnesota Timberwolves",
+      "away": "Memphis Grizzlies",
+      "tip_local": "2026-03-03",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "NEW-LOS-2026-03-03",
+      "home": "Los Angeles Lakers",
+      "away": "New Orleans Pelicans",
+      "tip_local": "2026-03-03",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "PHO-SAC-2026-03-03",
+      "home": "Sacramento Kings",
+      "away": "Phoenix Suns",
+      "tip_local": "2026-03-03",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    }
+  ],
+  "bets": []
+}

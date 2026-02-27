@@ -1,0 +1,185 @@
+{
+  "meta": {
+    "date": "2026-03-02",
+    "bankroll_start": 10000,
+    "unit_size": 100,
+    "book_list": [
+      "primary"
+    ]
+  },
+  "games": [
+    {
+      "id": "HOU-WAS-2026-03-02",
+      "home": "Washington Wizards",
+      "away": "Houston Rockets",
+      "tip_local": "2026-03-02",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "BOS-MIL-2026-03-02",
+      "home": "Milwaukee Bucks",
+      "away": "Boston Celtics",
+      "tip_local": "2026-03-02",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "DEN-UTA-2026-03-02",
+      "home": "Utah Jazz",
+      "away": "Denver Nuggets",
+      "tip_local": "2026-03-02",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "LA -GOL-2026-03-02",
+      "home": "Golden State Warriors",
+      "away": "LA Clippers",
+      "tip_local": "2026-03-02",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    }
+  ],
+  "bets": []
+}

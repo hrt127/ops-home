@@ -1,0 +1,10 @@
+{
+  "provider": "balldontlie + the-odds-api",
+  "balldontlie_base_games": "https://api.balldontlie.io/v1/games",
+  "balldontlie_api_key": "e523eb3c-1c5e-41fc-a6e5-c6a74aa821d9",
+  "oddsapi_base_url": "https://api.the-odds-api.com/v4/sports/basketball_nba/odds",
+  "oddsapi_api_key": "b0c92caac80102e032e6c692a4431368",
+  "oddsapi_region": "us",
+  "oddsapi_markets": "h2h,spreads,totals",
+  "oddsapi_bookmakers": "onexbet"
+}

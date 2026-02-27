@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "date": "2026-02-28",
+    "bankroll_start": 10000,
+    "unit_size": 100,
+    "book_list": [
+      "primary"
+    ]
+  },
+  "games": [
+    {
+      "id": "POR-CHA-2026-02-28",
+      "home": "Charlotte Hornets",
+      "away": "Portland Trail Blazers",
+      "tip_local": "2026-02-28",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "HOU-MIA-2026-02-28",
+      "home": "Miami Heat",
+      "away": "Houston Rockets",
+      "tip_local": "2026-02-28",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "TOR-WAS-2026-02-28",
+      "home": "Washington Wizards",
+      "away": "Toronto Raptors",
+      "tip_local": "2026-02-28",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "LOS-GOL-2026-02-28",
+      "home": "Golden State Warriors",
+      "away": "Los Angeles Lakers",
+      "tip_local": "2026-02-28",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    },
+    {
+      "id": "NEW-UTA-2026-02-28",
+      "home": "Utah Jazz",
+      "away": "New Orleans Pelicans",
+      "tip_local": "2026-02-28",
+      "priority": "B",
+      "market": {
+        "spread": null,
+        "total": null,
+        "moneyline_home": null,
+        "moneyline_away": null,
+        "spread_open": null,
+        "total_open": null,
+        "notes": ""
+      },
+      "context": {
+        "rest_home": "",
+        "rest_away": "",
+        "travel_home": "",
+        "travel_away": "",
+        "form_home": "",
+        "form_away": "",
+        "intentions_home": "",
+        "intentions_away": "",
+        "trades_home": "",
+        "trades_away": "",
+        "injuries_home": "",
+        "injuries_away": "",
+        "lineup_flags": ""
+      },
+      "angle": {
+        "summary": "",
+        "side_thoughts": "",
+        "total_thoughts": "",
+        "props_ideas": ""
+      },
+      "edge": {
+        "lean_side": "",
+        "lean_total": "",
+        "confidence": "",
+        "notes": ""
+      }
+    }
+  ],
+  "bets": []
+}
