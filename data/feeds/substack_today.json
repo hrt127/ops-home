@@ -1,12 +1,98 @@
 {
-    "metadata": {
-        "generated_at": "2026-02-09T18:00:00Z",
-        "source": "manual-init"
+  "date": "2026-02-27",
+  "generated_at": "2026-02-27T20:27:07.643810",
+  "summary": {
+    "total_insights": 68,
+    "p0_count": 0,
+    "p1_count": 6,
+    "p2_count": 62,
+    "sentiment": {
+      "bullish": 5,
+      "neutral": 63
+    }
+  },
+  "priority_actions": [],
+  "trade_signals": [],
+  "build_queue": [
+    {
+      "project": "DePIN vs AWS cost parity dashboard",
+      "effort": "1week",
+      "priority": "P1",
+      "source": "Metavert Meditations"
     },
-    "highlights": [
-        "Dojo Master Architecture implemented",
-        "substack-intel pipeline scaffolded",
-        "smart-money-v2 tracking initialized"
-    ],
-    "events": []
+    {
+      "project": "Multiplayer Human-vs-AI competition platform using agentic frameworks",
+      "effort": "1week",
+      "priority": "P1",
+      "source": "Metavert Meditations"
+    },
+    {
+      "project": "Deploy a solo-founder SaaS using agentic architecture templates",
+      "effort": "1week",
+      "priority": "P1",
+      "source": "Metavert Meditations"
+    },
+    {
+      "project": "Multi-agent simulation environment for testing autonomous economic behaviors",
+      "effort": "1month",
+      "priority": "P2",
+      "source": "Metavert Meditations"
+    },
+    {
+      "project": "Long-term game architecture case study",
+      "effort": "1day",
+      "priority": "P2",
+      "source": "Metavert Meditations"
+    },
+    {
+      "project": "AI-driven ecosystem mapping tool for autonomous agents",
+      "effort": "1week",
+      "priority": "P2",
+      "source": "Metavert Meditations"
+    }
+  ],
+  "protocol_consensus": [
+    {
+      "protocol": "Probably",
+      "mentions": 20
+    },
+    {
+      "protocol": "Advice",
+      "mentions": 20
+    },
+    {
+      "protocol": "Financial",
+      "mentions": 20
+    },
+    {
+      "protocol": "Macro",
+      "mentions": 20
+    },
+    {
+      "protocol": "Possibly",
+      "mentions": 20
+    },
+    {
+      "protocol": "Alpha",
+      "mentions": 20
+    },
+    {
+      "protocol": "Crypto",
+      "mentions": 20
+    },
+    {
+      "protocol": "Bitcoin",
+      "mentions": 3
+    }
+  ],
+  "narratives": [
+    {
+      "sentiment": "bullish",
+      "count": 5
+    },
+    {
+      "sentiment": "neutral",
+      "count": 63
+    }
+  ]
 }
