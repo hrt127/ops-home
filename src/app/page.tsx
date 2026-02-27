@@ -12,6 +12,8 @@ import NotesPanel from "../components/NotesPanel";
 import IdeasPanel from "../components/IdeasPanel";
 import SnippetsPanel from "../components/SnippetsPanel";
 import DailyFocusPanel from "../components/DailyFocusPanel";
+import GravityFocusCard from "../components/GravityFocusCard";
+import type { FocusData } from "../components/GravityFocusCard";
 import DojoMap from "../components/DojoMap";
 import AgentConsole from "../components/AgentConsole";
 import { arenas } from "@/lib/arenas";
@@ -24,6 +26,7 @@ import type {
   AgentResponse,
 } from "../lib/agent-types";
 import { clsx } from "clsx";
+import { NbaSlatePanel } from "@/components/NbaSlatePanel";
 
 const ReactCalendar = dynamic(() => import("react-calendar"), { ssr: false });
 
@@ -291,6 +294,7 @@ function PageContent() {
   const [snippets] = useState<SnippetItem[]>(DEFAULT_SNIPPETS);
   const [projects] = useState<ProjectItem[]>(DEFAULT_PROJECTS);
   const [selectedWallet, setSelectedWallet] = useState<Wallet | null>(null);
+  const [currentFocus, setCurrentFocus] = useState<FocusData | null>(null);
 
   // Show today's events (assume dayOffset === 0 means today)
   const todaysEvents = events.filter((ev) => ev.dayOffset === 0);
@@ -312,11 +316,15 @@ function PageContent() {
           <MarketStripEnhanced />
           <WalletLanes wallets={wallets} onChange={setWallets} selected={selectedWallet} onSelect={setSelectedWallet} />
         </div>
-        <div>
-          <DailyFocusPanel />
-          <div className="h-4" />
-          <EventsPanel events={events} setEvents={setEvents} />
-        </div>
+	<div>
+  	  <GravityFocusCard onFocusChange={setCurrentFocus} />
+  	  <div className="h-4" />
+  	  <NbaSlatePanel />
+  	  <div className="h-4" />
+  	  <DailyFocusPanel />
+  	  <div className="h-4" />
+  	  <EventsPanel events={events} setEvents={setEvents} />
+	</div>
         <div>
           <NotesPanel notes={notes} setNotes={setNotes} />
           <IdeasPanel ideas={ideas} setIdeas={setIdeas} />
