@@ -1,19 +1,445 @@
 {
   "date": "2026-02-27",
-  "generated_at": "2026-02-27T20:27:07.643810",
+  "generated_at": "2026-02-27T21:02:29.036251",
   "summary": {
-    "total_insights": 68,
-    "p0_count": 0,
-    "p1_count": 6,
-    "p2_count": 62,
+    "total_insights": 106,
+    "p0_count": 5,
+    "p1_count": 15,
+    "p2_count": 86,
     "sentiment": {
-      "bullish": 5,
-      "neutral": 63
+      "neutral": 95,
+      "bullish": 10,
+      "bearish": 1
     }
   },
-  "priority_actions": [],
-  "trade_signals": [],
+  "priority_actions": [
+    {
+      "action": "Research the specific list of 200+ tokenized assets coming to Solana via Ondo",
+      "source": "Artemis Big Fundamentals",
+      "url": "https://research.artemisanalytics.com/p/artemis-weekly-digital-finance-fundamentals-ebc"
+    },
+    {
+      "action": "Review Pendle documentation for sPENDLE staking requirements and rewards",
+      "source": "Artemis Big Fundamentals",
+      "url": "https://research.artemisanalytics.com/p/artemis-weekly-digital-finance-fundamentals-ebc"
+    },
+    {
+      "action": "Investigate the technical framework of DATs (Decentralized Autonomous Trusts) in prediction markets",
+      "source": "Artemis Big Fundamentals",
+      "url": "https://research.artemisanalytics.com/p/artemis-weekly-digital-finance-fundamentals-ebc"
+    }
+  ],
+  "trade_signals": [
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "BTC is still rangebound between $65k and $70k while ETH has broken below $2,000 and majors like XRP BNB SOL and DOGE are down roughly 3% to 5%.",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/hyper-foundation-unstakes-1m-hype",
+      "window": null
+    },
+    {
+      "asset": "ETH",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "BTC is still rangebound between $65k and $70k while ETH has broken below $2,000 and majors like XRP BNB SOL and DOGE are down roughly 3% to 5%.",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/hyper-foundation-unstakes-1m-hype",
+      "window": null
+    },
+    {
+      "asset": "SOL",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "BTC is still rangebound between $65k and $70k while ETH has broken below $2,000 and majors like XRP BNB SOL and DOGE are down roughly 3% to 5%.",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/hyper-foundation-unstakes-1m-hype",
+      "window": null
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Crypto remains rangebound, with BTC near $68K and ETH below $2,000, while majors are slightly higher with SOL leading.",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/cme-to-launch-247-crypto-futures",
+      "window": null
+    },
+    {
+      "asset": "ETH",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Crypto remains rangebound, with BTC near $68K and ETH below $2,000, while majors are slightly higher with SOL leading.",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/cme-to-launch-247-crypto-futures",
+      "window": null
+    },
+    {
+      "asset": "SOL",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Crypto remains rangebound, with BTC near $68K and ETH below $2,000, while majors are slightly higher with SOL leading.",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/cme-to-launch-247-crypto-futures",
+      "window": null
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Bitcoin rebounded above $65,900 in early Wednesday trading, up around 3% from yesterday afternoon, with broad altcoin strength led by ETH up 4.8%, ...",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/bitwise-has-acquired-chorus-one",
+      "window": null
+    },
+    {
+      "asset": "ETH",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Bitcoin rebounded above $65,900 in early Wednesday trading, up around 3% from yesterday afternoon, with broad altcoin strength led by ETH up 4.8%, ...",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/bitwise-has-acquired-chorus-one",
+      "window": null
+    },
+    {
+      "asset": "SOL",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Bitcoin rebounded above $65,900 in early Wednesday trading, up around 3% from yesterday afternoon, with broad altcoin strength led by ETH up 4.8%, ...",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/bitwise-has-acquired-chorus-one",
+      "window": null
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Risk sentiment improved on Wednesday, lifting crypto: BTC jumped nearly 10% intraday but failed at $70k and is holding above $68k, while ETH rose 8...",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/coinshares-has-launched-a-hyperliquid",
+      "window": null
+    },
+    {
+      "asset": "ETH",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Risk sentiment improved on Wednesday, lifting crypto: BTC jumped nearly 10% intraday but failed at $70k and is holding above $68k, while ETH rose 8...",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/coinshares-has-launched-a-hyperliquid",
+      "window": null
+    },
+    {
+      "asset": "SOL",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Risk sentiment improved on Wednesday, lifting crypto: BTC jumped nearly 10% intraday but failed at $70k and is holding above $68k, while ETH rose 8...",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/coinshares-has-launched-a-hyperliquid",
+      "window": null
+    },
+    {
+      "asset": "ONDO",
+      "signal": "watch",
+      "entry_level": "",
+      "rationale": "Massive expansion of tokenized assets on Solana could drive significant TVL and utility.",
+      "source": "Artemis Big Fundamentals",
+      "priority": "P0",
+      "url": "https://research.artemisanalytics.com/p/artemis-weekly-digital-finance-fundamentals-ebc",
+      "window": "2026"
+    },
+    {
+      "asset": "PENDLE",
+      "signal": "watch",
+      "entry_level": "",
+      "rationale": "Launch of sPENDLE introduces new yield mechanics and potential supply sinks.",
+      "source": "Artemis Big Fundamentals",
+      "priority": "P0",
+      "url": "https://research.artemisanalytics.com/p/artemis-weekly-digital-finance-fundamentals-ebc",
+      "window": "2026"
+    },
+    {
+      "asset": "SOL",
+      "signal": "buy",
+      "entry_level": "",
+      "rationale": "Ondo's RWA expansion reinforces Solana's position as a hub for institutional assets.",
+      "source": "Artemis Big Fundamentals",
+      "priority": "P0",
+      "url": "https://research.artemisanalytics.com/p/artemis-weekly-digital-finance-fundamentals-ebc",
+      "window": "2026"
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Sentiment coming out of Consensus Hong Kong was surprisingly constructive, even as BTC remains range-bound between $65,000 and $70,000 and the post...",
+      "source": "Block Scholes Research",
+      "priority": "P1",
+      "url": "https://blockscholesresearch.substack.com/p/no-consensus-post-consensus",
+      "window": null
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "BTC&#8217;s weekend push to around $71K has faded back below $68K, marking a fourth straight weekly decline and underscoring the lack of near-term ...",
+      "source": "Block Scholes Research",
+      "priority": "P1",
+      "url": "https://blockscholesresearch.substack.com/p/metaplanet-hits-btc-holdings-goal",
+      "window": null
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "BTC remains rangebound in the $65K to $70K range, while ETH has held near $2,000 since 6 February, as spot ETF flows diverged yesterday between $10...",
+      "source": "Block Scholes Research",
+      "priority": "P1",
+      "url": "https://blockscholesresearch.substack.com/p/grayscale-sui-staking-etf-will-debut",
+      "window": null
+    },
+    {
+      "asset": "ETH",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "BTC remains rangebound in the $65K to $70K range, while ETH has held near $2,000 since 6 February, as spot ETF flows diverged yesterday between $10...",
+      "source": "Block Scholes Research",
+      "priority": "P1",
+      "url": "https://blockscholesresearch.substack.com/p/grayscale-sui-staking-etf-will-debut",
+      "window": null
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Risk appetite keeps weakening as BTC briefly fell to $62K and spot BTC ETFs logged outflows in 6 of the last 8 sessions, including $203.8M sold yes...",
+      "source": "Block Scholes Research",
+      "priority": "P1",
+      "url": "https://blockscholesresearch.substack.com/p/trump-led-board-of-peace-considers",
+      "window": null
+    },
+    {
+      "asset": "SOL",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Risk appetite keeps weakening as BTC briefly fell to $62K and spot BTC ETFs logged outflows in 6 of the last 8 sessions, including $203.8M sold yes...",
+      "source": "Block Scholes Research",
+      "priority": "P1",
+      "url": "https://blockscholesresearch.substack.com/p/trump-led-board-of-peace-considers",
+      "window": null
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "After months of turbulent price action that followed the October 2025 liquidation event, and a brief capitulation below $60K, BTC&#8217;s spot pric...",
+      "source": "Block Scholes Research",
+      "priority": "P1",
+      "url": "https://blockscholesresearch.substack.com/p/volatility-report-february-2026",
+      "window": "october 2025"
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "BTC broke below its three-week $65k&#8211;$70k range, briefly dropping to $64,300 and ending the session back above $66k after a 4.8% daily drawdown.",
+      "source": "Block Scholes Research",
+      "priority": "P1",
+      "url": "https://blockscholesresearch.substack.com/p/i-as-president-of-the-united-states",
+      "window": null
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "While BTC previously traded in a tight range, the low level of realized volatility broke this week when the price briefly fell to $62K.",
+      "source": "Block Scholes Research",
+      "priority": "P1",
+      "url": "https://blockscholesresearch.substack.com/p/perp-open-interest-backs-recent-btc",
+      "window": null
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Crypto pulled back yesterday after BTC failed to hold $70K, trading below $68K while ETH stayed just above $2,000, even as both spot ETF products l...",
+      "source": "Block Scholes Research",
+      "priority": "P1",
+      "url": "https://blockscholesresearch.substack.com/p/mara-holdings-reported-a-17b-net",
+      "window": null
+    },
+    {
+      "asset": "ETH",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Crypto pulled back yesterday after BTC failed to hold $70K, trading below $68K while ETH stayed just above $2,000, even as both spot ETF products l...",
+      "source": "Block Scholes Research",
+      "priority": "P1",
+      "url": "https://blockscholesresearch.substack.com/p/mara-holdings-reported-a-17b-net",
+      "window": null
+    },
+    {
+      "asset": "ETH",
+      "signal": "buy",
+      "entry_level": "",
+      "rationale": "Anticipated bullish cycle turning point driven by the Fusaka fork upgrade.",
+      "source": "Digital Asset Research",
+      "priority": "P1",
+      "url": "https://www.1995digitalassetresearch.com/p/why-december-2025-is-eths-major-macro",
+      "window": "this month"
+    },
+    {
+      "asset": "BASE",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Things are heating up over on Base again, this time led by Bankr and the OpenClaw ecosystem.",
+      "source": "Letters from a Zeneca",
+      "priority": "P2",
+      "url": "https://www.zeneca.xyz/p/letter-99-ai-season-take-two",
+      "window": null
+    },
+    {
+      "asset": "SOL",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "With spot prices now in a consolidation phase following the sharp and violent selloff in early February, traders in options markets are showing a l...",
+      "source": "Block Scholes Research",
+      "priority": "P2",
+      "url": "https://blockscholesresearch.substack.com/p/low-appetite-for-risk-as-crypto-searches",
+      "window": null
+    },
+    {
+      "asset": "COIN",
+      "signal": "sell",
+      "entry_level": "",
+      "rationale": "High volatility and optimistic expectations create a negative near-term risk-reward profile.",
+      "source": "Artemis Big Fundamentals",
+      "priority": "P2",
+      "url": "https://research.artemisanalytics.com/p/coinbase-coin-q4-earnings-and-outlook",
+      "window": "2026"
+    }
+  ],
+  "trade_watchlist": [
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "BTC is still rangebound between $65k and $70k while ETH has broken below $2,000 and majors like XRP BNB SOL and DOGE are down roughly 3% to 5%.",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/hyper-foundation-unstakes-1m-hype",
+      "window": null
+    },
+    {
+      "asset": "ETH",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "BTC is still rangebound between $65k and $70k while ETH has broken below $2,000 and majors like XRP BNB SOL and DOGE are down roughly 3% to 5%.",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/hyper-foundation-unstakes-1m-hype",
+      "window": null
+    },
+    {
+      "asset": "SOL",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "BTC is still rangebound between $65k and $70k while ETH has broken below $2,000 and majors like XRP BNB SOL and DOGE are down roughly 3% to 5%.",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/hyper-foundation-unstakes-1m-hype",
+      "window": null
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Crypto remains rangebound, with BTC near $68K and ETH below $2,000, while majors are slightly higher with SOL leading.",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/cme-to-launch-247-crypto-futures",
+      "window": null
+    },
+    {
+      "asset": "ETH",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Crypto remains rangebound, with BTC near $68K and ETH below $2,000, while majors are slightly higher with SOL leading.",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/cme-to-launch-247-crypto-futures",
+      "window": null
+    },
+    {
+      "asset": "SOL",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Crypto remains rangebound, with BTC near $68K and ETH below $2,000, while majors are slightly higher with SOL leading.",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/cme-to-launch-247-crypto-futures",
+      "window": null
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Bitcoin rebounded above $65,900 in early Wednesday trading, up around 3% from yesterday afternoon, with broad altcoin strength led by ETH up 4.8%, ...",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/bitwise-has-acquired-chorus-one",
+      "window": null
+    },
+    {
+      "asset": "ETH",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Bitcoin rebounded above $65,900 in early Wednesday trading, up around 3% from yesterday afternoon, with broad altcoin strength led by ETH up 4.8%, ...",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/bitwise-has-acquired-chorus-one",
+      "window": null
+    },
+    {
+      "asset": "SOL",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Bitcoin rebounded above $65,900 in early Wednesday trading, up around 3% from yesterday afternoon, with broad altcoin strength led by ETH up 4.8%, ...",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/bitwise-has-acquired-chorus-one",
+      "window": null
+    },
+    {
+      "asset": "BTC",
+      "signal": "watch",
+      "entry_level": null,
+      "rationale": "Risk sentiment improved on Wednesday, lifting crypto: BTC jumped nearly 10% intraday but failed at $70k and is holding above $68k, while ETH rose 8...",
+      "source": "Block Scholes Research",
+      "priority": "P0",
+      "url": "https://blockscholesresearch.substack.com/p/coinshares-has-launched-a-hyperliquid",
+      "window": null
+    }
+  ],
   "build_queue": [
+    {
+      "project": "Ondo Solana RWA Analytics Dashboard",
+      "effort": "1week",
+      "priority": "P1",
+      "source": "Artemis Big Fundamentals"
+    },
     {
       "project": "DePIN vs AWS cost parity dashboard",
       "effort": "1week",
@@ -31,6 +457,12 @@
       "effort": "1week",
       "priority": "P1",
       "source": "Metavert Meditations"
+    },
+    {
+      "project": "sPENDLE yield strategy optimizer",
+      "effort": "1week",
+      "priority": "P2",
+      "source": "Artemis Big Fundamentals"
     },
     {
       "project": "Multi-agent simulation environment for testing autonomous economic behaviors",
@@ -53,46 +485,34 @@
   ],
   "protocol_consensus": [
     {
-      "protocol": "Probably",
-      "mentions": 20
+      "protocol": "BTC",
+      "mentions": 48
     },
     {
-      "protocol": "Advice",
-      "mentions": 20
+      "protocol": "SOL",
+      "mentions": 38
     },
     {
-      "protocol": "Financial",
-      "mentions": 20
+      "protocol": "ETH",
+      "mentions": 26
     },
     {
-      "protocol": "Macro",
-      "mentions": 20
-    },
-    {
-      "protocol": "Possibly",
-      "mentions": 20
-    },
-    {
-      "protocol": "Alpha",
-      "mentions": 20
-    },
-    {
-      "protocol": "Crypto",
-      "mentions": 20
-    },
-    {
-      "protocol": "Bitcoin",
-      "mentions": 3
+      "protocol": "BASE",
+      "mentions": 15
     }
   ],
   "narratives": [
     {
-      "sentiment": "bullish",
-      "count": 5
+      "sentiment": "neutral",
+      "count": 95
     },
     {
-      "sentiment": "neutral",
-      "count": 63
+      "sentiment": "bullish",
+      "count": 10
+    },
+    {
+      "sentiment": "bearish",
+      "count": 1
     }
   ]
 }
